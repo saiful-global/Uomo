@@ -1,0 +1,18 @@
+export const Productcategory = [
+  {
+    id: 1,
+    name: "All",
+  },
+  {
+    id: 2,
+    name: "NEWARRIVALS",
+  },
+  {
+    id: 3,
+    name: "BEST SELLER",
+  },
+  {
+    id: 4,
+    name: " TOP RATING",
+  },
+];
