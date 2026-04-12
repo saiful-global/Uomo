@@ -1,15 +1,20 @@
 @import "tailwindcss";
 
+
+/* Custom Colors */
 @theme{
     --font-jost: "Jost", sans-serif;
     --color-primary-black: #222222;
     --color-primary-white: #FFFFFF;
     --color-thirdColor: #B9A16B;
     --color-secondColor: #767676;
+    --color-redColor: #D6001C;
 }
 .list-item{
     @apply font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[""] after:w-0 hover:after:w-[40%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
 }
+
+/* Banner Slider */
 .u-list{
     @apply flex gap-11 ml-14;
 }

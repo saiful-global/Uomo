@@ -1,26 +1,63 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../ui/Container'
 import Listitem from '../Common/Listitem'
 import { Productcategory } from '../../api/productCategory'
+import Product from '../Common/Product'
+import axios from 'axios'
 
 const TrendyProducts = () => {
 
-    const [category,setCategory] = useState("all")
+    const [products,setProducts] = useState([]);
+    const [category,setCategory] = useState(1)
+    const [showAll, setShowAll] = useState(false);
 
-    const handleActive =()=>{
-        alert("lsdfafsdhlkjh");
+    let displayedProducts = showAll ? products : products.slice(0, 8);
+
+    const handleActive =(id)=>{
+        setCategory(id)
     }
+
+    // API with Axios & then,catch
+    function getProducts(){
+       axios.get("https://dummyjson.com/products")
+       .then((res)=>{setProducts(res.data.products);})
+       .catch((err)=>{throw new Error(err.message ? err.message : "Something went wrong!");})
+    }
+    useEffect(()=>{
+        getProducts()
+    },[])
+    
 
   return (
     <>
-    <section className='mt-25'>
+    <section className='mt-25 mb-25'>
         <Container>
+            {/* Headline */}
             <h2 className='text-center font-jost text-primary-black text-[35px] font-normal'>OUR TRENDY <span className='font-bold'>PRODUCTS</span></h2>
-            <ul className='flex justify-center gap-13.5'>
+
+            {/* Trendy Products Lists */}
+            <ul className='flex justify-center gap-13.5 mt-7.5'>
                 {Productcategory?.map((item)=>(
-                    <Listitem onCick={handleActive} className="font-jost cursor-pointer text-secondColor text-base font-medium relative after:content-[''] after:w-0 hover:after:w-[40%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300">{item.name}</Listitem>
+                <Listitem onClick={()=>handleActive(item.id)} className={`${category == item.id ? "font-jost cursor-pointer text-primary-black text-base font-medium relative after:content-[''] after:w-[70%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300" : "font-jost cursor-pointer text-secondColor text-base font-medium" }`}>{item.name}</Listitem>
                 ))}
             </ul>
+
+            {/* products item map */}
+            <div className='grid grid-cols-4 gap-x-7.5 gap-y-15 mt-10'>
+                {displayedProducts.map((item) => (
+                    <Product item={item} key={item.id} />
+                ))}
+            </div>
+            
+            {/* show all button  */}
+            <div className="text-center mt-10.5">
+                <button
+                    onClick={() => setShowAll(!showAll)}
+                    className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[40%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300"
+                >
+                    {showAll ? "Show Less" : "SEE ALL PRODUCT"}
+                </button>
+            </div>
         </Container>
     </section>
     </>
