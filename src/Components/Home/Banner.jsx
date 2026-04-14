@@ -3,7 +3,8 @@ import Image from '../Common/Image'
 import { bannerData } from '../../api/bannerData'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import { FaFacebookF, FaTwitter, FaInstagram, FaPinterest } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaPinterest } from 'react-icons/fa'
+import { FaXTwitter } from "react-icons/fa6";
 
 const Banner = () => {
 
@@ -29,10 +30,10 @@ const Banner = () => {
     <section className='relative w-full overflow-hidden'>
 
       <div className='absolute -left-4 top-1/2 -translate-y-1/2 font-normal flex flex-col items-center gap-6  text-secondColor text-sm'>
-          <FaFacebookF />
-          <FaTwitter />
-          <FaInstagram />
-          <FaPinterest />
+          <FaFacebookF className='hover:text-blue-500' />
+          <FaXTwitter />
+          <FaInstagram className='hover:text-pink-600' />
+          <FaPinterest className='hover:text-red-600' />
         <div className="-rotate-90 font-jost font-medium leading-6 mt-4.5">
           FOLLOW US 
         </div>

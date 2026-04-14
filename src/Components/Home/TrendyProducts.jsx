@@ -51,10 +51,7 @@ const TrendyProducts = () => {
             
             {/* show all button  */}
             <div className="text-center mt-10.5">
-                <button
-                    onClick={() => setShowAll(!showAll)}
-                    className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[40%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300"
-                >
+                <button onClick={() => setShowAll(!showAll)} className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300" >
                     {showAll ? "Show Less" : "SEE ALL PRODUCT"}
                 </button>
             </div>

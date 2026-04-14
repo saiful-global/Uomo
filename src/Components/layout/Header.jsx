@@ -75,6 +75,15 @@ const Header = () => {
                         </button>
                         <span className='font-jost bg-thirdColor px-1.25 py-px text-primary-white rounded-full font-medium text-[10px] absolute bottom-0 left-3 '>{cartItems}</span>
                     </li>
+                    <li>
+                        <button>
+                            <svg width="26" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="25.0435" height="2" fill="#222222"/>
+                            <rect y="8" width="20.0348" height="2" fill="#222222"/>
+                            <rect y="16" width="25.0435" height="2" fill="#222222"/>
+                            </svg>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </Container>
