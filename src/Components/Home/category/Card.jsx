@@ -11,7 +11,7 @@ const Card = ({item}) => {
         {item.id !== 4 && <h4 className='font-jost text-primary-black text-sm font-normal leading-6 '>HOT LIST</h4>}
         <h2 className='text-[24px] font-jost font-medium'><span className='font-bold'>{item.name}</span> {item.id === 4 ? "CARDS" : "COLLECTION"}</h2>
         {item.id === 4 && <p className="font-jost text-primary-black text-sm font-normal leading-6 mb-4 mt-2 pr-19">Surprise someone with the gift they really want.</p>}
-        <Link className='font-jost text-primary-black text-sm font-medium leading-6 relative after:content-[""] after:w-0 hover:after:w-[40%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300' to={item.link}>{item.id === 4 ? "DISCOVER MORE" : "SHOP NOW"}</Link>
+        <Link className='font-jost text-primary-black text-sm font-medium leading-6 relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300' to={item.link}>{item.id === 4 ? "DISCOVER MORE" : "SHOP NOW"}</Link>
         </div>
     </div>
     </>

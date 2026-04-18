@@ -11,7 +11,7 @@
     --color-redColor: #D6001C;
 }
 .list-item{
-    @apply font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[""] after:w-0 hover:after:w-[40%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
+    @apply font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[""] after:w-0 hover:after:w-[50%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
 }
 
 /* Banner Slider */
