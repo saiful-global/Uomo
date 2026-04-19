@@ -4,10 +4,6 @@ import ProductImage from '../../assets/images/ProductImage.png'
 
 
 const Product = ({item}) => {
-
-  console.log(item);
-  
-  
   return (
     <div className='max-w-82.5 relative'>
 
