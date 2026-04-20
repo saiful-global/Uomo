@@ -28,7 +28,7 @@ const TrendyProducts = () => {
     // API with Axios & then,catch
     function getProducts(){
        axios.get("https://dummyjson.com/products")
-       .then((res)=>{setProducts(res.data.products);filterProduct(res.data.products);setCategory("all");})
+       .then((res)=>{setProducts(res.data.products);setCategory("all");})
        .catch((err)=>{throw new Error(err.message ? err.message : "Something went wrong!");})
     }
     useEffect(()=>{
@@ -53,7 +53,7 @@ const TrendyProducts = () => {
             {/* products item map */}
             <div className='grid grid-cols-4 gap-x-7.5 gap-y-15 mt-10'>
                 {category == "all" ? 
-                products.map((item) => (
+                displayedProducts.map((item) => (
                     <Product item={item} key={item.id} />
                 )) : 
                 filterProduct.map((item) => (
@@ -63,7 +63,7 @@ const TrendyProducts = () => {
             
             {/* show all button  */}
             <div className="text-center mt-10.5">
-                <button onClick={() => setShowAll(!showAll)} className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300" >
+                <button onClick={() => setShowAll(!showAll)} className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300 cursor-pointer" >
                     {showAll ? "SHOW LESS" : "SEE ALL PRODUCT"}
                 </button>
             </div>
