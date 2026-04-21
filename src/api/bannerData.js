@@ -1,4 +1,5 @@
 import BannerImage from "../assets/images/banner.png"
+import BannerImage2 from "../assets/images/banner2.png"
 
 export const bannerData =[
     {
@@ -7,7 +8,7 @@ export const bannerData =[
     },
     {
         id:2,
-        banner:BannerImage,
+        banner:BannerImage2,
     },
     {
         id:3,
