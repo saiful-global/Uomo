@@ -23,6 +23,7 @@ const SpringCollection = () => {
                         <Link className='font-jost text-primary-black text-sm font-medium leading-6 relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300' to="/shop">SHOP NOW</Link>
 
                         {/* countdown */}
+                        {/*Fixed timer for countdown = new Date("2026-12-17T00:00:00.000Z") <-- instead of --> Date.now() + 510000000 */}
                         <Countdown
                             date={Date.now() + 510000000}
                             renderer={({ days, hours, minutes, seconds }) => {
