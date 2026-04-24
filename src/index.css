@@ -18,13 +18,13 @@
 .u-list{
     @apply flex gap-11 ml-14;
 }
-.slick-active div{
+#banner .slick-active div{
     @apply bg-primary-black
 }
-.slick-dots .slick-active{
+#banner .slick-dots .slick-active{
     @apply border-primary-black border-2 h-7.5 w-7.5 rounded-full flex justify-center items-center ;
 }
 
-.slick-dots ul{
+#banner .slick-dots ul{
     @apply flex justify-center items-center ;
 }
