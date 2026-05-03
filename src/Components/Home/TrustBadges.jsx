@@ -1,8 +1,15 @@
 import React from 'react'
+import Container from '../ui/Container'
 
 const TrustBadges = () => {
   return (
-    <div>TrustBadges</div>
+    <>
+    <section>
+        <Container>
+            
+        </Container>
+    </section>
+    </>
   )
 }
 
