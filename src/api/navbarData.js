@@ -2,10 +2,12 @@ export const navitems =[
     {
         id: 1,
         name:"HOME",
+        url:"/",
     },
     {
         id: 2,
         name:"SHOP",
+        url:"/shop",
     },
     {
         id: 3,
