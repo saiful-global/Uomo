@@ -4,6 +4,7 @@ import Image from '../Common/Image'
 import SecurePaymentsImage from '../../assets/images/SecurePaymentsImage.png'
 import { FaFacebookF, FaInstagram, FaPinterest } from 'react-icons/fa'
 import { FaXTwitter,FaYoutube } from "react-icons/fa6";
+import { Link } from 'react-router'
 
 const Footer = () => {
   return (
@@ -12,7 +13,9 @@ const Footer = () => {
       <Container>
         <div className='flex justify-between'>
           <div>
-            <Image className="pb-11.25" src="/images/logo.png"></Image>
+            <Link to="/">
+              <Image className="pb-11.25" src="/images/logo.png"></Image>
+            </Link>
             <p className='font-jost font-normal text-sm leading-6 text-primary-black'>1418 River Drive, Suite 35 Cottonhall, CA 9622</p>
             <p className='font-jost font-normal text-sm leading-6 text-primary-black pb-9.25'>United States</p>
             <p className='font-jost font-medium text-sm leading-6 text-primary-black'>sale@uomo.com</p>
