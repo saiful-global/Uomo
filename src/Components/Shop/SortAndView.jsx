@@ -41,13 +41,11 @@ const SortAndView = () => {
       </div>
 
       {/* View 1 2 3  */}
-      <div>
-        <ul className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center gap-2.75 relative after:absolute after:top-0 after:-right-5.75 after:h-5.5 after:w-0.5 after:bg-[#E4E4E4] after:content-[''] pl-7.5">
-          VIEW
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-        </ul>
+      <div className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center relative after:absolute after:top-0 after:-right-5.75 after:h-5.5 after:w-0.5 after:bg-[#E4E4E4] after:content-[''] pl-7.5">
+          <h2>VIEW</h2>
+          <button className='pl-2.75'>2</button>
+          <button className='pl-4.5'>3</button>
+          <button className='pl-4.5'>4</button>
       </div>
 
       {/* Filter  */}
