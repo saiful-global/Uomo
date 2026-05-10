@@ -11,15 +11,21 @@ const Shop = () => {
   const [products,setProducts] = useState([]);
   const [view,setView] = useState(4)
 
+  // calculation of showProduct 
+  let totalProduct = products.length
+  let showProduct = 25
+  let result = Math.round((showProduct / totalProduct)*100)
+  
     // API with Axios & then,catch
   function getProducts(){
-      axios.get("https://dummyjson.com/products?page=1&limit=50")
+      axios.get("https://dummyjson.com/products?page=1&limit=30")
       .then((res)=>{setProducts(res.data.products);})
       .catch((err)=>{throw new Error(err.message ? err.message : "Something went wrong!");})
   }
   useEffect(()=>{
       getProducts()
   },[])
+
 
   return (
     <main>
@@ -34,7 +40,7 @@ const Shop = () => {
 
         {/* Range & Show More  */}
         <div className='w-75 h-1.5 bg-[#E4E4E4] mt-1.25 mb-4.25 rounded-[10px] mx-auto'>
-          <div className='w-[20%] h-full bg-primary-black rounded-[10px]'></div>
+          <div style={{width:`${result}%`}} className='w-[20%] h-full bg-primary-black rounded-[10px]'></div>
         </div>
     </main>
   )

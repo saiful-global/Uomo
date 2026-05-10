@@ -1,8 +1,15 @@
 import React, {useState } from 'react';
+import { IoFilter } from "react-icons/io5";
+import { IoMdClose } from "react-icons/io";
 
 const SortAndView = ({setView}) => {
 
   const [open, setOpen] = useState(false);
+  const [filterModal,setFilterModal] = useState(false);
+
+  // button active state 
+  const [active, setActive] = useState(4);
+  
   let viewProduct = [2,3,4]
   const handleView =(view)=>{
     setView(view)
@@ -48,20 +55,26 @@ const SortAndView = ({setView}) => {
       <div className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center relative after:absolute after:top-0 after:-right-5.75 after:h-5.5 after:w-0.5 after:bg-[#E4E4E4] after:content-[''] pl-7.5">
           <h2>VIEW</h2>
           {viewProduct.map((item)=>(
-            <button onClick={()=>handleView(item)} className='pl-2.75'>{item}</button>
+            <button key={item} onClick={()=>{handleView(item); setActive(item)}} className={`pl-2.75 ${active === item ? "cursor-pointer relative after:content-[''] after:w-2 after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:right-0" : "text-secondColor"} `}>{item}</button>
           ))}
       </div>
 
-      {/* Filter  */}
-      <div className='pl-7.5'>
-         <h4 className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center gap-2.5">
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5.44444 9.33333H8.55556V7.77778H5.44444V9.33333ZM0 0V1.55556H14V0H0ZM2.33333 5.44444H11.6667V3.88889H2.33333V5.44444Z" fill="black"/>
-          </svg>
+      {/* Filter text */}
+      <div onClick={()=>setFilterModal(!filterModal)} className='pl-7.5'>
+         <h4 className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center gap-2.5 cursor-pointer">
+          <IoFilter />
           FILTER
         </h4>
       </div>
     </div>
+
+    {/* filter absolute div */}
+      <div className={`h-screen ${filterModal? "w-105": "w-0"} bg-primary-white top-0 right-0 fixed z-50 duration-300`}>
+        <div className='flex justify-between bg-[#FAF9F8] px-10 py-8.25'>
+          <h3 className='font-jost font-medium text-base text-primary-black'>FILTER BY</h3>
+          <IoMdClose onClick={()=>setFilterModal(false)} className='text-[21px] cursor-pointer' />
+        </div>
+      </div>
     </>
   );
 }
