@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState, useRef } from 'react';
 import { IoFilter } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 
@@ -6,9 +6,21 @@ const SortAndView = ({setView}) => {
 
   const [open, setOpen] = useState(false);
   const [filterModal,setFilterModal] = useState(false);
-
   // button active state 
   const [active, setActive] = useState(4);
+
+  let filterRef = useRef()
+
+  useEffect(()=>{
+  const handleClick = (e) => {
+    if (filterRef.current && !filterRef.current.contains(e.target)) {
+      setFilterModal(false);
+    }
+  };
+    document.addEventListener("mousedown", handleClick);
+     return () => document.removeEventListener("mousedown", handleClick);
+  },[]);
+  
   
   let viewProduct = [2,3,4]
   const handleView =(view)=>{
@@ -59,22 +71,24 @@ const SortAndView = ({setView}) => {
           ))}
       </div>
 
-      {/* Filter text */}
-      <div onClick={()=>setFilterModal(!filterModal)} className='pl-7.5'>
-         <h4 className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center gap-2.5 cursor-pointer">
-          <IoFilter />
-          FILTER
-        </h4>
-      </div>
-    </div>
-
-    {/* filter absolute div */}
-      <div className={`h-screen ${filterModal? "w-105": "w-0"} bg-primary-white top-0 right-0 fixed z-50 duration-300`}>
-        <div className='flex justify-between bg-[#FAF9F8] px-10 py-8.25'>
-          <h3 className='font-jost font-medium text-base text-primary-black'>FILTER BY</h3>
-          <IoMdClose onClick={()=>setFilterModal(false)} className='text-[21px] cursor-pointer' />
+        {/* Filter section  */}
+      <div ref={filterRef}>
+        {/* Filter text */}
+        <div className='pl-7.5'>
+          <h4 onClick={() => setFilterModal(!filterModal)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center gap-2.5 cursor-pointer">
+            <IoFilter />
+            FILTER
+          </h4>
+        </div>
+      {/* filter absolute div */}
+        <div className={`h-screen ${filterModal? "w-105": "w-0"} bg-primary-white top-0 right-0 fixed z-50 duration-300`}>
+          <div className='flex justify-between bg-[#FAF9F8] px-10 py-8.25'>
+            <h3 className='font-jost font-medium text-base text-primary-black'>FILTER BY</h3>
+            <IoMdClose onClick={()=>setFilterModal(false)} className='text-[21px] cursor-pointer' />
+          </div>
         </div>
       </div>
+    </div>
     </>
   );
 }
