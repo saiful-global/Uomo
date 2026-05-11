@@ -1,16 +1,23 @@
 import React, {useEffect, useState, useRef } from 'react';
 import { IoFilter } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
+import { Range,getTrackBackground } from "react-range";
 
 const SortAndView = ({setView}) => {
 
   const [open, setOpen] = useState(false);
   const [filterModal,setFilterModal] = useState(false);
+  const [values, setValues] = React.useState([10,70]);
   // button active state 
   const [active, setActive] = useState(4);
 
-  let filterRef = useRef()
+  let viewProduct = [2,3,4]
+  const handleView =(view)=>{
+    setView(view)
+  }
 
+  //useEffect of filterModal 
+  let filterRef = useRef()
   useEffect(()=>{
   const handleClick = (e) => {
     if (filterRef.current && !filterRef.current.contains(e.target)) {
@@ -21,12 +28,15 @@ const SortAndView = ({setView}) => {
      return () => document.removeEventListener("mousedown", handleClick);
   },[]);
   
-  
-  let viewProduct = [2,3,4]
-  const handleView =(view)=>{
-    setView(view)
-  }
 
+  //price range for text
+  const MIN = 29;
+  const MAX = 1000;
+  // convert range to price
+  const getPrice = (val) => {
+  return Math.round(MIN + (val / 100) * (MAX - MIN));
+  };
+  
   return (
     <>
     <div className='flex gap-7.5'>
@@ -81,10 +91,242 @@ const SortAndView = ({setView}) => {
           </h4>
         </div>
       {/* filter absolute div */}
-        <div className={`h-screen ${filterModal? "w-105": "w-0"} bg-primary-white top-0 right-0 fixed z-50 duration-300`}>
+
+      {/* overlay for screen when filterModal open  */}
+      {filterModal && (
+        <div
+          onClick={() => setFilterModal(false)}
+          className="fixed inset-0 bg-black/40 z-40"
+        />
+      )}
+        <div className={`h-screen ${filterModal? "w-105": "w-0"} bg-primary-white top-0 right-0 fixed z-50 duration-300 overflow-y-auto scroll-smooth`}>
           <div className='flex justify-between bg-[#FAF9F8] px-10 py-8.25'>
             <h3 className='font-jost font-medium text-base text-primary-black'>FILTER BY</h3>
             <IoMdClose onClick={()=>setFilterModal(false)} className='text-[21px] cursor-pointer' />
+          </div>
+          <div className='w-85 mx-auto pt-9.5'>
+            {/* PRODUCT CATEGORIES  */}
+            <div className='pb-9'>
+              <div className='flex justify-between pb-3.25'>
+                <h2 className='font-jost font-medium text-[18px] text-primary-black'>PRODUCT CATEGORIES</h2>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.35668 0.159286C5.16235 -0.053094 4.83769 -0.0530941 4.64287 0.159286L0.147611 5.05963C-0.0492049 5.27473 -0.049205 5.62357 0.147611 5.83813C0.344427 6.05323 0.664108 6.05323 0.860924 5.83813L5 1.32706L9.13858 5.83867C9.33589 6.05378 9.65507 6.05378 9.85239 5.83867C10.0492 5.62357 10.0492 5.27473 9.85239 5.06018L5.35668 0.159286Z" fill="#222222"/>
+                </svg>
+              </div>
+              {/* List  */}
+              <div className='flex gap-19.5'>
+                <div>
+                  <ul className='font-jost font-normal text-sm leading-7.5 text-primary-black cursor-pointer'>
+                    <li>Dresses</li>
+                    <li>Sweatshirts</li>
+                    <li>Jackets</li>
+                    <li>Jeans</li>
+                    <li>Men</li>
+                  </ul>
+                </div>
+                <div>
+                  <ul className='font-jost font-normal text-sm leading-7.5 text-primary-black cursor-pointer'>
+                    <li>Shorts</li>
+                    <li>Swimwear</li>
+                    <li>T-Shirts & Tops</li>
+                    <li>Trousers</li>
+                    <li>Jumpers & Cardigans</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* COLOR  */}
+            <div className='pb-10'>
+              <div className='flex justify-between pb-5.75'>
+                <h2 className='font-jost font-medium text-[18px] text-primary-black'>COLOR</h2>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.35668 0.159286C5.16235 -0.053094 4.83769 -0.0530941 4.64287 0.159286L0.147611 5.05963C-0.0492049 5.27473 -0.049205 5.62357 0.147611 5.83813C0.344427 6.05323 0.664108 6.05323 0.860924 5.83813L5 1.32706L9.13858 5.83867C9.33589 6.05378 9.65507 6.05378 9.85239 5.83867C10.0492 5.62357 10.0492 5.27473 9.85239 5.06018L5.35668 0.159286Z" fill="#222222"/>
+                </svg>
+              </div>
+              <div>
+                <div className='flex gap-6.25 pb-6.5 cursor-pointer'>
+                  <div className='w-4 h-4 bg-[#0A2472] rounded-full'></div>
+                  <div className='w-4 h-4 bg-[#D7BB4F] rounded-full'></div>
+                  <div className='w-4 h-4 bg-[#282828] rounded-full'></div>
+                  <div className='w-4 h-4 bg-[#B1D6E8] rounded-full outline-2 outline-black outline-offset-6'></div>
+                  <div className='w-4 h-4 bg-[#9C7539] rounded-full'></div>
+                  <div className='w-4 h-4 bg-[#D29B48] rounded-full'></div>
+                </div>
+                <div className='flex gap-6.25 cursor-pointer'>
+                  <div className='w-4 h-4 bg-[#E6AE95] rounded-full'></div>
+                  <div className='w-4 h-4 bg-[#BABABA] rounded-full'></div>
+                  <div className='w-4 h-4 bg-[#D76B67] rounded-full'></div>
+                  <div className='w-4 h-4 bg-[#BFDCC4] rounded-full'></div>
+                </div>
+              </div>
+            </div>
+
+            {/* SIZES  */}
+            <div className='pb-10'>
+              <div className='flex justify-between pb-5.75'>
+                <h2 className='font-jost font-medium text-[18px] text-primary-black'>SIZES</h2>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.35668 0.159286C5.16235 -0.053094 4.83769 -0.0530941 4.64287 0.159286L0.147611 5.05963C-0.0492049 5.27473 -0.049205 5.62357 0.147611 5.83813C0.344427 6.05323 0.664108 6.05323 0.860924 5.83813L5 1.32706L9.13858 5.83867C9.33589 6.05378 9.65507 6.05378 9.85239 5.83867C10.0492 5.62357 10.0492 5.27473 9.85239 5.06018L5.35668 0.159286Z" fill="#222222"/>
+                </svg>
+              </div>
+              <div className='font-jost font-normal text-sm text-primary-black flex gap-4 pb-3.75 cursor-pointer'>
+                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>XS</div>
+                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>S</div>
+                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>M</div>
+                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>L</div>
+              </div>
+              <div className='font-jost font-normal text-sm text-primary-black flex gap-4 cursor-pointer'>
+                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>XL</div>
+                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>XXL</div>
+              </div>
+            </div>
+
+            {/* BRANDS  */}
+            <div className="pb-10">
+              {/* Header Section*/}
+              <div className='flex justify-between items-center pb-4'>
+                <h2 className='font-jost font-medium text-[18px] text-primary-black uppercase'>BRANDS</h2>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.35668 0.159286C5.16235 -0.053094 4.83769 -0.0530941 4.64287 0.159286L0.147611 5.05963C-0.0492049 5.27473 -0.049205 5.62357 0.147611 5.83813C0.344427 6.05323 0.664108 6.05323 0.860924 5.83813L5 1.32706L9.13858 5.83867C9.33589 6.05378 9.65507 6.05378 9.85239 5.83867C10.0492 5.62357 10.0492 5.27473 9.85239 5.06018L5.35668 0.159286Z" fill="#222222"/>
+                </svg>
+              </div>
+
+              {/* Search Bar */}
+              <div className="relative mb-4.75">
+                <input type="text" placeholder="Search" className="w-full border border-[#E4E4E4] pt-4.25 pb-3.5 px-4.25 outline-none focus:border-black text-sm font-jost font-normal leading-6" />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_135_986)">
+                  <path d="M7.04606 0C3.16097 0 0 3.16097 0 7.04606C0 10.9314 3.16097 14.0921 7.04606 14.0921C10.9314 14.0921 14.0921 10.9314 14.0921 7.04606C14.0921 3.16097 10.9314 0 7.04606 0ZM7.04606 12.7913C3.87816 12.7913 1.30081 10.214 1.30081 7.04609C1.30081 3.87819 3.87816 1.30081 7.04606 1.30081C10.214 1.30081 12.7913 3.87816 12.7913 7.04606C12.7913 10.214 10.214 12.7913 7.04606 12.7913Z" fill="#767676"/>
+                  <path d="M15.8094 14.8897L12.0804 11.1607C11.8263 10.9066 11.4148 10.9066 11.1607 11.1607C10.9066 11.4146 10.9066 11.8265 11.1607 12.0804L14.8897 15.8094C15.0168 15.9364 15.1831 16 15.3496 16C15.5159 16 15.6824 15.9364 15.8094 15.8094C16.0635 15.5555 16.0635 15.1436 15.8094 14.8897Z" fill="#767676"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_135_986">
+                  <rect width="16" height="16" fill="white"/>
+                  </clipPath>
+                  </defs>
+                  </svg>
+                </span>
+              </div>
+
+              {/* Brand List */}
+              <div>
+                {[
+                  { name: "Adidas", count: 2 },
+                  { name: "Balmain", count: 7 },
+                  { name: "Balenciaga", count: 10 },
+                  { name: "Burberry", count: 39 },
+                  { name: "Kenzo", count: 95 },
+                  { name: "Givenchy", count: 1092 },
+                  { name: "Zara", count: 48 },
+                ].map((brand) => (
+                  <div key={brand.name} className="flex justify-between items-center font-jost font-normal text-sm text-primary-black">
+                    <label className="flex items-center gap-3 cursor-pointer leading-10">
+                      <input type="checkbox" className="w-4.25 h-4.25 accent-black border-[#E4E4E4]" />
+                      <span>{brand.name}</span>
+                    </label>
+                    <span className="text-secondColor leading-10">{brand.count}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* price & range  */}
+            <div className='pb-5'>
+              <div className='flex justify-between pb-4.5'>
+                <h2 className='font-jost font-medium text-[18px] text-primary-black'>PRICE</h2>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.35668 0.159286C5.16235 -0.053094 4.83769 -0.0530941 4.64287 0.159286L0.147611 5.05963C-0.0492049 5.27473 -0.049205 5.62357 0.147611 5.83813C0.344427 6.05323 0.664108 6.05323 0.860924 5.83813L5 1.32706L9.13858 5.83867C9.33589 6.05378 9.65507 6.05378 9.85239 5.83867C10.0492 5.62357 10.0492 5.27473 9.85239 5.06018L5.35668 0.159286Z" fill="#222222"/>
+                </svg>
+              </div>
+              <Range
+                label="Select your value"
+                step={0.1}
+                min={0}
+                max={100}
+                values={values}
+                onChange={(values) => setValues(values)}
+                renderTrack={({ props, children }) => (
+                  <div
+                    onMouseDown={props.onMouseDown}
+                    onTouchStart={props.onTouchStart}
+                    style={{
+                      height: "6px",
+                      width: "100%",
+                      display: "flex",
+                    }}
+                  >
+                    <div
+                      ref={props.ref}
+                      style={{
+                        height: "6px",
+                        width: "100%",
+                        borderRadius: "10px",
+                        background: getTrackBackground({
+                          values,
+                          colors: ["#E4E4E4", "#000000", "#E4E4E4"], // left, selected, right
+                          min: 0,
+                          max: 100
+                        }),
+                        alignSelf: "center"
+                      }}
+                    >
+                      {children}
+                    </div>
+                  </div>
+                )}
+                renderThumb={({ props }) => (
+                  <div
+                    {...props}
+                    key={props.key}
+                    style={{
+                      ...props.style,
+                      height: "18px",
+                      width: "18px",
+                      backgroundColor: "white",
+                      borderRadius:"50%",
+                      border: "2px solid black",
+                    }}
+                  />
+                )}
+              />
+              {/* price text  */}
+              <div className="flex justify-between pt-1.25 font-jost font-normal text-sm leading-10 text-secondColor ">
+                <p>
+                  Min Price: <span className='text-primary-black'>${getPrice(values[0])}</span>
+                </p>
+                <p>
+                  Max Price: <span className='text-primary-black'>${getPrice(values[1])}</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Tags  */}
+            <div class="flex flex-wrap gap-4.25 items-center pb-50 font-jost font-normal text-[11px]">
+
+              <div class="flex items-center gap-2.5 bg-[#EEEEEE] px-3.75 cursor-pointer hover:bg-primary-black hover:text-white leading-7.5">
+                <span>✕</span>
+                <span>Blues</span>
+              </div>
+
+              <div class="flex items-center gap-2.5 bg-[#EEEEEE] px-3.75 cursor-pointer hover:bg-primary-black hover:text-white leading-7.5">
+                <span>✕</span>
+                <span>Max Price: $493</span>
+              </div>
+
+              <div class="flex items-center gap-2.5 bg-[#EEEEEE] px-3.75 cursor-pointer hover:bg-primary-black hover:text-white leading-7.5">
+                <span>✕</span>
+                <span>Zara</span>
+              </div>
+
+              <div class="flex items-center gap-2.5 bg-[#EEEEEE] px-3.75 cursor-pointer hover:bg-primary-black hover:text-white leading-7.5">
+                <span>✕</span>
+                <span>Reset Filter</span>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </div>
