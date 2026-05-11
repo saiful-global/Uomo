@@ -29,21 +29,21 @@ const SortAndView = ({setView}) => {
         </button>
         {/* Dropdown */}
         {open && (
-            <div className="absolute mt-2 w-40 bg-white border border-[#E4E4E4] rounded shadow-2xs">
+            <div className="absolute z-10 mt-2 w-40 bg-white border border-[#E4E4E4] rounded shadow-2xs cursor-pointer">
             <ul>
-              <li className="px-4 py-2 hover:bg-primary-black cursor-pointer font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Popularity
               </li>
-              <li className="px-4 py-2 hover:bg-primary-black cursor-pointer font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                   Average rating
               </li>
-              <li className="px-4 py-2 hover:bg-primary-black cursor-pointer font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Newness
               </li>
-              <li className="px-4 py-2 hover:bg-primary-black cursor-pointer font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Price: low to high
               </li>
-              <li className="px-4 py-2 hover:bg-primary-black cursor-pointer font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Price: high to low
               </li>
             </ul>
@@ -55,7 +55,7 @@ const SortAndView = ({setView}) => {
       <div className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center relative after:absolute after:top-0 after:-right-5.75 after:h-5.5 after:w-0.5 after:bg-[#E4E4E4] after:content-[''] pl-7.5">
           <h2>VIEW</h2>
           {viewProduct.map((item)=>(
-            <button key={item} onClick={()=>{handleView(item); setActive(item)}} className={`pl-2.75 ${active === item ? "cursor-pointer relative after:content-[''] after:w-2 after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:right-0" : "text-secondColor"} `}>{item}</button>
+            <button key={item} onClick={()=>{handleView(item); setActive(item)}} className={`pl-2.75 ${active === item ? "relative after:content-[''] after:w-2 after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:right-0" : "text-secondColor cursor-pointer"} `}>{item}</button>
           ))}
       </div>
 
