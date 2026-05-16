@@ -43,7 +43,7 @@ const SortAndView = ({setView}) => {
       {/* Button & Dropdown  */}
       <div className="relative inline-block">
         {/* Button */}
-        <button onClick={() => setOpen(!open)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase border-b-2 flex items-center gap-2.5 relative after:absolute after:top-0 after:-right-7.5 after:h-5.5 after:w-0.5 after:bg-[#E4E4E4] after:content-[''] ">
+        <button onClick={() => setOpen(!open)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase border-b-2 flex items-center gap-2.5 relative after:absolute after:top-0 after:-right-7.5 after:h-5.5 after:w-0.5 after:bg-bg-footer after:content-[''] ">
           DEFAULT SORTING
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.64332 5.84071C4.83765 6.05309 5.16231 6.05309 5.35713 5.84071L9.85239 0.940372C10.0492 0.725269 10.0492 0.376431 9.85239 0.161873C9.65557 -0.0532297 9.33589 -0.0532297 9.13908 0.161873L5 4.67294L0.861423 0.161327C0.664109 -0.0537755 0.344926 -0.0537755 0.147611 0.161327C-0.0492049 0.376429 -0.0492049 0.725268 0.147611 0.939826L4.64332 5.84071Z" fill="#222222"/>
@@ -51,7 +51,7 @@ const SortAndView = ({setView}) => {
         </button>
         {/* Dropdown */}
         {open && (
-            <div className="absolute z-10 mt-2 w-40 bg-white border border-[#E4E4E4] rounded shadow-2xs cursor-pointer">
+            <div className="absolute z-10 mt-2 w-40 bg-white border border-bg-footer rounded shadow-2xs cursor-pointer">
             <ul>
               <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Popularity
@@ -74,7 +74,7 @@ const SortAndView = ({setView}) => {
       </div>
 
       {/* View 1 2 3  */}
-      <div className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center relative after:absolute after:top-0 after:-right-5.75 after:h-5.5 after:w-0.5 after:bg-[#E4E4E4] after:content-[''] pl-7.5">
+      <div className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center relative after:absolute after:top-0 after:-right-5.75 after:h-5.5 after:w-0.5 after:bg-bg-footer after:content-[''] pl-7.5">
           <h2>VIEW</h2>
           {viewProduct.map((item)=>(
             <button key={item} onClick={()=>{handleView(item); setActive(item)}} className={`pl-2.75 ${active === item ? "relative after:content-[''] after:w-2 after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:right-0" : "text-secondColor cursor-pointer"} `}>{item}</button>
@@ -171,14 +171,14 @@ const SortAndView = ({setView}) => {
                 </svg>
               </div>
               <div className='font-jost font-normal text-sm text-primary-black flex gap-4 pb-3.75 cursor-pointer'>
-                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>XS</div>
-                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>S</div>
-                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>M</div>
-                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>L</div>
+                <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>XS</div>
+                <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>S</div>
+                <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>M</div>
+                <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>L</div>
               </div>
               <div className='font-jost font-normal text-sm text-primary-black flex gap-4 cursor-pointer'>
-                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>XL</div>
-                <div className='border border-[#E4E4E4] w-14.5 h-8.75 text-center leading-7.5'>XXL</div>
+                <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>XL</div>
+                <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>XXL</div>
               </div>
             </div>
 
@@ -194,7 +194,7 @@ const SortAndView = ({setView}) => {
 
               {/* Search Bar */}
               <div className="relative mb-4.75">
-                <input type="text" placeholder="Search" className="w-full border border-[#E4E4E4] pt-4.25 pb-3.5 px-4.25 outline-none focus:border-black text-sm font-jost font-normal leading-6" />
+                <input type="text" placeholder="Search" className="w-full border border-bg-footer pt-4.25 pb-3.5 px-4.25 outline-none focus:border-black text-sm font-jost font-normal leading-6" />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_135_986)">
@@ -223,7 +223,7 @@ const SortAndView = ({setView}) => {
                 ].map((brand) => (
                   <div key={brand.name} className="flex justify-between items-center font-jost font-normal text-sm text-primary-black">
                     <label className="flex items-center gap-3 cursor-pointer leading-10">
-                      <input type="checkbox" className="w-4.25 h-4.25 accent-black border-[#E4E4E4]" />
+                      <input type="checkbox" className="w-4.25 h-4.25 accent-black border-bg-footer" />
                       <span>{brand.name}</span>
                     </label>
                     <span className="text-secondColor leading-10">{brand.count}</span>

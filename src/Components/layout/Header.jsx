@@ -3,17 +3,19 @@ import Image from '../Common/Image'
 import Container from '../ui/Container'
 import { navitems } from '../../api/navbarData'
 import { Link } from 'react-router'
+import MobileNab from './MobileNab'
 
 const Header = () => {
 
     const cartItems = 3;
 
   return (
-    <header className='mt-7.25 mb-4.75'>
-        <nav>
+    <header className='py-4 md:mt-7.25 md:mb-4.75'>
+        <nav className='hidden md:block'>
         <Container>
             <div className='flex items-center justify-between'>
                 <div className='flex items-center'>
+                    {/* Logo  */}
                     <Link to="/">
                         <Image className="w-28" src="/images/logo.png" alt="logo" ></Image>
                     </Link>
@@ -95,6 +97,7 @@ const Header = () => {
             </div>
         </Container>
         </nav>
+        <MobileNab></MobileNab>
     </header>
   )
 }

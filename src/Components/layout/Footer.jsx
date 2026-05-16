@@ -9,7 +9,7 @@ import { Link } from 'react-router'
 const Footer = () => {
   return (
     <>
-    <footer className='bg-[#E4E4E4] pt-25'>
+    <footer className='bg-bg-footer pt-25'>
       <Container>
         <div className='flex justify-between'>
           <div>
