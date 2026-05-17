@@ -18,7 +18,7 @@ const Banner = () => {
     slidesToScroll: 1,
     appendDots: dots => (
       <div>
-        <ul className='flex gap-5 absolute bottom-14.5 left-48.75 ' style={{ margin: "0px" }}> {dots} </ul>
+        <ul className='flex gap-3 md:gap-5 absolute bottom-[5%] left-[5%] md:bottom-14.5 md:left-48.75 ' style={{ margin: "0px" }}> {dots} </ul>
       </div>
     ),
     customPaging: i => (
@@ -47,7 +47,7 @@ const Banner = () => {
         <div className="w-0.5 h-7.5 bg-primary-black"></div>
       </div>
 
-      <div className="w-[95%] mx-auto">
+      <div className="w-full md:w-[95%] mx-auto">
         <Slider {...settings}>
             {bannerData?.map((item)=>(
                 <Image className={"text-center w-full"} key={item.id} src={item.banner} />

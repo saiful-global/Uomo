@@ -23,7 +23,7 @@
     @apply bg-primary-black
 }
 #banner .slick-dots .slick-active{
-    @apply border-primary-black border-2 h-7.5 w-7.5 rounded-full flex justify-center items-center ;
+    @apply border-primary-black border-2 h-5 w-5 md:h-7.5 md:w-7.5 rounded-full flex justify-center items-center ;
 }
 
 #banner .slick-dots ul{
