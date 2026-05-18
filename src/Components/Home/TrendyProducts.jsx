@@ -38,7 +38,7 @@ const TrendyProducts = () => {
 
   return (
     <>
-    <section className='mt-9.25 md:mt-25 mb-25'>
+    <section className='mt-9.25 md:mt-25 mb-12.5 md:mb-25'>
         <Container>
             {/* Headline */}
             <h2 className='text-center font-jost text-primary-black text-[26px] md:text-[35px] font-normal'>OUR TRENDY <span className='font-bold'>PRODUCTS</span></h2>
