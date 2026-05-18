@@ -5,7 +5,7 @@ import ProductImage from '../../assets/images/ProductImage.png'
 
 const Product = ({item}) => {
   return (
-    <div className='max-w-82.5 relative'>
+    <div className='w-full px-3.5 md:px-7.5 relative'>
 
       <div className='group'>
         <Image src={item.thumbnail || ProductImage} alt="ProductImage"></Image>
@@ -24,9 +24,9 @@ const Product = ({item}) => {
 
             {/* Price */}
             <div className='flex gap-2.5'>
-              {item.discounPrice && <del className='font-jost text-secondColor text-base font-normal'>${item.discountPrice}</del>
+              {item.discountPrice && <del className='font-jost text-secondColor text-base font-normal'>${item.discountPrice}</del>
               }
-            <h4 className={`font-jost text-base font-normal ${item.discounPrice ? "text-redColor" : "text-primary-black"}`}>${item.price}</h4>
+            <h4 className={`font-jost text-base font-normal ${item.discountPrice ? "text-redColor" : "text-primary-black"}`}>${item.price}</h4>
             </div>
           </div>
 
