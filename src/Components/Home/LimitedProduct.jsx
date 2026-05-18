@@ -63,7 +63,7 @@ import { TfiAngleLeft } from "react-icons/tfi";
 
   return (
     <>
-    <section className='mt-9.25 md:mt-22.75 mb-20.75'>
+    <section className='mt-9.25 md:mt-22.75 mb-12.5 md:mb-20.75'>
         <Container>
             <h2 className='text-center font-jost font-normal text-primary-black text-[26px] md:text-[35px]'>LIMITED <span className='font-bold'>EDITION</span></h2>
             <Slider {...settings} className='mt-3.25 md:mt-8.25'>

@@ -17,8 +17,8 @@ const Home = () => {
     <SpringCollection></SpringCollection>
     <StartingCategory></StartingCategory>
     <LimitedProduct></LimitedProduct>
-    {/* <UomoGallery></UomoGallery>
-    <TrustBadges></TrustBadges> */}
+    <UomoGallery></UomoGallery>
+    <TrustBadges></TrustBadges>
     </>
   ) 
 }
