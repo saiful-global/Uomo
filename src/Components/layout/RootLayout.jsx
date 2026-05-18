@@ -11,7 +11,7 @@ const RootLayout = () => {
     <Header></Header>
     <Outlet></Outlet>
     <MobileNavigation></MobileNavigation>
-    <Footer></Footer>
+    {/* <Footer></Footer> */}
     <ScrollToTop></ScrollToTop>
     </>
   )
