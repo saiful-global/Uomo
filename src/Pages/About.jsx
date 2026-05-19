@@ -1,5 +1,5 @@
 import React from 'react'
-import Breadcrumb from '../Components/Common/Breadcrumb'
+import Breadcrumb from '../Components/common/Breadcrumb'
 
 const About = () => {
   return (
