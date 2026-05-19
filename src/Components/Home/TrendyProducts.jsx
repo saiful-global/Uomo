@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Container from '../ui/Container'
-import Listitem from '../Common/Listitem'
+import Listitem from '../common/Listitem'
 import { Productcategory } from '../../api/productCategory'
-import Product from '../Common/Product'
+import Product from '../common/Product'
 import axios from 'axios'
 
 const TrendyProducts = () => {

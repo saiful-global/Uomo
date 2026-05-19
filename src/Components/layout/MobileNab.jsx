@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
-import Image from '../Common/Image';
+import Image from '../common/Image';
 import { navitems } from '../../api/navbarData';
 import { MdChevronRight } from "react-icons/md";
 import { FaFacebookF, FaInstagram, FaPinterest } from 'react-icons/fa'

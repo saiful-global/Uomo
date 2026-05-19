@@ -1,6 +1,6 @@
 import React from 'react'
 import Container from '../ui/Container'
-import Product from '../Common/Product'
+import Product from '../common/Product'
 
 const AllProducts = ({items,view}) => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '../ui/Container'
 import UomoGalleryImage from '../../assets/images/UomoGalleryImage.png'
-import Image from '../Common/Image'
+import Image from '../common/Image'
 
 const UomoGallery = () => {
   return (

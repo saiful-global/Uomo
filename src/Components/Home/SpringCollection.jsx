@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '../ui/Container'
 import { Link } from 'react-router'
-import Image from '../Common/Image'
+import Image from '../common/Image'
 import springImage from "../../assets/images/springImage.png"
 import Countdown from 'react-countdown';
 

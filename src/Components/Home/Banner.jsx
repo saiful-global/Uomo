@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from '../Common/Image'
+import Image from '../common/Image'
 import { bannerData } from '../../api/bannerData'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

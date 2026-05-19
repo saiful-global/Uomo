@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Container from '../ui/Container'
 import axios from 'axios';
-import Product from '../Common/Product';
+import Product from '../common/Product';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { TfiAngleRight } from "react-icons/tfi";

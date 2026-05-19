@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from '../Common/Image'
+import Image from '../common/Image'
 import Container from '../ui/Container'
 import { navitems } from '../../api/navbarData'
 import { Link } from 'react-router'

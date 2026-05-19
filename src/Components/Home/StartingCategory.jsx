@@ -2,7 +2,7 @@ import React from 'react'
 import Container from '../ui/Container'
 import startingImage from '../../assets/images/startingImage.png'
 import startingImage1 from '../../assets/images/startingImage1.png'
-import Image from '../Common/Image'
+import Image from '../common/Image'
 import { Link } from 'react-router'
 
 const StartingCategory = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import Container from '../ui/Container'
-import Image from '../Common/Image'
+import Image from '../common/Image'
 import SecurePaymentsImage from '../../assets/images/SecurePaymentsImage.png'
 import { FaFacebookF, FaInstagram, FaPinterest } from 'react-icons/fa'
 import { FaXTwitter,FaYoutube } from "react-icons/fa6";

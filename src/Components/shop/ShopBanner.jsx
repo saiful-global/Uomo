@@ -1,6 +1,6 @@
 import React from 'react'
 import ShopImage from '../../assets/images/shop-banner.png'
-import Image from '../Common/Image'
+import Image from '../common/Image'
 import Container from '../ui/Container'
 
 
