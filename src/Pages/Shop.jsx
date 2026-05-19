@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import ShopBanner from '../Components/Shop/ShopBanner'
-import Breadcrumb from '../Components/Common/Breadcrumb'
+import ShopBanner from '../Components/shop/ShopBanner'
+import Breadcrumb from '../Components/common/Breadcrumb'
 import Container from '../Components/ui/Container'
-import SortAndView from '../Components/Shop/SortAndView'
 import AllProducts from '../Components/shop/AllProducts'
+import SortAndView from '../Components/shop/SortAndView'
 import axios from 'axios'
 
 const Shop = () => {
@@ -49,7 +49,7 @@ const Shop = () => {
 
         {/* Range  */}
         <h3 className='text-center font-jost font-medium text-sm leading-6 text-black'>SHOWING {showProduct} of {totalProduct} Items</h3>
-        <div className='w-75 h-1.5 bg-[#E4E4E4] mt-1.25 mb-4.25 rounded-[10px] mx-auto'>
+        <div className='w-75 h-1.5 bg-bg-footer mt-1.25 mb-4.25 rounded-[10px] mx-auto'>
           <div style={{width:`${result}%`}} className='w-[20%] h-full bg-primary-black rounded-[10px] duration-700'></div>
         </div>
 
