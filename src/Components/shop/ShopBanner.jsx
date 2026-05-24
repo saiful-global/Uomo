@@ -8,10 +8,10 @@ const ShopBanner = () => {
   return (
     <>
     <section>
-        <Image className="mx-auto w-full md:px-15 pb-9 hidden md:block" src={ShopImage} alt="ShopImage"></Image>
+        <Image className="mx-auto w-full md:px-15 pb-9" src={ShopImage} alt="ShopImage"></Image>
         <Container className="relative">     
-          <h2 className='font-jost font-bold text-[90px] uppercase absolute bottom-43.75 left-0 text-transparent [-webkit-text-stroke:2px_#222222] opacity-40'>Jackets & Coats</h2>                                     
-            <ul className='flex List_Item gap-7.75 w-full absolute bottom-33.75 left-0'>
+          <h2 className='font-jost font-bold text-[30px] md:text-[90px] uppercase absolute bottom-43.75 left-0 text-transparent [-webkit-text-stroke:2px_#222222] opacity-40'>Jackets & Coats</h2>                                     
+            <ul className='flex flex-wrap List_Item gap-7.75 w-full absolute bottom-0 md:bottom-33.75 left-0'>
                 <li>#STAYHOME</li>
                 <li>NEW IN</li>
                 <li>JACKETS</li>

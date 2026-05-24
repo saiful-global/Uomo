@@ -30,5 +30,5 @@
     @apply flex justify-center items-center ;
 }
 .List_Item > li{
-    @apply font-jost text-base font-medium text-primary-black relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
+    @apply font-jost text-sm md:text-base font-medium text-primary-black relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
 }
