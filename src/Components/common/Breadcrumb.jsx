@@ -10,7 +10,9 @@ const Breadcrumb = () => {
 
   return (
     <>
-    <h2 className='font-jost font-medium text-sm leading-6 uppercase text-primary-black'><Link to="/">HOME</Link> / {location}</h2>
+    <div className='hidden md:block'>
+      <h2 className='font-jost font-medium text-sm leading-6 uppercase text-primary-black'><Link to="/">HOME</Link> / {location}</h2>
+    </div>
     </>
   )
 }
