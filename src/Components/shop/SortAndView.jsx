@@ -74,11 +74,13 @@ const SortAndView = ({setView}) => {
       </div>
 
       {/* View 1 2 3  */}
-      <div className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center relative after:absolute after:top-0 after:-right-5.75 after:h-5.5 after:w-0.5 after:bg-bg-footer after:content-[''] pl-7.5">
-          <h2>VIEW</h2>
-          {viewProduct.map((item)=>(
-            <button key={item} onClick={()=>{handleView(item); setActive(item)}} className={`pl-2.75 ${active === item ? "relative after:content-[''] after:w-2 after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:right-0" : "text-secondColor cursor-pointer"} `}>{item}</button>
-          ))}
+      <div className='hidden md:block'>
+        <div className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center relative after:absolute after:top-0 after:-right-5.75 after:h-5.5 after:w-0.5 after:bg-bg-footer after:content-[''] pl-7.5">
+            <h2>VIEW</h2>
+            {viewProduct.map((item)=>(
+              <button key={item} onClick={()=>{handleView(item); setActive(item)}} className={`pl-2.75 ${active === item ? "relative after:content-[''] after:w-2 after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:right-0" : "text-secondColor cursor-pointer"} `}>{item}</button>
+            ))}
+        </div>
       </div>
 
         {/* Filter section  */}
