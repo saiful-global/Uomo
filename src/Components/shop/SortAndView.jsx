@@ -43,7 +43,7 @@ const SortAndView = ({setView}) => {
       {/* Button & Dropdown  */}
       <div className="relative inline-block">
         {/* Button */}
-        <button onClick={() => setOpen(!open)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase border-b-2 flex items-center gap-2.5 relative after:absolute after:top-0 after:-right-7.5 after:h-5.5 after:w-0.5 after:bg-bg-footer after:content-[''] ">
+        <button onClick={() => setOpen(!open)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase border-b-2 flex items-center gap-2.5 md:relative md:after:absolute md:after:top-0 md:after:-right-7.5 md:after:h-5.5 md:after:w-0.5 md:after:bg-bg-footer md:after:content-[''] ">
           DEFAULT SORTING
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.64332 5.84071C4.83765 6.05309 5.16231 6.05309 5.35713 5.84071L9.85239 0.940372C10.0492 0.725269 10.0492 0.376431 9.85239 0.161873C9.65557 -0.0532297 9.33589 -0.0532297 9.13908 0.161873L5 4.67294L0.861423 0.161327C0.664109 -0.0537755 0.344926 -0.0537755 0.147611 0.161327C-0.0492049 0.376429 -0.0492049 0.725268 0.147611 0.939826L4.64332 5.84071Z" fill="#222222"/>
