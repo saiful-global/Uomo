@@ -39,10 +39,10 @@ const SortAndView = ({setView}) => {
   
   return (
     <>
-    <div className='flex gap-7.5'>
+    <div className='flex justify-between w-full md:w-auto gap-7.5'>
       {/* Button & Dropdown  */}
       <div className="relative inline-block">
-        {/* Button */}
+        {/* DEFAULT SORTING Button */}
         <button onClick={() => setOpen(!open)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase border-b-2 flex items-center gap-2.5 md:relative md:after:absolute md:after:top-0 md:after:-right-7.5 md:after:h-5.5 md:after:w-0.5 md:after:bg-bg-footer md:after:content-[''] ">
           DEFAULT SORTING
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +86,7 @@ const SortAndView = ({setView}) => {
         {/* Filter section  */}
       <div ref={filterRef}>
         {/* Filter text */}
-        <div className='pl-7.5'>
+        <div className='md:pl-7.5'>
           <h4 onClick={() => setFilterModal(!filterModal)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase flex items-center gap-2.5 cursor-pointer">
             <IoFilter />
             FILTER

@@ -9,7 +9,7 @@ import axios from 'axios'
 const Shop = () => {
 
   const [products,setProducts] = useState([]);
-  const [view,setView] = useState(4)
+  const [view,setView] = useState(4);
   const [showAll, setShowAll] = useState(false);
 
   // for slice 
