@@ -37,7 +37,7 @@ const Shop = () => {
     <main>
         <ShopBanner />
         <Container>
-          <div className='flex justify-between pb-10'>
+          <div className='flex justify-between pb-7.5 md:pb-10'>
             <Breadcrumb />
             <SortAndView setView={setView} />
           </div>
@@ -54,7 +54,7 @@ const Shop = () => {
         </div>
 
         {/* show all button  */}
-        <div className="text-center pb-25">
+        <div className="text-center pb-12.5 md:pb-25">
             <button onClick={() => setShowAll(!showAll)} className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[70%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300 cursor-pointer" >
                 {showAll ? "SHOW LESS" : "SHOW MORE"}
             </button>

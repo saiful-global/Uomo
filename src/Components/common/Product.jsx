@@ -11,7 +11,7 @@ const Product = ({item}) => {
         <Image src={item.thumbnail || ProductImage} alt="ProductImage"></Image>
 
         {/* Hover: ADD TO CART */}
-        <div className='md:bg-white bg-white/75 shadow shadow-gray-200 text-center md:group-hover:bottom-30 md:group-hover:opacity-100 absolute bottom-30 md:bottom-15 pt-4 pb-2.5 w-full md:w-77.5 left-1/2 translate-x-[-50%] duration-200 md:opacity-0 transition-all'>
+        <div className='md:bg-white bg-white/75 shadow shadow-gray-200 text-center md:group-hover:bottom-30 md:group-hover:opacity-100 absolute bottom-30 md:bottom-15 pt-2 md:pt-4 pb-1.5 md:pb-2.5 w-full md:w-77.5 left-1/2 translate-x-[-50%] duration-200 md:opacity-0 transition-all'>
           <button className='font-jost text-sm font-medium leading-6' >ADD TO CART</button>
         </div>
       </div>
@@ -20,13 +20,13 @@ const Product = ({item}) => {
         <div className='flex justify-between items-baseline'>
           <div>
             <h3 className='font-jost text-secondColor text-sm font-normal leading-6 mt-3.5'>{item.category}</h3>
-            <h2 className='font-jost text-primary-black text-base font-normal'>{item.title.slice(0,15)}...</h2>
+            <h2 className='font-jost text-primary-black text-sm md:text-base font-normal'>{item.title.slice(0,15)}...</h2>
 
             {/* Price */}
             <div className='flex gap-2.5'>
-              {item.discountPrice && <del className='font-jost text-secondColor text-base font-normal'>${item.discountPrice}</del>
+              {item.discountPrice && <del className='font-jost text-secondColor text-sm md:text-base font-normal'>${item.discountPrice}</del>
               }
-            <h4 className={`font-jost text-base font-normal ${item.discountPrice ? "text-redColor" : "text-primary-black"}`}>${item.price}</h4>
+            <h4 className={`font-jost text-sm md:text-base font-normal ${item.discountPrice ? "text-redColor" : "text-primary-black"}`}>${item.price}</h4>
             </div>
           </div>
 
