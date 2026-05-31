@@ -7,7 +7,7 @@ const MobileNavigation = () => {
 
   return (
     <>
-    <div className='md:hidden shadow-[0_-10px_25px_0_rgba(34,34,34,0.05)] pt-2.5 pb-0.5 fixed bottom-0 left-0 w-full bg-white px-[5%]'>
+    <div className='md:hidden shadow-[0_-10px_25px_0_rgba(34,34,34,0.05)] pt-2.5 pb-0.5 fixed bottom-0 left-0 w-full bg-white px-[5%] z-40'>
         <ul className='flex justify-around items-baseline-last'>
             <li className='flex flex-col items-center gap-px'>
                 <button>
