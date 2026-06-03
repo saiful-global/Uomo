@@ -45,7 +45,7 @@ const MobileNab = () => {
             </div>
 
             {/* Menu list absolute div  */} 
-            <div className={`${mobileMenu? "w-full": "w-0"} bottom-0 bg-white absolute top-15 left-0 border-t border-bg-footer z-50 duration-400 transition-all overflow-hidden `}>
+            <div className={`${mobileMenu? "w-full": "w-0"} bottom-0 bg-white fixed top-15 left-0 border-t border-bg-footer z-50 duration-400 transition-all overflow-hidden `}>
                 <div>
                     {/* search box  */}
                     <div className="relative mb-4.25 mx-3.75 mt-5.25">

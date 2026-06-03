@@ -10,7 +10,7 @@ const Header = () => {
     const cartItems = 3;
 
   return (
-    <header className='py-4 md:mt-7.25 md:mb-4.75'>
+    <header className='fixed top-0 left-0 w-full z-50 bg-white py-4 md:pt-7.25 md:pb-4.75'>
         <nav className='hidden md:block'>
         <Container>
             <div className='flex items-center justify-between'>

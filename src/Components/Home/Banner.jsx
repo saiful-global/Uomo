@@ -28,7 +28,7 @@ const Banner = () => {
 
   return (
     <>
-    <section id='banner' className='relative w-full overflow-hidden'>
+    <section id='banner' className='relative w-full overflow-hidden mt-15 md:mt-20'>
 
       <div className='absolute -left-4 top-1/2 -translate-y-1/2 font-normal flex flex-col items-center gap-6  text-secondColor text-sm'>
           <FaFacebookF className='hover:text-blue-500' />
