@@ -17,7 +17,7 @@ function NewsLetter() {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center" onClick={() => setIsOpen(false)} >
-      <div className="bg-white relative rounded-sm overflow-hidden" onClick={(e) => e.stopPropagation()} >
+      <div className="bg-white relative rounded-sm overflow-hidden shadow-[0_10px_25px_0_rgba(34,34,34,0.05)]" onClick={(e) => e.stopPropagation()} >
 
         {/* Close button */}
         <button onClick={() => setIsOpen(false)} className="absolute top-7.5 right-7.5" >
