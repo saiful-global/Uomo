@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
 import MobileNavigation from './MobileNavigation'
+import NewsLetter from '../common/NewsLetter'
 
 const RootLayout = () => {
   return (
@@ -13,6 +14,7 @@ const RootLayout = () => {
     <MobileNavigation></MobileNavigation>
     <Footer></Footer>
     <ScrollToTop></ScrollToTop>
+    <NewsLetter></NewsLetter>
     </>
   )
 }
