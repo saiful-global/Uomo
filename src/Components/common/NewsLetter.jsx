@@ -8,7 +8,7 @@ function NewsLetter() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 3000); // 3 seconds delay
+    }, 5000); // 5 seconds delay
 
     return () => clearTimeout(timer); // cleanup
   }, []);
