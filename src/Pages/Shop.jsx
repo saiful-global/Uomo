@@ -5,6 +5,7 @@ import Container from '../Components/ui/Container'
 import AllProducts from '../Components/shop/AllProducts'
 import SortAndView from '../Components/shop/SortAndView'
 import axios from 'axios'
+import {Helmet} from "react-helmet";
 
 const Shop = () => {
 
@@ -35,6 +36,10 @@ const Shop = () => {
 
   return (
     <main>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Uomo | Shop</title>
+        </Helmet>
         <ShopBanner />
         <Container>
           <div className='flex justify-between pb-7.5 md:pb-10'>
@@ -45,7 +50,6 @@ const Shop = () => {
         <AllProducts items={displayedProducts} view={view} />
 
         {/* Range & Show More  */}
-
 
         {/* Range  */}
         <h3 className='text-center font-jost font-medium text-sm leading-6 text-black'>SHOWING {showProduct} of {totalProduct} Items</h3>
