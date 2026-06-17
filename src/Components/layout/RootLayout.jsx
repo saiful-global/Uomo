@@ -6,6 +6,7 @@ import ScrollToTop from './ScrollToTop'
 import MobileNavigation from './MobileNavigation'
 import NewsLetter from '../common/NewsLetter'
 import {Helmet} from "react-helmet";
+import CookieConsent from '../common/CookieConsent'
 
 const RootLayout = () => {
   return (
@@ -20,6 +21,7 @@ const RootLayout = () => {
     <Footer></Footer>
     <ScrollToTop></ScrollToTop>
     <NewsLetter></NewsLetter>
+    <CookieConsent></CookieConsent>
     </>
   )
 }
