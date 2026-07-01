@@ -8,6 +8,7 @@ export const navitems =[
         id: 2,
         name:"SHOP",
         url:"/shop",
+        type: "mega",
     },
     {
         id: 3,

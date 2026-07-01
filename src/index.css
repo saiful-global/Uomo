@@ -12,13 +12,19 @@
     --color-bg-footer: #E4E4E4;
 }
 .list-item{
-    @apply font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
+    @apply font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300 inline-block;
+}
+
+/* menu dropdown */
+.u-list > .list-item{
+    @apply relative
 }
 
 /* Banner Slider */
 .u-list{
     @apply flex gap-11 ml-14;
 }
+
 #banner .slick-active div{
     @apply bg-primary-black
 }
@@ -31,4 +37,8 @@
 }
 .List_Item > li{
     @apply font-jost text-sm md:text-base font-medium text-primary-black relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
+}
+
+.list-item-2 > li{
+    @apply font-jost text-sm font-normal leading-8.75 text-primary-black relative after:content-[""] after:w-0 hover:after:w-[30%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
 }

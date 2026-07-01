@@ -4,6 +4,7 @@ import Container from '../ui/Container'
 import { navitems } from '../../api/navbarData'
 import { Link } from 'react-router'
 import MobileNab from './MobileNab'
+import ShopMegaMenu from './ShopMegaMenu'
 
 const Header = () => {
 
@@ -20,17 +21,28 @@ const Header = () => {
                         <Image className="w-28" src="/images/logo.png" alt="logo" ></Image>
                     </Link>
                     <ul className='u-list'>
-                        {
-                            navitems?.map((item,)=>(
-                                <li className='list-item' key={item.id}>
-                                    <Link to={item.url}>
-                                        {item.name}
-                                    </Link>
-                                </li>
-                            ))
-                        }
+                        {navitems?.map((item) => (
+                        <li key={item.id} className='group py-2'>
+
+                            {item.type === "mega" ? (
+                            <>
+                                <Link to={item.url || "#"} className="cursor-pointer list-item">
+                                {item.name}
+                                </Link>
+                                <ShopMegaMenu />
+                            </>
+                            ) : (
+                            <Link to={item.url || "#"} className="list-item">
+                                {item.name}
+                            </Link>
+                            )}
+
+                        </li>
+                        ))}
                     </ul>
                 </div>
+
+                {/* Header Action Icons  */}
                 <ul className='flex items-center gap-8'>
                     <li>
                         <button>
