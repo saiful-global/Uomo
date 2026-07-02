@@ -17,6 +17,7 @@ export const navitems =[
     {
         id: 4,
         name:"JOURNAL",
+        type: "blog-mega",
     },
     {
         id: 5,

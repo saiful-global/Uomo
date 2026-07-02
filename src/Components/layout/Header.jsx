@@ -5,6 +5,7 @@ import { navitems } from '../../api/navbarData'
 import { Link } from 'react-router'
 import MobileNab from './MobileNab'
 import ShopMegaMenu from './ShopMegaMenu'
+import BlogMegaMenu from './BlogMegaMenu'
 
 const Header = () => {
 
@@ -30,6 +31,13 @@ const Header = () => {
                                 {item.name}
                                 </Link>
                                 <ShopMegaMenu />
+                            </>
+                            ) : item.type === "blog-mega" ? (
+                            <>
+                                <Link to={item.url || "#"} className="cursor-pointer list-item">
+                                {item.name}
+                                </Link>
+                                <BlogMegaMenu />
                             </>
                             ) : (
                             <Link to={item.url || "#"} className="list-item">
