@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import MobileNab from './MobileNab'
 import ShopMegaMenu from './ShopMegaMenu'
 import BlogMegaMenu from './BlogMegaMenu'
+import PagesMegaMenu from './PagesMegaMenu'
 
 const Header = () => {
 
@@ -24,7 +25,6 @@ const Header = () => {
                     <ul className='u-list'>
                         {navitems?.map((item) => (
                         <li key={item.id} className='group py-2'>
-
                             {item.type === "mega" ? (
                             <>
                                 <Link to={item.url || "#"} className="cursor-pointer list-item">
@@ -38,6 +38,13 @@ const Header = () => {
                                 {item.name}
                                 </Link>
                                 <BlogMegaMenu />
+                            </>
+                            ) : item.type === "pages-mega" ? (
+                            <>
+                                <Link to={item.url || "#"} className="cursor-pointer list-item">
+                                {item.name}
+                                </Link>
+                                <PagesMegaMenu />
                             </>
                             ) : (
                             <Link to={item.url || "#"} className="list-item">

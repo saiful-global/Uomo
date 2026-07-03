@@ -26,5 +26,6 @@ export const navitems =[
     {
         id: 6,
         name:"PAGES",
+        type: "pages-mega"
     },
 ]
