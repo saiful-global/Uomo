@@ -1,6 +1,6 @@
-import Container from "../ui/Container";
-import ShopMenuImage from "../../assets/images/shopMenuImage.png"
-import Image from "../common/Image";
+import Container from "../../../ui/Container";
+import ShopMenuImage from "../../../../assets/images/shopMenuImage.png"
+import Image from "../../../common/Image";
 
 export default function ShopMegaMenu() {
   return (

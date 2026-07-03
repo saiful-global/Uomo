@@ -4,7 +4,7 @@ import Container from '../../ui/Container'
 import { navitems } from '../../../api/navbarData'
 import { Link } from 'react-router'
 import MobileNab from './MobileNab'
-import ShopMegaMenu from '../ShopMegaMenu'
+import ShopMegaMenu from './HoverEffect/ShopMegaMenu'
 import BlogMegaMenu from './HoverEffect/BlogMegaMenu'
 import PagesMegaMenu from './HoverEffect/PagesMegaMenu'
 
