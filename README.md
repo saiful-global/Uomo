@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/29651111/README.md)
+[README.md](https://github.com/user-attachments/files/29651146/README.md)
 # 🛍️ Uomo — E-Commerce Fashion Store
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -51,7 +51,8 @@ A modern, fully responsive e-commerce fashion store built with React and Tailwin
 | [Vite](https://vitejs.dev/) | Build tool & dev server |
 | [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling |
 | [React Router](https://reactrouter.com/) | Client-side routing |
-| [Lucide React](https://lucide.dev/) | Icon library |
+| [Font Awesome](https://fontawesome.com/) | Icon library |
+
 
 ---
 
