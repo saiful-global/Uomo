@@ -1,9 +1,9 @@
 import React from 'react'
 import { Outlet } from 'react-router'
-import Header from './Header'
+import Header from './Header/Header'
 import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
-import MobileNavigation from './MobileNavigation'
+import MobileNavigation from './Header/MobileNavigation'
 import NewsLetter from '../common/NewsLetter'
 import {Helmet} from "react-helmet";
 import CookieConsent from '../common/CookieConsent'
