@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from '../../common/Image'
 import Container from '../../ui/Container'
 import { navitems } from '../../../api/navbarData'
@@ -7,10 +7,31 @@ import MobileNab from './MobileNab'
 import ShopMegaMenu from './HoverEffect/ShopMegaMenu'
 import BlogMegaMenu from './HoverEffect/BlogMegaMenu'
 import PagesMegaMenu from './HoverEffect/PagesMegaMenu'
+import SearchMenu from './OpenEffect/SearchMenu'
 
 const Header = () => {
 
     const cartItems = 3;
+    const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const searchRef = useRef(null)
+
+    useEffect(() => {
+    const handleClickOutside = (e) => {
+        if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setIsSearchOpen(false)
+        }
+    }
+    const handleEscape = (e) => {
+        if (e.key === 'Escape') setIsSearchOpen(false)
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleEscape)
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+        document.removeEventListener('keydown', handleEscape)
+    }
+    }, [])
 
   return (
     <header className='fixed top-0 left-0 w-full z-50 bg-white py-4 md:pt-7.25 md:pb-4.75'>
@@ -59,20 +80,28 @@ const Header = () => {
 
                 {/* Header Action Icons  */}
                 <ul className='flex items-center gap-8'>
-                    <li>
-                        <button>
-                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_6_7)">
-                            <path d="M8.82291 0C3.95809 0 0 3.95121 0 8.80758C0 13.6642 3.95809 17.6152 8.82291 17.6152C13.688 17.6152 17.6458 13.6642 17.6458 8.80758C17.6458 3.95121 13.688 0 8.82291 0ZM8.82291 15.9892C4.85613 15.9892 1.62885 12.7675 1.62885 8.80762C1.62885 4.84773 4.85613 1.62602 8.82291 1.62602C12.7897 1.62602 16.017 4.84769 16.017 8.80758C16.017 12.7675 12.7897 15.9892 8.82291 15.9892Z" fill="#222222"/>
-                            <path d="M19.7962 18.6122L15.1268 13.9509C14.8086 13.6333 14.2934 13.6333 13.9752 13.9509C13.657 14.2683 13.657 14.7832 13.9752 15.1005L18.6446 19.7618C18.8036 19.9206 19.0119 20 19.2204 20C19.4286 20 19.6371 19.9206 19.7962 19.7618C20.1143 19.4444 20.1143 18.9295 19.7962 18.6122Z" fill="#222222"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_6_7">
-                            <rect width="20.0348" height="20" fill="white"/>
-                            </clipPath>
-                            </defs>
+                    <li ref={searchRef}>
+                        <button onClick={() => setIsSearchOpen((prev) => !prev)}>
+                            {isSearchOpen ? (
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L19 19M19 1L1 19" stroke="#222222" strokeWidth="1.6" strokeLinecap="round"/>
                             </svg>
+                            ) : (
+                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_6_7)">
+                                <path d="M8.82291 0C3.95809 0 0 3.95121 0 8.80758C0 13.6642 3.95809 17.6152 8.82291 17.6152C13.688 17.6152 17.6458 13.6642 17.6458 8.80758C17.6458 3.95121 13.688 0 8.82291 0ZM8.82291 15.9892C4.85613 15.9892 1.62885 12.7675 1.62885 8.80762C1.62885 4.84773 4.85613 1.62602 8.82291 1.62602C12.7897 1.62602 16.017 4.84769 16.017 8.80758C16.017 12.7675 12.7897 15.9892 8.82291 15.9892Z" fill="#222222"/>
+                                <path d="M19.7962 18.6122L15.1268 13.9509C14.8086 13.6333 14.2934 13.6333 13.9752 13.9509C13.657 14.2683 13.657 14.7832 13.9752 15.1005L18.6446 19.7618C18.8036 19.9206 19.0119 20 19.2204 20C19.4286 20 19.6371 19.9206 19.7962 19.7618C20.1143 19.4444 20.1143 18.9295 19.7962 18.6122Z" fill="#222222"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_6_7">
+                                <rect width="20.0348" height="20" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                            )}
                         </button>
+
+                        <SearchMenu isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
                     </li>
                     <li>
                         <button>
