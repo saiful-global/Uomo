@@ -80,11 +80,14 @@ const Header = () => {
 
                 {/* Header Action Icons  */}
                 <ul className='flex items-center gap-8'>
+                    
+                    {/* Search Button */}
                     <li ref={searchRef}>
                         <button onClick={() => setIsSearchOpen((prev) => !prev)}>
                             {isSearchOpen ? (
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L19 19M19 1L1 19" stroke="#222222" strokeWidth="1.6" strokeLinecap="round"/>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.414336 14.1421L14.5565 0L15.9707 1.41421L1.82855 15.5563L0.414336 14.1421Z" fill="#222222"/>
+                            <path d="M1.41421 0.142113L15.5563 14.2842L14.1421 15.6985L0 1.55633L1.41421 0.142113Z" fill="#222222"/>
                             </svg>
                             ) : (
                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
