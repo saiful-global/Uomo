@@ -8,6 +8,9 @@ const Filter = () => {
   const [filterModal,setFilterModal] = useState(false);
   const [values, setValues] = React.useState([10,70]);
 
+  // State for color
+  const [selectedColor, setSelectedColor] = useState(null);
+
   //useEffect of filterModal 
   let filterRef = useRef()
   useEffect(()=>{
@@ -91,18 +94,18 @@ const Filter = () => {
               </div>
               <div>
                 <div className='flex gap-6.25 pb-6.5 cursor-pointer'>
-                  <div className='w-4 h-4 bg-[#0A2472] rounded-full'></div>
-                  <div className='w-4 h-4 bg-[#D7BB4F] rounded-full'></div>
-                  <div className='w-4 h-4 bg-[#282828] rounded-full'></div>
-                  <div className='w-4 h-4 bg-[#B1D6E8] rounded-full outline-2 outline-black outline-offset-6'></div>
-                  <div className='w-4 h-4 bg-[#9C7539] rounded-full'></div>
-                  <div className='w-4 h-4 bg-[#D29B48] rounded-full'></div>
+                  <div onClick={() => setSelectedColor("#0A2472")} className={`w-4 h-4 bg-[#0A2472] rounded-full ${selectedColor === "#0A2472" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
+                  <div onClick={() => setSelectedColor("#D7BB4F")} className={`w-4 h-4 bg-[#D7BB4F] rounded-full ${selectedColor === "#D7BB4F" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
+                  <div onClick={() => setSelectedColor("#282828")} className={`w-4 h-4 bg-[#282828] rounded-full ${selectedColor === "#282828" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
+                  <div onClick={() => setSelectedColor("#B1D6E8")} className={`w-4 h-4 bg-[#B1D6E8] rounded-full ${selectedColor === "#B1D6E8" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
+                  <div onClick={() => setSelectedColor("#9C7539")} className={`w-4 h-4 bg-[#9C7539] rounded-full ${selectedColor === "#9C7539" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
+                  <div onClick={() => setSelectedColor("#D29B48")} className={`w-4 h-4 bg-[#D29B48] rounded-full ${selectedColor === "#D29B48" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
                 </div>
                 <div className='flex gap-6.25 cursor-pointer'>
-                  <div className='w-4 h-4 bg-[#E6AE95] rounded-full'></div>
-                  <div className='w-4 h-4 bg-[#BABABA] rounded-full'></div>
-                  <div className='w-4 h-4 bg-[#D76B67] rounded-full'></div>
-                  <div className='w-4 h-4 bg-[#BFDCC4] rounded-full'></div>
+                  <div onClick={() => setSelectedColor("#E6AE95")} className={`w-4 h-4 bg-[#E6AE95] rounded-full ${selectedColor === "#E6AE95" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
+                  <div onClick={() => setSelectedColor("#BABABA")} className={`w-4 h-4 bg-[#BABABA] rounded-full ${selectedColor === "#BABABA" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
+                  <div onClick={() => setSelectedColor("#D76B67")} className={`w-4 h-4 bg-[#D76B67] rounded-full ${selectedColor === "#D76B67" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
+                  <div onClick={() => setSelectedColor("#BFDCC4")} className={`w-4 h-4 bg-[#BFDCC4] rounded-full ${selectedColor === "#BFDCC4" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
                 </div>
               </div>
             </div>
