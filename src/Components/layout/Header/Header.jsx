@@ -8,6 +8,7 @@ import ShopMegaMenu from './HoverEffect/ShopMegaMenu'
 import BlogMegaMenu from './HoverEffect/BlogMegaMenu'
 import PagesMegaMenu from './HoverEffect/PagesMegaMenu'
 import SearchMenu from './OpenEffect/SearchMenu'
+import Login from './OpenEffect/Login'
 
 const Header = () => {
 
@@ -108,21 +109,7 @@ const Header = () => {
                     </li>
 
                     {/* Login / User Button  */}
-                    <li>
-                        <button>
-                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_6_29)">
-                            <path d="M10.0175 11.2652C3.99775 11.2652 0.682495 14.108 0.682495 19.2701C0.682495 19.6732 1.00982 20 1.41369 20H18.6212C19.0251 20 19.3524 19.6732 19.3524 19.2701C19.3524 14.1083 16.0372 11.2652 10.0175 11.2652ZM2.17149 18.5402C2.4591 14.6805 5.09505 12.7251 10.0175 12.7251C14.9399 12.7251 17.5759 14.6805 17.8637 18.5402H2.17149Z" fill="#222222"/>
-                            <path d="M10.0174 0C7.25222 0 5.16711 2.12336 5.16711 4.93895C5.16711 7.83699 7.34292 10.1944 10.0174 10.1944C12.6918 10.1944 14.8676 7.83699 14.8676 4.93918C14.8676 2.12336 12.7825 0 10.0174 0ZM10.0174 8.7348C8.14917 8.7348 6.6295 7.03211 6.6295 4.93918C6.6295 2.92313 8.05436 1.45984 10.0174 1.45984C11.949 1.45984 13.4053 2.95547 13.4053 4.93918C13.4053 7.03211 11.8856 8.7348 10.0174 8.7348Z" fill="#222222"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_6_29">
-                            <rect width="20.0348" height="20" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </button>
-                    </li>
+                    <Login></Login>
                     <li>
                         <button>
                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
