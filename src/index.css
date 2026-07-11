@@ -11,6 +11,11 @@
     --color-redColor: #D6001C;
     --color-bg-footer: #E4E4E4;
 }
+
+body{
+    font-family: "Jost", sans-serif;
+}
+
 .list-item{
     @apply font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300 inline-block;
 }
