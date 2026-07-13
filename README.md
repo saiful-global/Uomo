@@ -8,7 +8,8 @@
 
 A modern, fully responsive e-commerce fashion store built with React and Tailwind CSS, inspired by the Uomo Figma theme.
 
-🌐 **Live Demo:** [Vercel](https://uomo-saiful.vercel.app/) · [Netlify](https://uomo-saiful.netlify.app/)
+🌐 **Live Demo:** [Vercel](https://uomo-saiful.vercel.app/) · [Netlify](https://uomo-saiful.netlify.app/)<img width="1920" height="6999" alt="screencapture-uomo-saiful-vercel-app-2026-07-13-22_24_14" src="https://github.com/user-attachments/assets/9eb7e872-f792-4119-8cf7-0a15e5764e31" />
+
 
 ---
 
