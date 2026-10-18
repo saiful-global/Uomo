@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import Image from './Image'
 import ProductImage from '../../assets/images/ProductImage.png'
 
@@ -8,9 +9,14 @@ const Product = ({item}) => {
     <div className='w-full px-3.5 md:px-7.5 relative'>
 
       <div className='group'>
-        <Image src={item.thumbnail || ProductImage} alt="ProductImage"></Image>
+        {/* Link to the single product page (route: /shop/:id).
+            "block" removes the small gap an inline <a> leaves under an <img>. */}
+        <Link to={`/shop/${item.id}`} className='block'>
+          <Image src={item.thumbnail || ProductImage} alt={item.title || "ProductImage"}></Image>
+        </Link>
 
-        {/* Hover: ADD TO CART */}
+        {/* Hover: ADD TO CART
+            Kept outside the Link on purpose, so clicking it will not open the product page. */}
         <div className='md:bg-white bg-white/75 shadow shadow-gray-200 text-center md:group-hover:bottom-30 md:group-hover:opacity-100 absolute bottom-30 md:bottom-15 pt-2 md:pt-4 pb-1.5 md:pb-2.5 w-full md:w-77.5 left-1/2 translate-x-[-50%] duration-200 md:opacity-0 transition-all'>
           <button className='font-jost text-sm font-medium leading-6' >ADD TO CART</button>
         </div>
@@ -20,7 +26,9 @@ const Product = ({item}) => {
         <div className='flex justify-between items-baseline'>
           <div>
             <h3 className='font-jost text-secondColor text-sm font-normal leading-6 mt-3.5'>{item.category}</h3>
-            <h2 className='font-jost text-primary-black text-sm md:text-base font-normal'>{item.title.slice(0,15)}...</h2>
+            <Link to={`/shop/${item.id}`}>
+              <h2 className='font-jost text-primary-black text-sm md:text-base font-normal'>{item.title.slice(0,15)}...</h2>
+            </Link>
 
             {/* Price */}
             <div className='flex gap-2.5'>
