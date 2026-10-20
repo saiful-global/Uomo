@@ -11,6 +11,7 @@ import Checkout from "./Pages/Checkout"
 import Confirmation from "./Pages/Confirmation"
 import OrderTracking from "./Pages/OrderTracking"
 import MyAccount from "./Pages/MyAccount"
+import AccountDetails from "./Pages/AccountDetails"
 
 // The router is created OUTSIDE the component on purpose.
 // If it lives inside App, a brand new router is built on every re-render,
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: "order-confirmation", Component: Confirmation },
       { path: "order-tracking", Component: OrderTracking },
       { path: "my-account", Component: MyAccount },
+      { path: "my-account/account-details", Component: AccountDetails },
     ],
   },
 ]);
