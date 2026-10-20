@@ -6,6 +6,7 @@ import Container from '../Components/ui/Container'
 import ProductGallery from '../Components/shopSingle/ProductGallery'
 import ProductInfo from '../Components/shopSingle/ProductInfo'
 import ProductTabs from '../Components/shopSingle/ProductTabs'
+import RelatedProducts from '../Components/shopSingle/RelatedProducts'
 
 // Single product page.
 // Built so far: Gallery + Info + Tabs. RelatedProducts will be added at the bottom later.
@@ -68,6 +69,7 @@ const ShopSingle = () => {
         <div className='mt-13.5 md:mt-25'>
           <ProductTabs key={product.id} product={product} />
         </div>
+        <RelatedProducts product={product} />
       </Container>
     </main>
   )
