@@ -10,10 +10,11 @@ import PagesMegaMenu from './HoverEffect/PagesMegaMenu'
 import SearchMenu from './OpenEffect/SearchMenu'
 import Login from './OpenEffect/Login'
 import ShoppingBag from './OpenEffect/ShoppingBag'
+import { useCartCount } from '../../../api/cartStore'
 
 const Header = () => {
 
-    const cartItems = 3;
+    const cartItems = useCartCount()
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false)
     const searchRef = useRef(null)

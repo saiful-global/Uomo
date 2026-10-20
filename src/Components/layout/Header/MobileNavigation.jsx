@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
 import ShoppingBag from './OpenEffect/ShoppingBag'
+import { useCartCount } from '../../../api/cartStore'
 
 const MobileNavigation = () => {
-    const cartItems = 3
+
+
+    const cartItems = useCartCount()
     const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false)
 
     return (

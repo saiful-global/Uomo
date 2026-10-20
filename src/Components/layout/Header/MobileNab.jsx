@@ -6,10 +6,11 @@ import { MdChevronRight } from "react-icons/md";
 import { FaFacebookF, FaInstagram, FaPinterest } from 'react-icons/fa'
 import { FaXTwitter,FaYoutube } from "react-icons/fa6";
 import ShoppingBag from './OpenEffect/ShoppingBag'
+import { useCartCount } from '../../../api/cartStore'
 
 const MobileNab = () => {
 
-    const cartItems = 3;
+    const cartItems = useCartCount()
     const [mobileMenu, setMobileMenu] = useState(false);
     const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false);
 

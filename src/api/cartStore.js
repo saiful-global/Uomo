@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from 'react'
+
 const CART_EVENT = 'uomo-cart-updated'
 const STORAGE_KEY = 'uomo-cart'
 
@@ -74,3 +76,11 @@ export const subscribeToCart = (callback) => {
     window.removeEventListener('storage', callback)
   }
 }
+
+// Total quantity of all items in the cart (sum of quantities, not number of lines)
+export const getCartCount = () =>
+  readCart().reduce((total, item) => total + (Number(item.quantity) || 0), 0)
+
+// Hook: returns the live cart count and re-renders on every cart change
+export const useCartCount = () =>
+  useSyncExternalStore(subscribeToCart, getCartCount, () => 0)
