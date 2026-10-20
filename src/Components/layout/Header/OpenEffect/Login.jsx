@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { IoMdClose } from "react-icons/io";
 import CreateAccount from './CreateAccount';
+import { useNavigate } from 'react-router'
 
 const Login = () => {
 
   const [loginModal, setLoginModal] = useState(false);
   const [formView, setFormView] = useState('login');
+  const navigate = useNavigate()
 
   const closeModal = () => {
     setLoginModal(false);
@@ -52,7 +54,7 @@ const Login = () => {
           </div>
 
           {formView === 'login' ? (
-          <form onSubmit={(e) => e.preventDefault()} className='pl-8.5 pr-10 md:px-10 mx-auto pt-7.75'>
+          <form onSubmit={(e) => { e.preventDefault(); closeModal(); navigate('/my-account') }} className='pl-8.5 pr-10 md:px-10 mx-auto pt-7.75'>
 
             {/* Username / email  */}
             <div className='relative mb-7.5'>
