@@ -66,6 +66,8 @@ export const updateCartQuantity = (id, change) => {
 export const removeFromCart = (id) => {
   writeCart(readCart().filter((item) => item.id !== id))
 }
+
+// Empty the whole cart (used after an order is placed)
 export const clearCart = () => writeCart([])
 
 export const subscribeToCart = (callback) => {
@@ -85,3 +87,35 @@ export const getCartCount = () =>
 // Hook: returns the live cart count and re-renders on every cart change
 export const useCartCount = () =>
   useSyncExternalStore(subscribeToCart, getCartCount, () => 0)
+
+// ---- Placed orders (no backend, kept in localStorage so Order Tracking can find them) ----
+const ORDERS_KEY = 'uomo-orders'
+
+const readOrders = () => {
+  try {
+    const saved = localStorage.getItem(ORDERS_KEY)
+    return saved ? JSON.parse(saved) : []
+  } catch {
+    return []
+  }
+}
+
+// Save an order once (same order number is never saved twice)
+export const saveOrder = (order) => {
+  const orders = readOrders()
+  if (orders.some((o) => String(o.orderNumber) === String(order.orderNumber))) return
+  try {
+    localStorage.setItem(ORDERS_KEY, JSON.stringify([...orders, order]))
+  } catch {
+    // storage full or blocked: tracking just will not find this order
+  }
+}
+
+// Find an order by Order ID + billing email.
+// The billing email is optional at checkout, so if the order has no email only the Order ID is checked.
+export const findOrder = (orderNumber, email) =>
+  readOrders().find((o) => {
+    if (String(o.orderNumber) !== String(orderNumber).trim()) return false
+    const savedEmail = (o.billing?.email || '').trim().toLowerCase()
+    return !savedEmail || savedEmail === String(email).trim().toLowerCase()
+  })

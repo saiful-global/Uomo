@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router'
 import Container from '../Components/ui/Container'
-import { clearCart } from '../api/cartStore'
+import { clearCart, saveOrder } from '../api/cartStore'
 
 const STEPS = [
   { no: '01', title: 'Shopping Bag', text: 'Manage Your Items List' },
@@ -22,9 +22,14 @@ const Confirmation = () => {
   // so this page never recalculates VAT or shipping and cannot show a different total.
   const order = location.state?.order
 
-  // The order is placed, so empty the cart (safe to run twice: clearing an empty cart does nothing)
+  // The order is placed: keep it for Order Tracking and empty the cart.
+  // Safe to run twice (React StrictMode / refresh): saveOrder skips a known order number
+  // and clearing an empty cart does nothing.
   useEffect(() => {
-    if (order) clearCart()
+    if (order) {
+      saveOrder(order)
+      clearCart()
+    }
   }, [order])
 
   return (
