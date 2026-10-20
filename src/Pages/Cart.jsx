@@ -324,13 +324,14 @@ const Cart = () => {
                   </div>
                 </div>
 
-                {/* Checkout button (checkout page is not built yet) */}
-                <button
-                  type="button"
-                  className="mt-5 h-14 w-full bg-primary-black font-jost font-medium text-sm uppercase text-primary-white transition hover:opacity-90 xl:h-15"
+                {/* Checkout button */}
+                <Link
+                  to="/checkout"
+                  state={{ shipping }}
+                  className="mt-5 flex h-14 w-full items-center justify-center bg-primary-black font-jost font-medium text-sm uppercase text-primary-white transition hover:opacity-90 xl:h-15"
                 >
                   Proceed to checkout
-                </button>
+                </Link>
               </div>
             </div>
           )}

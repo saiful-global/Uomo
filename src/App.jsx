@@ -7,6 +7,7 @@ import About from './Pages/About';
 import Shop from './Pages/Shop';
 import ShopSingle from './Pages/ShopSingle';
 import Cart from "./Pages/Cart"
+import Checkout from "./Pages/Checkout"
 
 // The router is created OUTSIDE the component on purpose.
 // If it lives inside App, a brand new router is built on every re-render,
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       // ShopSingle reads it with useParams() and fetches that one product.
       { path: "shop/:id", Component: ShopSingle },
       { path: "cart", Component: Cart },
+      { path: "checkout", Component: Checkout },
     ],
   },
 ]);
