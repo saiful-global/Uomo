@@ -111,6 +111,9 @@ export const saveOrder = (order) => {
   }
 }
 
+
+export const getOrders = () => readOrders()
+
 // Find an order by Order ID + billing email.
 // The billing email is optional at checkout, so if the order has no email only the Order ID is checked.
 export const findOrder = (orderNumber, email) =>
