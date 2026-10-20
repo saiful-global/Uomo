@@ -9,11 +9,13 @@ import BlogMegaMenu from './HoverEffect/BlogMegaMenu'
 import PagesMegaMenu from './HoverEffect/PagesMegaMenu'
 import SearchMenu from './OpenEffect/SearchMenu'
 import Login from './OpenEffect/Login'
+import ShoppingBag from './OpenEffect/ShoppingBag'
 
 const Header = () => {
 
     const cartItems = 3;
     const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false)
     const searchRef = useRef(null)
 
     useEffect(() => {
@@ -124,8 +126,9 @@ const Header = () => {
                             </svg>
                         </button>
                     </li>
+                    {/* Cart Button  */}
                     <li className='relative'>
-                        <button>
+                        <button onClick={() => setIsShoppingBagOpen(true)}>
                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.6869 4.6875H15.3021C14.9912 2.05164 12.74 0 10.0174 0C7.29479 0 5.04353 2.05164 4.73264 4.6875H2.3478C1.91556 4.6875 1.56519 5.03727 1.56519 5.46875V19.2188C1.56519 19.6502 1.91556 20 2.3478 20H17.6869C18.1192 20 18.4696 19.6502 18.4696 19.2188V5.46875C18.4696 5.03727 18.1192 4.6875 17.6869 4.6875ZM10.0174 1.5625C11.8754 1.5625 13.4225 2.91621 13.7214 4.6875H6.31332C6.61228 2.91621 8.1593 1.5625 10.0174 1.5625ZM16.9043 18.4375H3.13041V6.25H4.69563V8.59375C4.69563 9.02523 5.046 9.375 5.47824 9.375C5.91047 9.375 6.26084 9.02523 6.26084 8.59375V6.25H13.7739V8.59375C13.7739 9.02523 14.1243 9.375 14.5565 9.375C14.9887 9.375 15.3391 9.02523 15.3391 8.59375V6.25H16.9043V18.4375Z" fill="#222222"/>
                             </svg>
@@ -146,6 +149,7 @@ const Header = () => {
         </Container>
         </nav>
         <MobileNab></MobileNab>
+        <ShoppingBag isOpen={isShoppingBagOpen} onClose={() => setIsShoppingBagOpen(false)} />
     </header>
   )
 }
