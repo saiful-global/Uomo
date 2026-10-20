@@ -1,37 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react'
-
-const initialItems = [
-  {
-    id: 1,
-    name: 'Zessi Dresses',
-    color: 'Yellow',
-    size: 'L',
-    price: 99,
-    quantity: 1,
-    image: 'https://cdn.dummyjson.com/product-images/womens-dresses/black-women-s-gown/1.webp',
-  },
-  {
-    id: 2,
-    name: 'Kirby T-Shirt',
-    color: 'Yellow',
-    size: 'L',
-    price: 99,
-    quantity: 1,
-    image: 'https://cdn.dummyjson.com/product-images/mens-shirts/blue-and-black-check-shirt/1.webp',
-  },
-  {
-    id: 3,
-    name: 'Cableknit Shawl',
-    color: 'Yellow',
-    size: 'L',
-    price: 99,
-    quantity: 1,
-    image: 'https://cdn.dummyjson.com/product-images/womens-dresses/black-women-s-gown/1.webp',
-  },
-]
+import { getCartItems, removeFromCart, subscribeToCart, updateCartQuantity } from '../../../../api/cartStore'
 
 const ShoppingBag = ({ isOpen, onClose }) => {
-  const [items, setItems] = useState(initialItems)
+  const [items, setItems] = useState(() => getCartItems())
+
+  useEffect(() => {
+    const syncCart = () => setItems(getCartItems())
+    syncCart()
+    return subscribeToCart(syncCart)
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
@@ -41,18 +18,12 @@ const ShoppingBag = ({ isOpen, onClose }) => {
     }
   }, [isOpen])
 
-  const updateQuantity = (id, change) => {
-    setItems((currentItems) =>
-      currentItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    )
+  const changeQuantity = (id, change) => {
+    updateCartQuantity(id, change)
   }
 
   const removeItem = (id) => {
-    setItems((currentItems) => currentItems.filter((item) => item.id !== id))
+    removeFromCart(id)
   }
 
   const subtotal = useMemo(
@@ -175,7 +146,7 @@ const ShoppingBag = ({ isOpen, onClose }) => {
                       <div className="flex items-center gap-3 text-xs text-secondColor">
                         <button
                           type="button"
-                          onClick={() => updateQuantity(item.id, -1)}
+                          onClick={() => changeQuantity(item.id, -1)}
                           aria-label="Decrease quantity"
                           className="text-sm"
                         >
@@ -186,7 +157,7 @@ const ShoppingBag = ({ isOpen, onClose }) => {
 
                         <button
                           type="button"
-                          onClick={() => updateQuantity(item.id, 1)}
+                          onClick={() => changeQuantity(item.id, 1)}
                           aria-label="Increase quantity"
                           className="text-sm"
                         >
@@ -195,7 +166,7 @@ const ShoppingBag = ({ isOpen, onClose }) => {
                       </div>
 
                       <span className="text-sm font-normal text-primary-black">
-                        ${item.price * item.quantity}
+                        ${(item.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
                   </div>
