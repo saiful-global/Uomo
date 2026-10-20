@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Link, useLocation } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import Container from '../Components/ui/Container'
 import { getCartItems, subscribeToCart } from '../api/cartStore'
 
@@ -55,6 +55,7 @@ const ROW_LABEL = 'font-jost font-medium text-sm uppercase text-primary-black'
 
 const Checkout = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   // Shipping option chosen on the Cart page (falls back to free shipping)
   const shippingKey = SHIPPING_OPTIONS[location.state?.shipping] ? location.state.shipping : 'free'
   const shippingOption = SHIPPING_OPTIONS[shippingKey]
@@ -77,7 +78,27 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // No backend yet: the confirmation page will be connected here later
+
+    // Collect the billing form fields by their name attribute
+    const billing = Object.fromEntries(new FormData(e.currentTarget).entries())
+    const paymentMethod = PAYMENT_METHODS.find((method) => method.key === payment)
+
+    // Everything the Confirmation page needs (totals are calculated here only once)
+    const order = {
+      orderNumber: Math.floor(10000 + Math.random() * 90000), // fake 5 digit id (no backend)
+      date: new Date().toLocaleDateString('en-GB'), // dd/mm/yyyy
+      items: items.map(({ id, name, quantity, price }) => ({ id, name, quantity, price })),
+      subtotal,
+      shippingLabel: shippingOption.label,
+      shippingCost: shippingOption.cost,
+      vat,
+      total,
+      paymentLabel: paymentMethod ? paymentMethod.label : '',
+      billing,
+    }
+
+    // replace: true so the Back button does not return to this (now empty) checkout
+    navigate('/order-confirmation', { state: { order }, replace: true })
   }
 
   return (

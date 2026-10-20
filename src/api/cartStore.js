@@ -66,6 +66,7 @@ export const updateCartQuantity = (id, change) => {
 export const removeFromCart = (id) => {
   writeCart(readCart().filter((item) => item.id !== id))
 }
+export const clearCart = () => writeCart([])
 
 export const subscribeToCart = (callback) => {
   window.addEventListener(CART_EVENT, callback)
