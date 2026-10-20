@@ -12,6 +12,7 @@ import { addToCart } from '../../api/cartStore'
 //   onAddToWishlist-> optional, called with (product)
 const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => {} }) => {
   const [quantity, setQuantity] = useState(1)
+  const [isAdded, setIsAdded] = useState(false)
 
   const max = product.stock > 0 ? product.stock : 99
   const decrease = () => setQuantity((q) => Math.max(1, q - 1))
@@ -24,6 +25,11 @@ const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => 
   const handleAddToCart = () => {
     addToCart(product, quantity)
     onAddToCart(product, quantity)
+    setIsAdded(true)
+
+    window.setTimeout(() => {
+      setIsAdded(false)
+    }, 1500)
   }
 
   const tags = product.tags?.join(', ')
@@ -76,7 +82,7 @@ const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => 
           onClick={handleAddToCart}
           className='flex-1 md:flex-none md:w-70 h-15 md:h-15.5 bg-primary-black text-primary-white font-jost font-medium text-sm uppercase cursor-pointer'
         >
-          ADD TO CART
+          {isAdded ? 'ADDED' : 'ADD TO CART'}
         </button>
       </div>
 
