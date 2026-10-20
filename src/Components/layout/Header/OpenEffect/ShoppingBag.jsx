@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { getCartItems, removeFromCart, subscribeToCart, updateCartQuantity } from '../../../../api/cartStore'
+import { Link } from 'react-router'
 
 const ShoppingBag = ({ isOpen, onClose }) => {
   const [items, setItems] = useState(() => getCartItems())
@@ -192,12 +193,13 @@ const ShoppingBag = ({ isOpen, onClose }) => {
           </div>
 
           <div className="grid gap-4">
-            <button
-              type="button"
-              className="h-[55px] bg-[#e9e9e9] text-sm font-medium uppercase text-primary-black transition hover:bg-[#dddddd]"
+            <Link
+              to="/cart"
+              onClick={onClose}
+              className="flex h-[55px] items-center justify-center bg-[#e9e9e9] text-sm font-medium uppercase text-primary-black transition hover:bg-[#dddddd]"
             >
               View Cart
-            </button>
+            </Link>
 
             <button
               type="button"

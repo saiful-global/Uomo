@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import About from './Pages/About';
 import Shop from './Pages/Shop';
 import ShopSingle from './Pages/ShopSingle';
+import Cart from "./Pages/Cart"
 
 // The router is created OUTSIDE the component on purpose.
 // If it lives inside App, a brand new router is built on every re-render,
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       // Dynamic route: ":id" is the product id from dummyjson (e.g. /shop/5).
       // ShopSingle reads it with useParams() and fetches that one product.
       { path: "shop/:id", Component: ShopSingle },
+      { path: "cart", Component: Cart },
     ],
   },
 ]);
