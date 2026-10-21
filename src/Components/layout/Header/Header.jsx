@@ -10,6 +10,7 @@ import PagesMegaMenu from './HoverEffect/PagesMegaMenu'
 import SearchMenu from './OpenEffect/SearchMenu'
 import Login from './OpenEffect/Login'
 import ShoppingBag from './OpenEffect/ShoppingBag'
+import NavPanel from './OpenEffect/NavPanel'
 import { useCartCount } from '../../../api/cartStore'
 
 const Header = () => {
@@ -17,6 +18,7 @@ const Header = () => {
     const cartItems = useCartCount()
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false)
+    const [isNavPanelOpen, setIsNavPanelOpen] = useState(false)
     const searchRef = useRef(null)
 
     useEffect(() => {
@@ -49,8 +51,8 @@ const Header = () => {
                     <Link to="/" className='shrink-0'>
                         <Image className="w-24 lg:w-28" src="/images/logo.png" alt="logo" ></Image>
                     </Link>
-                    {/* Gaps shrink on small screens so the menu never overflows (md = 768px) */}
-                    <ul className='flex gap-3 ml-3 lg:gap-8 lg:ml-10 xl:gap-11 xl:ml-14'>
+                    {/* Nav links show from lg (1024px). Between md and lg they live inside the hamburger panel */}
+                    <ul className='hidden lg:flex gap-8 ml-10 xl:gap-11 xl:ml-14'>
                         {navitems?.map((item) => (
                         <li key={item.id} className='group py-2'>
                             {item.type === "mega" ? (
@@ -86,7 +88,7 @@ const Header = () => {
                 </div>
 
                 {/* Header Action Icons  */}
-                <ul className='flex items-center gap-3 lg:gap-6 xl:gap-8 shrink-0'>
+                <ul className='flex items-center gap-5 lg:gap-6 xl:gap-8 shrink-0'>
                     
                     {/* Search Button */}
                     <li ref={searchRef}>
@@ -140,8 +142,8 @@ const Header = () => {
                         <span className='font-jost bg-thirdColor px-1.25 py-px text-primary-white rounded-full font-medium text-[10px] absolute bottom-0 left-3 '>{cartItems}</span>
                     </li>
                     <li>
-                        {/* Hamburger: panel (Figma open_navs) is still to build */}
-                        <button aria-label="Menu">
+                        {/* Hamburger: opens NavPanel */}
+                        <button onClick={() => setIsNavPanelOpen(true)} aria-label="Menu">
                             <svg width="26" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="25.0435" height="2" fill="#222222"/>
                             <rect y="8" width="20.0348" height="2" fill="#222222"/>
@@ -156,6 +158,7 @@ const Header = () => {
         </nav>
         <MobileNab></MobileNab>
         <ShoppingBag isOpen={isShoppingBagOpen} onClose={() => setIsShoppingBagOpen(false)} />
+        <NavPanel isOpen={isNavPanelOpen} onClose={() => setIsNavPanelOpen(false)} />
     </header>
   )
 }
