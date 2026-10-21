@@ -6,6 +6,7 @@ import { MdChevronRight } from "react-icons/md";
 import { FaFacebookF, FaInstagram, FaPinterest } from 'react-icons/fa'
 import { FaXTwitter,FaYoutube } from "react-icons/fa6";
 import ShoppingBag from './OpenEffect/ShoppingBag'
+import MobileSearch from './OpenEffect/MobileSearch'
 import { useCartCount } from '../../../api/cartStore'
 
 const MobileNab = () => {
@@ -50,36 +51,22 @@ const MobileNab = () => {
             {/* Menu list absolute div  */} 
             <div className={`${mobileMenu? "w-full": "w-0"} bottom-0 bg-white fixed top-15 left-0 border-t border-bg-footer z-50 duration-400 transition-all overflow-hidden `}>
                 <div>
-                    {/* search box  */}
-                    <div className="relative mb-4.25 mx-3.75 mt-5.25">
-                        <input type="text" placeholder="Search products..." className="w-full border border-bg-footer rounded-[3px] pt-4.25 pb-3.5 px-4.25 outline-none focus:border-black text-sm font-jost font-normal leading-6" />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2">
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_164_9153)">
-                            <path d="M7.92682 0C3.55609 0 0 3.55609 0 7.92682C0 12.2978 3.55609 15.8536 7.92682 15.8536C12.2978 15.8536 15.8536 12.2978 15.8536 7.92682C15.8536 3.55609 12.2978 0 7.92682 0ZM7.92682 14.3903C4.36293 14.3903 1.46341 11.4907 1.46341 7.92685C1.46341 4.36296 4.36293 1.46341 7.92682 1.46341C11.4907 1.46341 14.3902 4.36293 14.3902 7.92682C14.3902 11.4907 11.4907 14.3903 7.92682 14.3903Z" fill="#222222"/>
-                            <path d="M17.7856 16.751L13.5905 12.5558C13.3046 12.27 12.8417 12.27 12.5558 12.5558C12.27 12.8414 12.27 13.3049 12.5558 13.5905L16.7509 17.7856C16.8939 17.9285 17.081 18 17.2683 18C17.4553 18 17.6427 17.9285 17.7856 17.7856C18.0715 17.5 18.0715 17.0366 17.7856 16.751Z" fill="#222222"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_164_9153">
-                            <rect width="18" height="18" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </span>
-                    </div>
-                    {/* list item  */}
-                    <ul className=' flex flex-col items-start mx-3.75'>
-                        {
-                            navitems?.map((item)=>(
-                                <li className='font-jost font-medium text-base leading-11.25 w-full flex justify-between items-center' key={item.id}>
-                                    <Link to={item.url}>
-                                        {item.name}
-                                    </Link>
-                                    <MdChevronRight size={20} />
-                                </li>
-                            ))
-                        }
-                    </ul>
+                    {/* search box + live results (empty box shows the list below) */}
+                    <MobileSearch onNavigate={() => setMobileMenu(false)}>
+                        {/* list item  */}
+                        <ul className=' flex flex-col items-start mx-3.75'>
+                            {
+                                navitems?.map((item)=>(
+                                    <li className='font-jost font-medium text-base leading-11.25 w-full flex justify-between items-center' key={item.id}>
+                                        <Link to={item.url || "#"} onClick={() => setMobileMenu(false)}>
+                                            {item.name}
+                                        </Link>
+                                        <MdChevronRight size={20} />
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </MobileSearch>
                 </div>
 
                 {/* menu's bottom part  */}
