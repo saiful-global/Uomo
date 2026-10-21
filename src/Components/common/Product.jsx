@@ -19,12 +19,14 @@ const Product = ({item}) => {
   }
 
   return (
-    <div className='w-full px-3.5 md:px-2 lg:px-4 xl:px-7.5 relative'>
+    <div className='w-full px-3.5 md:px-2 lg:px-4 xl:px-7.5'>
+    {/* Card is capped at 420px and centered, so in wide columns (Shop VIEW 2/3) the image, text and heart stay together in the middle */}
+    <div className='relative mx-auto w-full max-w-105'>
 
       <div className='group'>
         {/* Link to the single product page (route: /shop/:id).
             "block" removes the small gap an inline <a> leaves under an <img>. */}
-        <Link to={`/shop/${item.id}`} className='block'>
+        <Link to={`/shop/${item.id}`} className='flex justify-center [&_img]:max-w-full [&_img]:min-w-0 [&_img]:h-auto'>
           <Image src={item.thumbnail || ProductImage} alt={item.title || "ProductImage"}></Image>
         </Link>
 
@@ -75,6 +77,7 @@ const Product = ({item}) => {
           </button>
         </div>
 
+    </div>
     </div>
   )
 }
