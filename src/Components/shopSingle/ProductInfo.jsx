@@ -42,12 +42,13 @@ const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => 
   const tags = product.tags?.join(', ')
 
   return (
-    <div className='w-full'>
-      <div className='hidden md:flex justify-between items-center'>
+    <div className='w-full min-w-0'>
+      {/* Breadcrumb + PREV/NEXT: hidden on phones (like Figma), wraps on narrow tablet columns */}
+      <div className='hidden md:flex flex-wrap justify-between items-center gap-x-4 gap-y-2'>
         <h2 className='font-jost font-medium text-sm leading-6 uppercase text-primary-black'>
           <Link to='/'>HOME</Link> / <Link to='/shop'>THE SHOP</Link>
         </h2>
-        <div className='flex items-center gap-7.5'>
+        <div className='flex items-center gap-4 lg:gap-7.5'>
           <Link
             to={`/shop/${product.id - 1}`}
             className={`flex items-center gap-2.5 font-jost font-medium text-sm leading-6 uppercase text-primary-black ${product.id > 1 ? '' : 'invisible'}`}
@@ -65,7 +66,7 @@ const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => 
         </div>
       </div>
 
-      <h1 className='mt-8 md:mt-11.25 font-jost font-normal text-xl leading-7 md:text-[26px] md:leading-8 text-primary-black'>
+      <h1 className='mt-8 md:mt-8 lg:mt-11.25 font-jost font-normal text-xl leading-7 md:text-2xl md:leading-8 lg:text-[26px] text-primary-black wrap-break-word'>
         {product.title}
       </h1>
 
@@ -73,27 +74,29 @@ const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => 
         ${product.price}
       </p>
 
-      <p className='mt-6.5 font-jost font-normal text-sm leading-6 text-primary-black'>
+      <p className='mt-6.5 font-jost font-normal text-sm leading-6 text-primary-black wrap-break-word'>
         {product.description}
       </p>
 
-      <div className='mt-8 flex gap-5'>
-        <div className='w-28.75 h-15 md:h-15.5 shrink-0 border-2 border-bg-footer flex items-center justify-between px-5 font-jost font-normal text-sm text-secondColor'>
-          <button type='button' onClick={decrease} aria-label='Decrease quantity' className='cursor-pointer'>-</button>
+      {/* Quantity + Add to cart: button fills the row on phones, max 280px (Figma) on wider screens */}
+      <div className='mt-8 flex gap-3 sm:gap-5'>
+        <div className='w-28.75 h-15 md:h-15.5 shrink-0 border-2 border-bg-footer flex items-center justify-between px-2 font-jost font-normal text-sm text-secondColor'>
+          <button type='button' onClick={decrease} aria-label='Decrease quantity' className='size-9 flex items-center justify-center cursor-pointer'>-</button>
           <span>{quantity}</span>
-          <button type='button' onClick={increase} aria-label='Increase quantity' className='cursor-pointer'>+</button>
+          <button type='button' onClick={increase} aria-label='Increase quantity' className='size-9 flex items-center justify-center cursor-pointer'>+</button>
         </div>
 
         <button
           type='button'
           onClick={handleAddToCart}
-          className='flex-1 md:flex-none md:w-70 h-15 md:h-15.5 bg-primary-black text-primary-white font-jost font-medium text-sm uppercase cursor-pointer'
+          className='flex-1 min-w-0 md:max-w-70 h-15 md:h-15.5 bg-primary-black text-primary-white font-jost font-medium text-sm uppercase cursor-pointer'
         >
           {isAdded ? 'ADDED' : 'ADD TO CART'}
         </button>
       </div>
 
-      <div className='mt-8.25 flex items-center gap-8'>
+      {/* Wishlist + Share: wraps to two lines on very narrow screens */}
+      <div className='mt-8.25 flex flex-wrap items-center gap-x-8 gap-y-5'>
         <button
           type='button'
           onClick={handleWishlist}
@@ -120,7 +123,7 @@ const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => 
         </button>
       </div>
 
-      <div className='mt-10 font-jost font-normal text-[13px] leading-5.75'>
+      <div className='mt-10 font-jost font-normal text-[13px] leading-5.75 wrap-break-word'>
         <p>
           <span className='uppercase text-secondColor'>SKU:</span>{' '}
           <span className='text-primary-black'>{product.sku || 'N/A'}</span>
