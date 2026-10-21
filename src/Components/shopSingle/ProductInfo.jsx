@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
 import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi'
-import { addToCart } from '../../api/cartStore'
+import { addToCart, toggleWishlist, useWishlist } from '../../api/cartStore'
 
 // Right side of the single product page: breadcrumb, title, price,
 // description, quantity, add to cart, wishlist/share and product meta.
@@ -13,6 +13,8 @@ import { addToCart } from '../../api/cartStore'
 const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => {} }) => {
   const [quantity, setQuantity] = useState(1)
   const [isAdded, setIsAdded] = useState(false)
+  const wishlist = useWishlist()
+  const isWishlisted = wishlist.some((w) => w.id === product.id)
 
   const max = product.stock > 0 ? product.stock : 99
   const decrease = () => setQuantity((q) => Math.max(1, q - 1))
@@ -30,6 +32,11 @@ const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => 
     window.setTimeout(() => {
       setIsAdded(false)
     }, 1500)
+  }
+
+  const handleWishlist = () => {
+    toggleWishlist(product)
+    onAddToWishlist(product)
   }
 
   const tags = product.tags?.join(', ')
@@ -89,13 +96,13 @@ const ProductInfo = ({ product, onAddToCart = () => {}, onAddToWishlist = () => 
       <div className='mt-8.25 flex items-center gap-8'>
         <button
           type='button'
-          onClick={() => onAddToWishlist(product)}
+          onClick={handleWishlist}
           className='relative flex items-center gap-2.5 h-6 font-jost font-medium text-[13px] uppercase text-primary-black cursor-pointer after:content-[""] after:absolute after:left-0 after:-bottom-1.25 after:h-0.5 after:w-22.5 after:bg-primary-black'
         >
-          <svg width='16' height='16' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+          <svg width='16' height='16' viewBox='0 0 16 16' fill={isWishlisted ? '#D6001C' : 'currentColor'} xmlns='http://www.w3.org/2000/svg'>
             <path d='M14.7145 2.64647C12.9744 0.906815 10.1436 0.906815 8.40393 2.64647L7.99986 3.0503L7.59603 2.64647C5.85637 0.906579 3.02531 0.906579 1.28565 2.64647C-0.418689 4.35081 -0.429756 7.05236 1.25998 8.93071C2.80114 10.6433 7.34643 14.3432 7.53928 14.4998C7.6702 14.6063 7.82773 14.6581 7.98432 14.6581C7.9895 14.6581 7.99468 14.6581 7.99963 14.6578C8.16163 14.6654 8.32481 14.6098 8.45997 14.4998C8.65282 14.3432 13.1986 10.6433 14.7402 8.93048C16.4297 7.05236 16.4186 4.35081 14.7145 2.64647Z' />
           </svg>
-          ADD TO WISHLIST
+          {isWishlisted ? 'IN WISHLIST' : 'ADD TO WISHLIST'}
         </button>
 
         <button

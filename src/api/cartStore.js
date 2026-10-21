@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from 'react'
+import { useMemo, useSyncExternalStore } from 'react'
 
 const CART_EVENT = 'uomo-cart-updated'
 const STORAGE_KEY = 'uomo-cart'
@@ -122,3 +122,76 @@ export const findOrder = (orderNumber, email) =>
     const savedEmail = (o.billing?.email || '').trim().toLowerCase()
     return !savedEmail || savedEmail === String(email).trim().toLowerCase()
   })
+
+// ---- Wishlist (no backend, kept in localStorage) ----
+// Each item: { id, name, category, price, image }
+const WISHLIST_KEY = 'uomo-wishlist'
+const WISHLIST_EVENT = 'uomo-wishlist-updated'
+
+// The raw JSON text is the snapshot for useSyncExternalStore (a string is compared by value, so no infinite loop)
+const readWishlistRaw = () => {
+  try {
+    return localStorage.getItem(WISHLIST_KEY) || '[]'
+  } catch {
+    return '[]'
+  }
+}
+
+const parseWishlist = (raw) => {
+  try {
+    const list = JSON.parse(raw)
+    return Array.isArray(list) ? list : []
+  } catch {
+    return []
+  }
+}
+
+const writeWishlist = (items) => {
+  try {
+    localStorage.setItem(WISHLIST_KEY, JSON.stringify(items))
+  } catch {
+    // storage full or blocked: wishlist just will not be saved
+  }
+  window.dispatchEvent(new CustomEvent(WISHLIST_EVENT))
+}
+
+export const getWishlist = () => parseWishlist(readWishlistRaw())
+
+// Add the product if it is not in the wishlist, remove it if it is
+export const toggleWishlist = (product) => {
+  const items = getWishlist()
+  if (items.some((item) => item.id === product.id)) {
+    writeWishlist(items.filter((item) => item.id !== product.id))
+    return
+  }
+  writeWishlist([
+    ...items,
+    {
+      id: product.id,
+      name: product.title,
+      category: product.category || '',
+      price: product.price,
+      image: product.thumbnail || product.images?.[0] || '',
+    },
+  ])
+}
+
+export const removeFromWishlist = (id) => {
+  writeWishlist(getWishlist().filter((item) => item.id !== id))
+}
+
+const subscribeToWishlist = (callback) => {
+  window.addEventListener(WISHLIST_EVENT, callback)
+  window.addEventListener('storage', callback)
+
+  return () => {
+    window.removeEventListener(WISHLIST_EVENT, callback)
+    window.removeEventListener('storage', callback)
+  }
+}
+
+// Hook: returns the live wishlist array and re-renders on every change
+export const useWishlist = () => {
+  const raw = useSyncExternalStore(subscribeToWishlist, readWishlistRaw, () => '[]')
+  return useMemo(() => parseWishlist(raw), [raw])
+}

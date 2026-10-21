@@ -14,6 +14,7 @@ import MyAccount from "./Pages/MyAccount"
 import AccountDetails from "./Pages/AccountDetails"
 import Orders from "./Pages/Orders"
 import Addresses from "./Pages/Addresses"
+import Wishlist from "./Pages/Wishlist"
 
 // The router is created OUTSIDE the component on purpose.
 // If it lives inside App, a brand new router is built on every re-render,
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
       { path: "my-account/account-details", Component: AccountDetails },
       { path: "my-account/orders", Component: Orders },
       { path: "my-account/addresses", Component: Addresses },
+      { path: "my-account/wishlist", Component: Wishlist },
     ],
   },
 ]);
