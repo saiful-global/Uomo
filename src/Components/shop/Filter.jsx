@@ -47,7 +47,7 @@ const Filter = () => {
       {filterModal && (
         <div onClick={() => setFilterModal(false)} className=" hidden md:block duration-300 transition fixed inset-0 bg-black/40 z-40" />
       )}
-        <div className={`h-screen ${filterModal? "w-full md:w-105": "w-0"} bg-primary-white top-0 right-0 fixed z-50 duration-300 overflow-y-auto scroll-smooth`}>
+        <div className={`h-dvh overscroll-contain ${filterModal? "w-full md:w-105": "w-0"} bg-primary-white top-0 right-0 fixed z-50 duration-300 overflow-y-auto scroll-smooth`}>
           <div className='flex justify-between bg-[#FAF9F8] px-10 py-8.25'>
             <h3 className='font-jost font-medium text-base text-primary-black'>FILTER BY</h3>
             <IoMdClose onClick={()=>setFilterModal(false)} className='text-[21px] cursor-pointer' />
@@ -62,7 +62,8 @@ const Filter = () => {
                 </svg>
               </div>
               {/* List  */}
-              <div className='flex gap-19.5'>
+              {/* 2 columns on phones, side by side on md+ */}
+              <div className='grid grid-cols-2 gap-x-5 md:flex md:gap-19.5'>
                 <div>
                   <ul className='font-jost font-normal text-sm leading-7.5 text-primary-black cursor-pointer'>
                     <li>Dresses</li>
@@ -93,7 +94,7 @@ const Filter = () => {
                 </svg>
               </div>
               <div>
-                <div className='flex gap-6.25 pb-6.5 cursor-pointer'>
+                <div className='flex flex-wrap gap-6.25 pb-6.5 cursor-pointer'>
                   <div onClick={() => setSelectedColor("#0A2472")} className={`w-4 h-4 bg-[#0A2472] rounded-full ${selectedColor === "#0A2472" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
                   <div onClick={() => setSelectedColor("#D7BB4F")} className={`w-4 h-4 bg-[#D7BB4F] rounded-full ${selectedColor === "#D7BB4F" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
                   <div onClick={() => setSelectedColor("#282828")} className={`w-4 h-4 bg-[#282828] rounded-full ${selectedColor === "#282828" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
@@ -101,7 +102,7 @@ const Filter = () => {
                   <div onClick={() => setSelectedColor("#9C7539")} className={`w-4 h-4 bg-[#9C7539] rounded-full ${selectedColor === "#9C7539" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
                   <div onClick={() => setSelectedColor("#D29B48")} className={`w-4 h-4 bg-[#D29B48] rounded-full ${selectedColor === "#D29B48" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
                 </div>
-                <div className='flex gap-6.25 cursor-pointer'>
+                <div className='flex flex-wrap gap-6.25 cursor-pointer'>
                   <div onClick={() => setSelectedColor("#E6AE95")} className={`w-4 h-4 bg-[#E6AE95] rounded-full ${selectedColor === "#E6AE95" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
                   <div onClick={() => setSelectedColor("#BABABA")} className={`w-4 h-4 bg-[#BABABA] rounded-full ${selectedColor === "#BABABA" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
                   <div onClick={() => setSelectedColor("#D76B67")} className={`w-4 h-4 bg-[#D76B67] rounded-full ${selectedColor === "#D76B67" ? "outline-2 outline-black outline-offset-6" : ""}`}></div>
@@ -118,13 +119,11 @@ const Filter = () => {
                 <path d="M5.35668 0.159286C5.16235 -0.053094 4.83769 -0.0530941 4.64287 0.159286L0.147611 5.05963C-0.0492049 5.27473 -0.049205 5.62357 0.147611 5.83813C0.344427 6.05323 0.664108 6.05323 0.860924 5.83813L5 1.32706L9.13858 5.83867C9.33589 6.05378 9.65507 6.05378 9.85239 5.83867C10.0492 5.62357 10.0492 5.27473 9.85239 5.06018L5.35668 0.159286Z" fill="#222222"/>
                 </svg>
               </div>
-              <div className='font-jost font-normal text-sm text-primary-black flex gap-4 pb-3.75 cursor-pointer'>
+              <div className='font-jost font-normal text-sm text-primary-black flex flex-wrap gap-x-4 gap-y-3.75 cursor-pointer'>
                 <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>XS</div>
                 <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>S</div>
                 <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>M</div>
                 <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>L</div>
-              </div>
-              <div className='font-jost font-normal text-sm text-primary-black flex gap-4 cursor-pointer'>
                 <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>XL</div>
                 <div className='border border-bg-footer w-14.5 h-8.75 text-center leading-7.5'>XXL</div>
               </div>

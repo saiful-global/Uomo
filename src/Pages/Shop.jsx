@@ -43,7 +43,8 @@ const Shop = () => {
         <ShopBanner />
         <Container>
           <div className='flex justify-between pb-7.5 md:pb-10'>
-            <Breadcrumb />
+            {/* Breadcrumb is not in the mobile Figma */}
+            <div className='hidden md:block'><Breadcrumb /></div>
             <SortAndView setView={setView} />
           </div>
         </Container>
@@ -53,7 +54,7 @@ const Shop = () => {
 
         {/* Range  */}
         <h3 className='text-center font-jost font-medium text-sm leading-6 text-black'>SHOWING {showProduct} of {totalProduct} Items</h3>
-        <div className='w-75 h-1.5 bg-bg-footer mt-1.25 mb-4.25 rounded-[10px] mx-auto'>
+        <div className='w-[90%] max-w-75 h-1.5 bg-bg-footer mt-1.25 mb-4.25 rounded-[10px] mx-auto'>
           <div style={{width:`${result}%`}} className='w-[20%] h-full bg-primary-black rounded-[10px] duration-700'></div>
         </div>
 
