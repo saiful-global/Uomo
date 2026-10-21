@@ -18,18 +18,21 @@ const Banner = () => {
     slidesToScroll: 1,
     appendDots: dots => (
       <div>
-        <ul className='flex gap-3 md:gap-5 absolute bottom-[5%] left-[5%] md:bottom-14.5 md:left-[8%] min-[1470px]:left-48.75' style={{ margin: "0px" }}> {dots} </ul>
+        <ul className='flex absolute bottom-[3%] left-[3%] md:bottom-13 md:left-[7%] min-[1470px]:left-47.5' style={{ margin: "0px" }}> {dots} </ul>
       </div>
     ),
+    // the whole <li> area is clickable (size comes from the .uomo-dots rules in index.css)
     customPaging: () => (
-      <div className='w-1.5 h-1.5 bg-[#DDC2B9] rounded-full'></div>
+      <div className='w-full h-full flex justify-center items-center cursor-pointer'>
+        <span className='block w-1.5 h-1.5 bg-[#DDC2B9] rounded-full'></span>
+      </div>
     )
     };
 
   return (
     <>
     {/* max width keeps the banner from growing too tall on very large screens */}
-    <section id='banner' className='relative w-full max-w-480 mx-auto overflow-hidden mt-15 md:mt-20'>
+    <section id='banner' className='uomo-dots relative w-full max-w-480 mx-auto overflow-hidden mt-15 md:mt-20'>
 
       {/* social icons: shown only from xl, where the side margin is wide enough */}
       <div className='hidden xl:flex absolute -left-4 top-1/2 -translate-y-1/2 font-normal flex-col items-center gap-6 text-secondColor text-sm z-10'>

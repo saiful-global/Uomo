@@ -25,21 +25,26 @@ body{
     @apply relative
 }
 
-/* Banner Slider */
 .u-list{
     @apply flex gap-11 ml-14;
 }
 
-#banner .slick-active div{
-    @apply bg-primary-black
+/* Slider dots (Banner + Limited Edition): add the class "uomo-dots" on the section.
+   Every <li> is the full click area (round, with a transparent border);
+   the active one shows the black ring and a black inner dot. */
+.uomo-dots .slick-dots li{
+    @apply h-5 w-5 md:h-7.5 md:w-7.5 rounded-full border-2 border-transparent flex justify-center items-center cursor-pointer;
 }
-#banner .slick-dots .slick-active{
-    @apply border-primary-black border-2 h-5 w-5 md:h-7.5 md:w-7.5 rounded-full flex justify-center items-center ;
+.uomo-dots .slick-dots li.slick-active{
+    @apply border-primary-black;
+}
+.uomo-dots .slick-dots li.slick-active span{
+    @apply bg-primary-black;
+}
+.uomo-dots .slick-dots ul{
+    @apply flex justify-center items-center;
 }
 
-#banner .slick-dots ul{
-    @apply flex justify-center items-center ;
-}
 .List_Item > li{
     @apply font-jost text-sm md:text-base font-medium text-primary-black relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300;
 }
