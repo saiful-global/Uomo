@@ -31,8 +31,8 @@ const Banner = () => {
     {/* max width keeps the banner from growing too tall on very large screens */}
     <section id='banner' className='relative w-full max-w-480 mx-auto overflow-hidden mt-15 md:mt-20'>
 
-      {/* social icons: hidden on phones so they do not cover the image */}
-      <div className='hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 font-normal flex-col items-center gap-6 text-secondColor text-sm z-10'>
+      {/* social icons: shown only from xl, where the side margin is wide enough */}
+      <div className='hidden xl:flex absolute -left-4 top-1/2 -translate-y-1/2 font-normal flex-col items-center gap-6 text-secondColor text-sm z-10'>
           <FaFacebookF className='hover:text-blue-500' />
           <FaXTwitter />
           <FaInstagram className='hover:text-pink-600' />
@@ -42,8 +42,8 @@ const Banner = () => {
         </div>
       </div>
 
-      {/* scroll hint: hidden on phones */}
-      <div className='hidden md:flex absolute -right-1 bottom-0 flex-col items-center gap-5 z-10'>
+      {/* scroll hint: shown only from xl */}
+      <div className='hidden xl:flex absolute -right-1 bottom-0 flex-col items-center gap-5 z-10'>
         <div className="-rotate-90 font-jost font-medium text-sm leading-6 text-primary-black">
           SCROLL
         </div>
