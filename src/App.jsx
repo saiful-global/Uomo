@@ -21,6 +21,7 @@ import Faq from "./Pages/Faq"
 import Terms from "./Pages/Terms"
 import ComingSoon from "./Pages/ComingSoon"
 import LoginRegister from "./Pages/LoginRegister"
+import Contact from "./Pages/Contact"
 
 // The router is created OUTSIDE the component on purpose.
 // If it lives inside App, a brand new router is built on every re-render,
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
       { path: "login-register", Component: LoginRegister },
       { path: "coming-soon", Component: ComingSoon },
       { path: "*", Component: NotFound },
+      { path: "contact", Component: Contact },
     ],
   },
 ]);
