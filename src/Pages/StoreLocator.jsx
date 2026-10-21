@@ -55,6 +55,7 @@ const StoreLocator = () => {
       {/* mt-15 md:mt-20 keeps the content under the fixed header */}
       <section className="mt-15 md:mt-20 pt-10 md:pt-20 pb-16 md:pb-37.5">
         <Container>
+          <div className="md:px-7.5 min-[1470px]:px-0">
           <h1 className="font-jost font-bold uppercase text-primary-black leading-tight text-2xl sm:text-3xl md:text-[40px] mb-8 md:mb-13.5">
             Store Locator
           </h1>
@@ -147,6 +148,7 @@ const StoreLocator = () => {
                 </div>
               )}
             </div>
+          </div>
           </div>
         </Container>
       </section>
