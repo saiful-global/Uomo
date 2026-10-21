@@ -91,6 +91,8 @@ const Blog = () => {
   return (
     <section className="mt-15 md:mt-20 pt-10 md:pt-20 pb-15 md:pb-25">
       <Container>
+        {/* Container has no side padding from md up, so add it here until 1470px */}
+        <div className="md:px-7.5 min-[1470px]:px-0">
         <h1 className="font-jost font-bold text-[32px] md:text-[40px] leading-tight uppercase text-primary-black">
           The Blog
         </h1>
@@ -152,6 +154,7 @@ const Blog = () => {
             </div>
           </>
         )}
+        </div>
       </Container>
     </section>
   );
