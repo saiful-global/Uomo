@@ -5,11 +5,13 @@ import Image from "../../../common/Image";
 export default function ShopMegaMenu() {
   return (
     <div className=" absolute left-0 top-full w-full bg-white border-t border-bg-footer shadow-[0_10px_40px_rgba(0,0,0,0.08)] opacity-0 invisible -translate-y-3 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-50 " >
-      <Container className="flex justify-between items-center gap-36.5 py-10">
+      <Container>
+      {/* Container has no side padding from md up, so add it here until 1470px */}
+      <div className="flex justify-between items-center gap-8 2xl:gap-36.5 py-10 md:px-7.5 min-[1470px]:px-0">
 
         
         {/* LEFT GRID */}
-        <div className="grid grid-cols-4 gap-30 flex-1">
+        <div className="grid grid-cols-4 gap-x-8 xl:gap-x-12 2xl:gap-x-30 flex-1 min-w-0">
 
           {/* SHOP + PRODUCT */}
           <div>
@@ -84,7 +86,7 @@ export default function ShopMegaMenu() {
         </div>
 
         {/* RIGHT IMAGE SECTION */}
-        <div className="relative w-102.5 h-112.5 shrink-0 overflow-hidden flex items-end p-7.5">
+        <div className="relative w-72 h-96 2xl:w-102.5 2xl:h-112.5 shrink-0 overflow-hidden flex items-end p-7.5">
           {/* Background Image */}
           <Image className="absolute inset-0 w-full h-full object-cover" src={ShopMenuImage} alt="ShopMenuImage" />
           {/* Text Overlay */}
@@ -97,6 +99,7 @@ export default function ShopMegaMenu() {
           </div>
         </div>
 
+      </div>
       </Container>
     </div>
   );

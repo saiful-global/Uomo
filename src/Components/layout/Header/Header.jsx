@@ -51,33 +51,33 @@ const Header = () => {
                     <Link to="/" className='shrink-0'>
                         <Image className="w-24 lg:w-28" src="/images/logo.png" alt="logo" ></Image>
                     </Link>
-                    {/* Nav links show from lg (1024px). Between md and lg they live inside the hamburger panel */}
-                    <ul className='hidden lg:flex gap-8 ml-10 xl:gap-11 xl:ml-14'>
+                    {/* Nav links stay on every md+ screen; below lg the text and gaps get smaller (md = 768px) */}
+                    <ul className='flex gap-3.5 ml-4 lg:gap-8 lg:ml-10 xl:gap-11 xl:ml-14'>
                         {navitems?.map((item) => (
                         <li key={item.id} className='group py-2'>
                             {item.type === "mega" ? (
                             <>
-                                <Link to={item.url || "#"} className="cursor-pointer list-item">
+                                <Link to={item.url || "#"} className="cursor-pointer list-item max-lg:text-xs!">
                                 {item.name}
                                 </Link>
                                 <ShopMegaMenu />
                             </>
                             ) : item.type === "blog-mega" ? (
                             <>
-                                <Link to={item.url || "#"} className="cursor-pointer list-item">
+                                <Link to={item.url || "#"} className="cursor-pointer list-item max-lg:text-xs!">
                                 {item.name}
                                 </Link>
                                 <BlogMegaMenu />
                             </>
                             ) : item.type === "pages-mega" ? (
                             <>
-                                <Link to={item.url || "#"} className="cursor-pointer list-item">
+                                <Link to={item.url || "#"} className="cursor-pointer list-item max-lg:text-xs!">
                                 {item.name}
                                 </Link>
                                 <PagesMegaMenu />
                             </>
                             ) : (
-                            <Link to={item.url || "#"} className="list-item">
+                            <Link to={item.url || "#"} className="list-item max-lg:text-xs!">
                                 {item.name}
                             </Link>
                             )}
@@ -88,7 +88,7 @@ const Header = () => {
                 </div>
 
                 {/* Header Action Icons  */}
-                <ul className='flex items-center gap-5 lg:gap-6 xl:gap-8 shrink-0'>
+                <ul className='flex items-center gap-3.5 lg:gap-6 xl:gap-8 shrink-0'>
                     
                     {/* Search Button */}
                     <li ref={searchRef}>

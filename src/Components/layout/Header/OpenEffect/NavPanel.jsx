@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router'
-import { navitems } from '../../../../api/navbarData'
 import { SHOP_TABS, SHOP_MAIN, SUB_LINKS } from '../../../../api/menuData'
 
 // Desktop hamburger panel (Figma: open_navs)
@@ -68,21 +67,6 @@ const NavPanel = ({ isOpen, onClose }) => {
 
         {/* Scroll area */}
         <div className="flex-1 overflow-y-auto px-5 lg:px-10.25 py-7.5">
-          {/* Normal nav links: only below lg, because the header hides them there */}
-          <ul className="lg:hidden flex flex-wrap gap-x-7 gap-y-2 pb-6 mb-6 border-b border-bg-footer">
-            {navitems?.map((item) => (
-              <li key={item.id}>
-                <Link
-                  to={item.url || '#'}
-                  onClick={onClose}
-                  className="font-jost font-medium text-sm leading-6 text-primary-black hover:underline"
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
           <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-x-8 lg:gap-x-11 gap-y-8">
             {/* Big list */}
             <ul>
