@@ -45,7 +45,7 @@ const Product = ({item}) => {
           <div>
             <h3 className='font-jost text-secondColor text-sm font-normal leading-6 mt-3.5'>{item.category}</h3>
             <Link to={`/shop/${item.id}`}>
-              <h2 className='font-jost text-primary-black text-sm md:text-base font-normal'>{item.title.slice(0,15)}...</h2>
+              <h2 className='font-jost text-primary-black text-sm md:text-base font-normal'>{item.title.length > 15 ? item.title.slice(0,15) + "..." : item.title}</h2>
             </Link>
 
             {/* Price */}
