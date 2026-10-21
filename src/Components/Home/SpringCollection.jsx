@@ -56,7 +56,7 @@ const SpringCollection = () => {
                     </div>
 
                     {/* Image */}
-                    <div className='pt-7 pb-7.25 shrink-0'>
+                    <div className='pt-7 pb-7.25 shrink-0 md:ml-auto'>
                         <Image className="hidden md:block md:w-48 lg:w-72 xl:w-90 2xl:w-106.5 md:h-auto md:aspect-[426/543] object-cover" src={springImage} alt="springCollectionImage"></Image>
                     </div>  
                 </div>
