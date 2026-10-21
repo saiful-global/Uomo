@@ -19,6 +19,7 @@ import Downloads from "./Pages/Downloads"
 import NotFound from "./Pages/NotFound"
 import Faq from "./Pages/Faq"
 import Terms from "./Pages/Terms"
+import ComingSoon from "./Pages/ComingSoon"
 
 // The router is created OUTSIDE the component on purpose.
 // If it lives inside App, a brand new router is built on every re-render,
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
       { path: "faq", Component: Faq },
       { path: "terms", Component: Terms },
       { path: "*", Component: NotFound },
+      { path: "coming-soon", Component: ComingSoon },
     ],
   },
 ]);

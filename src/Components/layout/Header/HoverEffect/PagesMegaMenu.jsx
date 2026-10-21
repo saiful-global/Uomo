@@ -8,11 +8,11 @@ const PagesMegaMenu = () => {
         <ul className="list-item-2">
           {/* Route in App.jsx is "About" with a capital A */}
           <li><Link to="/About" className="block">About</Link></li>
-          {/* Pages below are not built yet, so they stay as plain text */}
+          {/* Contact Us and Store Locator are not built yet, so they stay as plain text */}
           <li>Contact Us</li>
           <li>Store Locator</li>
           <li><Link to="/faq" className="block">FAQ</Link></li>
-          <li>Coming Soon</li>
+          <li><Link to="/coming-soon" className="block">Coming Soon</Link></li>
           {/* "/404" has no route, so the catch-all NotFound page opens */}
           <li><Link to="/404" className="block">404</Link></li>
         </ul>

@@ -79,7 +79,7 @@ const NotFound = () => {
         <BackgroundShapes />
 
         <Container className="relative z-10 flex flex-col items-center text-center py-16">
-          <h1 className="font-jost font-bold text-primary-black leading-none text-[72px] sm:text-[110px] md:text-[130px] xl:text-[150px] tracking-tight">
+          <h1 className="font-jost font-bold text-primary-black leading-none text-[56px] sm:text-[80px] md:text-[96px] xl:text-[104px] tracking-tight">
             OOPS!
           </h1>
 
