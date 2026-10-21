@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Container from "../Components/ui/Container";
+import Image from "../Components/common/Image";
 
 // Static store info (sample text from Figma)
 const STORES = [
@@ -72,14 +73,13 @@ const Contact = () => {
           </div>
         </Container>
 
-        {/* Map: full width. Google Maps embed (no key needed), made grey to match Figma */}
+        {/* Map image: full width, exported from Figma (sample of store locations).
+            File: public/images/contact-map.png (the real map goes to Store Location page) */}
         <div className="w-full h-75 md:h-100 xl:h-137.5 bg-bg-footer">
-          <iframe
-            title="Uomo store location map"
-            src="https://maps.google.com/maps?q=Dhaka%2C%20Bangladesh&z=12&output=embed"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="w-full h-full border-0 grayscale"
+          <Image
+            src="/images/contact-map.png"
+            alt="Map showing Uomo store locations"
+            className="w-full h-full object-cover"
           />
         </div>
 
