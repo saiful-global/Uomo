@@ -41,13 +41,16 @@ const Shop = () => {
             <title>Uomo | Shop</title>
         </Helmet>
         <ShopBanner />
-        <Container>
-          <div className='flex justify-between pb-7.5 md:pb-10'>
-            {/* Breadcrumb is not in the mobile Figma */}
-            <div className='hidden md:block'><Breadcrumb /></div>
-            <SortAndView setView={setView} />
-          </div>
-        </Container>
+        {/* Container has no side padding from md up, so this wrapper adds it (same as Header/Footer) */}
+        <div className='md:px-7.5 min-[1470px]:px-0'>
+          <Container>
+            <div className='flex items-center justify-between gap-4 pb-7.5 md:pb-10'>
+              {/* Breadcrumb is not in the mobile Figma */}
+              <div className='hidden md:block'><Breadcrumb /></div>
+              <SortAndView setView={setView} />
+            </div>
+          </Container>
+        </div>
         <AllProducts items={displayedProducts} view={view} />
 
         {/* Range & Show More  */}
