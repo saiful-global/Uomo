@@ -1,47 +1,52 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { getCartItems, removeFromCart, subscribeToCart, updateCartQuantity } from '../../../../api/cartStore'
-import { Link } from 'react-router'
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  getCartItems,
+  removeFromCart,
+  subscribeToCart,
+  updateCartQuantity,
+} from "../../../../api/cartStore";
+import { Link } from "react-router";
 
 const ShoppingBag = ({ isOpen, onClose }) => {
-  const [items, setItems] = useState(() => getCartItems())
+  const [items, setItems] = useState(() => getCartItems());
 
   useEffect(() => {
-    const syncCart = () => setItems(getCartItems())
-    syncCart()
-    return subscribeToCart(syncCart)
-  }, [])
+    const syncCart = () => setItems(getCartItems());
+    syncCart();
+
+    return subscribeToCart(syncCart);
+  }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : ''
+    document.body.style.overflow = isOpen ? "hidden" : "";
 
     return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const changeQuantity = (id, change) => {
-    updateCartQuantity(id, change)
-  }
+    updateCartQuantity(id, change);
+  };
 
   const removeItem = (id) => {
-    removeFromCart(id)
-  }
+    removeFromCart(id);
+  };
 
   const subtotal = useMemo(
     () => items.reduce((total, item) => total + item.price * item.quantity, 0),
     [items]
-  )
+  );
 
   const itemCount = useMemo(
     () => items.reduce((total, item) => total + item.quantity, 0),
     [items]
-  )
+  );
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <>
-      {/* Background overlay */}
       <button
         type="button"
         aria-label="Close shopping bag"
@@ -49,13 +54,11 @@ const ShoppingBag = ({ isOpen, onClose }) => {
         className="fixed inset-0 z-[60] h-full w-full cursor-default bg-black/35"
       />
 
-      {/* Shopping bag drawer */}
       <aside
         aria-label="Shopping bag"
         className="fixed right-0 top-0 z-[70] flex h-screen w-full max-w-[430px] flex-col bg-white font-jost"
       >
-        {/* Header */}
-        <div className="flex h-[76px] shrink-0 items-center justify-between border-b border-bg-footer px-6 md:px-9">
+        <div className="flex h-[68px] shrink-0 items-center justify-between border-b border-bg-footer px-4 sm:h-[76px] sm:px-6 md:px-9">
           <h2 className="text-sm font-medium uppercase leading-6 text-primary-black">
             Shopping Bag ({itemCount})
           </h2>
@@ -72,6 +75,7 @@ const ShoppingBag = ({ isOpen, onClose }) => {
               viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               <path
                 d="M0.414336 14.1421L14.5565 0L15.9707 1.41421L1.82855 15.5563L0.414336 14.1421Z"
@@ -85,17 +89,15 @@ const ShoppingBag = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Products */}
-        <div className="min-h-0 flex-1 overflow-y-auto px-6 md:px-9">
+        <div className="min-h-0 flex-1 overflow-y-auto px-4 sm:px-6 md:px-9">
           {items.length > 0 ? (
             <div>
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="relative flex gap-4 border-b border-bg-footer py-6"
+                  className="relative flex gap-3 border-b border-bg-footer py-5 sm:gap-4 sm:py-6"
                 >
-                  {/* Product image */}
-                  <div className="h-[110px] w-[110px] shrink-0 overflow-hidden bg-[#eeeeee]">
+                  <div className="h-[88px] w-[88px] shrink-0 overflow-hidden bg-[#eeeeee] sm:h-[100px] sm:w-[100px] md:h-[110px] md:w-[110px]">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -103,7 +105,6 @@ const ShoppingBag = ({ isOpen, onClose }) => {
                     />
                   </div>
 
-                  {/* Product information */}
                   <div className="min-w-0 flex-1 pr-5">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="truncate text-sm font-normal leading-6 text-primary-black">
@@ -114,7 +115,7 @@ const ShoppingBag = ({ isOpen, onClose }) => {
                         type="button"
                         onClick={() => removeItem(item.id)}
                         aria-label={`Remove ${item.name}`}
-                        className="absolute right-0 top-6 text-secondColor"
+                        className="absolute right-0 top-5 text-secondColor sm:top-6"
                       >
                         <svg
                           width="12"
@@ -122,13 +123,14 @@ const ShoppingBag = ({ isOpen, onClose }) => {
                           viewBox="0 0 12 12"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
                         >
                           <path
                             d="M0.31066 10.8107L10.8107 0.31066L11.6893 1.18934L1.18934 11.6893L0.31066 10.8107Z"
                             fill="#777777"
                           />
                           <path
-                            d="M1.18934 0.31066L11.6893 10.8107L10.8107 11.6893L0.31066 1.18934L1.18934 0.31066Z"
+                            d="M1.18934 0.31066L11.6893 10.8107L10.8107 11.6893L0 1.55633L1.41421 0.142113Z"
                             fill="#777777"
                           />
                         </svg>
@@ -136,14 +138,14 @@ const ShoppingBag = ({ isOpen, onClose }) => {
                     </div>
 
                     <p className="mt-0.5 text-xs leading-5 text-secondColor">
-                      Color: <span className="text-secondColor">{item.color}</span>
+                      Color: <span>{item.color}</span>
                     </p>
 
                     <p className="text-xs leading-5 text-secondColor">
-                      Size: <span className="text-secondColor">{item.size}</span>
+                      Size: <span>{item.size}</span>
                     </p>
 
-                    <div className="mt-1 flex items-center justify-between">
+                    <div className="mt-1 flex items-center justify-between gap-2">
                       <div className="flex items-center gap-3 text-xs text-secondColor">
                         <button
                           type="button"
@@ -176,14 +178,15 @@ const ShoppingBag = ({ isOpen, onClose }) => {
             </div>
           ) : (
             <div className="flex h-full items-center justify-center">
-              <p className="text-sm text-secondColor">Your shopping bag is empty.</p>
+              <p className="text-sm text-secondColor">
+                Your shopping bag is empty.
+              </p>
             </div>
           )}
         </div>
 
-        {/* Bottom actions */}
-        <div className="shrink-0 border-t border-bg-footer px-6 pb-7 pt-5 md:px-9">
-          <div className="mb-5 flex items-center justify-between">
+        <div className="shrink-0 border-t border-bg-footer px-4 pb-5 pt-4 sm:px-6 sm:pb-7 sm:pt-5 md:px-9">
+          <div className="mb-4 flex items-center justify-between sm:mb-5">
             <span className="text-sm font-medium uppercase text-primary-black">
               Subtotal:
             </span>
@@ -192,18 +195,18 @@ const ShoppingBag = ({ isOpen, onClose }) => {
             </span>
           </div>
 
-          <div className="grid gap-4">
+          <div className="grid gap-3 sm:gap-4">
             <Link
               to="/cart"
               onClick={onClose}
-              className="flex h-[55px] items-center justify-center bg-[#e9e9e9] text-sm font-medium uppercase text-primary-black transition hover:bg-[#dddddd]"
+              className="flex h-[52px] items-center justify-center bg-[#e9e9e9] text-sm font-medium uppercase text-primary-black transition hover:bg-[#dddddd] sm:h-[55px]"
             >
               View Cart
             </Link>
 
             <button
               type="button"
-              className="h-[55px] bg-primary-black text-sm font-medium uppercase text-primary-white transition hover:opacity-90"
+              className="h-[52px] bg-primary-black text-sm font-medium uppercase text-primary-white transition hover:opacity-90 sm:h-[55px]"
             >
               Checkout
             </button>
@@ -211,7 +214,7 @@ const ShoppingBag = ({ isOpen, onClose }) => {
         </div>
       </aside>
     </>
-  )
-}
+  );
+};
 
-export default ShoppingBag
+export default ShoppingBag;
