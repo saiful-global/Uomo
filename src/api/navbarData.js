@@ -22,6 +22,7 @@ export const navitems =[
     {
         id: 5,
         name:"LOOKBOOK",
+        url:"/lookbook",
     },
     {
         id: 6,
