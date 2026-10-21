@@ -32,6 +32,12 @@ const Filter = () => {
   return Math.round(MIN + (val / 100) * (MAX - MIN));
   };
   
+  // Lock page scroll while the drawer is open (full screen on phones)
+  useEffect(()=>{
+    document.body.style.overflow = filterModal ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  },[filterModal]);
+
   return (
       <div ref={filterRef}>
         {/* Filter text */}
@@ -47,12 +53,12 @@ const Filter = () => {
       {filterModal && (
         <div onClick={() => setFilterModal(false)} className=" hidden md:block duration-300 transition fixed inset-0 bg-black/40 z-40" />
       )}
-        <div className={`h-dvh overscroll-contain ${filterModal? "w-full md:w-105": "w-0"} bg-primary-white top-0 right-0 fixed z-50 duration-300 overflow-y-auto scroll-smooth`}>
-          <div className='flex justify-between bg-[#FAF9F8] px-10 py-8.25'>
+        <div className={`h-dvh overscroll-contain ${filterModal? "w-full md:w-105": "w-0"} max-w-full whitespace-normal bg-primary-white top-0 right-0 fixed z-50 duration-300 overflow-y-auto overflow-x-hidden scroll-smooth`}>
+          <div className='flex justify-between bg-[#FAF9F8] px-8.5 md:px-10 py-8.25'>
             <h3 className='font-jost font-medium text-base text-primary-black'>FILTER BY</h3>
             <IoMdClose onClick={()=>setFilterModal(false)} className='text-[21px] cursor-pointer' />
           </div>
-          <div className='pl-8.5 pr-10 md:px-10 mx-auto pt-9.5'>
+          <div className='px-8.5 md:px-10 mx-auto pt-9.5'>
             {/* PRODUCT CATEGORIES  */}
             <div className='pb-9'>
               <div className='flex justify-between pb-3.25'>
