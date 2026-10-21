@@ -9,8 +9,7 @@ const PagesMegaMenu = () => {
           {/* Route in App.jsx is "About" with a capital A */}
           <li><Link to="/About" className="block">About</Link></li>
           <li><Link to="/contact" className="block">Contact Us</Link></li>
-          {/* Store Locator is not built yet, so it stays as plain text */}
-          <li>Store Locator</li>
+          <li><Link to="/store-locator" className="block">Store Locator</Link></li>
           <li><Link to="/faq" className="block">FAQ</Link></li>
           <li><Link to="/coming-soon" className="block">Coming Soon</Link></li>
           {/* "/404" has no route, so the catch-all NotFound page opens */}
