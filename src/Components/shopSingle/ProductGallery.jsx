@@ -8,7 +8,7 @@ import Image from '../common/Image'
 //   title  -> product title, used for alt text
 //
 // NOTE: this component expects to be placed inside <Container>.
-// On mobile the main image is full width (edge to edge) like Figma, so it uses
+// Below md the main image is full width (edge to edge) like Figma, so it uses
 // -mx-3.75 to cancel the 15px side padding that Container adds on small screens.
 const ProductGallery = ({ images = [], title = '' }) => {
   const [active, setActive] = useState(0)
@@ -43,17 +43,18 @@ const ProductGallery = ({ images = [], title = '' }) => {
   const next = () => setActive((current + 1) % total)
 
   return (
-    <div className='flex flex-col md:flex-row md:gap-2.5'>
+    <div className='flex flex-col md:flex-row md:gap-2.5 w-full min-w-0'>
 
-      {/* Thumbnails: row of 4 under the image on mobile, vertical column on the left on desktop */}
-      <div className='order-2 md:order-1 mt-2.5 md:mt-0 grid grid-cols-4 gap-2 md:flex md:flex-col md:gap-2.5 md:w-22.5 md:shrink-0 md:self-start'>
+      {/* Thumbnails: row of 4 under the image below md, vertical column on the left from md.
+          Column is 60px wide on tablets and 90px from lg, so 4 thumbnails never get taller than the main image. */}
+      <div className='order-2 md:order-1 mt-2.5 md:mt-0 grid grid-cols-4 gap-2 md:flex md:flex-col md:gap-2.5 md:w-15 lg:w-22.5 md:shrink-0 md:self-start'>
         {list.map((src, i) => (
           <button
             key={i}
             type='button'
             onClick={() => setActive(i)}
             aria-label={`Show image ${i + 1}`}
-            className={`aspect-square md:size-22.5 overflow-hidden cursor-pointer ${i === current ? 'bg-[#E6E6E6]' : 'bg-[#F5F5F5]'}`}
+            className={`aspect-square md:size-15 lg:size-22.5 overflow-hidden cursor-pointer ${i === current ? 'bg-[#E6E6E6]' : 'bg-[#F5F5F5]'}`}
           >
             <Image src={src} alt={`${title} ${i + 1}`} className='size-full object-cover' />
           </button>
@@ -61,13 +62,13 @@ const ProductGallery = ({ images = [], title = '' }) => {
       </div>
 
       {/* Main image.
-          Normal mode: 450px high on mobile, ratio 710:700 on desktop (same as Figma).
+          Normal mode: 450px high on phones (taller on wide phones/small tablets), ratio 710:700 from md (same as Figma).
           Full screen mode: the same box becomes a fixed overlay above the header. */}
       <div
         className={`order-1 md:order-2 ${
           isFull
             ? 'fixed inset-0 z-60 bg-white'
-            : 'relative flex-1 min-w-0 h-112.5 md:h-auto md:aspect-[710/700] -mx-3.75 md:mx-0 bg-[#E7E7E7]'
+            : 'relative flex-1 min-w-0 h-112.5 sm:h-125 md:h-auto md:aspect-[710/700] -mx-3.75 md:mx-0 bg-[#E7E7E7]'
         }`}
       >
         {/* Plain <img> on purpose: this is the biggest image above the fold,
@@ -87,17 +88,17 @@ const ProductGallery = ({ images = [], title = '' }) => {
               type='button'
               onClick={prev}
               aria-label='Previous image'
-              className='absolute top-1/2 -translate-y-1/2 left-2.5 md:left-7.5 size-9 md:size-11 rounded-full bg-white flex items-center justify-center text-secondColor cursor-pointer'
+              className='absolute top-1/2 -translate-y-1/2 left-2.5 md:left-4 lg:left-7.5 size-9 md:size-10 lg:size-11 rounded-full bg-white flex items-center justify-center text-secondColor cursor-pointer'
             >
-              <TfiAngleLeft className='text-[10px] md:text-xs' />
+              <TfiAngleLeft className='text-[10px] lg:text-xs' />
             </button>
             <button
               type='button'
               onClick={next}
               aria-label='Next image'
-              className='absolute top-1/2 -translate-y-1/2 right-2.5 md:right-7.5 size-9 md:size-11 rounded-full bg-white flex items-center justify-center text-secondColor cursor-pointer'
+              className='absolute top-1/2 -translate-y-1/2 right-2.5 md:right-4 lg:right-7.5 size-9 md:size-10 lg:size-11 rounded-full bg-white flex items-center justify-center text-secondColor cursor-pointer'
             >
-              <TfiAngleRight className='text-[10px] md:text-xs' />
+              <TfiAngleRight className='text-[10px] lg:text-xs' />
             </button>
           </>
         )}
@@ -107,7 +108,7 @@ const ProductGallery = ({ images = [], title = '' }) => {
           type='button'
           onClick={() => setIsFull(!isFull)}
           aria-label={isFull ? 'Close full screen' : 'Open full screen'}
-          className='absolute right-3.75 bottom-4 md:right-7.5 md:bottom-8 size-9 md:size-11 rounded-full bg-white shadow-[0_2px_8px_rgba(34,34,34,0.1)] flex items-center justify-center text-primary-black cursor-pointer'
+          className='absolute right-3.75 bottom-4 md:right-4 md:bottom-4 lg:right-7.5 lg:bottom-8 size-9 md:size-10 lg:size-11 rounded-full bg-white shadow-[0_2px_8px_rgba(34,34,34,0.1)] flex items-center justify-center text-primary-black cursor-pointer'
         >
           <svg width='14' height='14' viewBox='0 0 14 14' fill='none' stroke='currentColor' strokeWidth='1.2' strokeLinecap='round' strokeLinejoin='round'>
             <path d='M1 5V1h4M1 1l4.5 4.5M13 5V1H9M13 1L8.5 5.5M1 9v4h4M1 13l4.5-4.5M13 9v4H9M13 13L8.5 8.5' />
