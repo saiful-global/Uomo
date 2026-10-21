@@ -40,32 +40,35 @@ const TrendyProducts = () => {
     <>
     <section className='mt-9.25 md:mt-25 mb-12.5 md:mb-25'>
         <Container>
-            {/* Headline */}
-            <h2 className='text-center font-jost text-primary-black text-[26px] md:text-[35px] font-normal'>OUR TRENDY <span className='font-bold'>PRODUCTS</span></h2>
+            {/* side padding for tablets/laptops, because Container has no padding from md */}
+            <div className='md:px-7.5 min-[1470px]:px-0'>
+                {/* Headline */}
+                <h2 className='text-center font-jost text-primary-black text-[26px] md:text-[35px] font-normal'>OUR TRENDY <span className='font-bold'>PRODUCTS</span></h2>
 
-            {/* Trendy Products Lists */}
-            <ul className='flex flex-wrap justify-center gap-x-11.25 gap-y-2 md:gap-13.5 mt-0.75 md:mt-7.5'>
-                {Productcategory?.map((item)=>(
-                <Listitem onClick={()=>handleActive(item.name)} className={`${category == item.name ? "font-jost cursor-pointer text-primary-black text-sm md:text-base font-medium relative after:content-[''] after:w-[70%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300" : "font-jost cursor-pointer text-secondColor text-base font-medium" }`}>{item.name}</Listitem>
-                ))}
-            </ul>
+                {/* Trendy Products Lists */}
+                <ul className='flex flex-wrap justify-center gap-x-6 sm:gap-x-11.25 gap-y-2 md:gap-x-10 lg:gap-x-13.5 md:gap-y-3 mt-0.75 md:mt-7.5'>
+                    {Productcategory?.map((item)=>(
+                    <Listitem key={item.id} onClick={()=>handleActive(item.name)} className={`${category == item.name ? "font-jost cursor-pointer text-primary-black text-sm md:text-base font-medium relative after:content-[''] after:w-[70%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300" : "font-jost cursor-pointer text-secondColor text-base font-medium" }`}>{item.name}</Listitem>
+                    ))}
+                </ul>
 
-            {/* products item map */}
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-x-7.5 gap-y-15 mt-4 md:mt-10'>
-                {category == "all" ? 
-                displayedProducts.map((item) => (
-                    <Product item={item} key={item.id} />
-                )) : 
-                filterProduct.map((item) => (
-                    <Product item={item} key={item.id} />
-                ))}
-            </div>
-            
-            {/* show all button  */}
-            <div className="text-center mt-10.5">
-                <button onClick={() => setShowAll(!showAll)} className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300 cursor-pointer" >
-                    {showAll ? "SHOW LESS" : "SEE ALL PRODUCT"}
-                </button>
+                {/* products item map */}
+                <div className='grid grid-cols-2 md:grid-cols-4 gap-x-3.75 lg:gap-x-7.5 gap-y-15 mt-4 md:mt-10'>
+                    {category == "all" ? 
+                    displayedProducts.map((item) => (
+                        <Product item={item} key={item.id} />
+                    )) : 
+                    filterProduct.map((item) => (
+                        <Product item={item} key={item.id} />
+                    ))}
+                </div>
+                
+                {/* show all button  */}
+                <div className="text-center mt-10.5">
+                    <button onClick={() => setShowAll(!showAll)} className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300 cursor-pointer" >
+                        {showAll ? "SHOW LESS" : "SEE ALL PRODUCT"}
+                    </button>
+                </div>
             </div>
         </Container>
     </section>

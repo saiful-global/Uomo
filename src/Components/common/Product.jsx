@@ -19,7 +19,7 @@ const Product = ({item}) => {
   }
 
   return (
-    <div className='w-full px-3.5 md:px-7.5 relative'>
+    <div className='w-full px-3.5 md:px-2 lg:px-4 xl:px-7.5 relative'>
 
       <div className='group'>
         {/* Link to the single product page (route: /shop/:id).
@@ -28,12 +28,13 @@ const Product = ({item}) => {
           <Image src={item.thumbnail || ProductImage} alt={item.title || "ProductImage"}></Image>
         </Link>
 
-        {/* Hover: ADD TO CART
-            Kept outside the Link on purpose, so clicking it will not open the product page.
-            On desktop it is invisible until hover, so it also gets pointer-events-none until hover:
-            an invisible box still catches clicks and was covering the wishlist heart. */}
-        <div className='md:bg-white bg-white/75 shadow shadow-gray-200 text-center md:group-hover:bottom-30 md:group-hover:opacity-100 absolute bottom-30 md:bottom-15 w-full md:w-77.5 left-1/2 translate-x-[-50%] duration-200 md:opacity-0 md:pointer-events-none md:group-hover:pointer-events-auto transition-all'>
-          <button type='button' onClick={handleAddToCart} className='block w-full pt-2 md:pt-4 pb-1.5 md:pb-2.5 font-jost text-sm font-medium leading-6 cursor-pointer'>
+        {/* ADD TO CART overlay.
+            Below lg (phones and tablets, no real hover) it is always visible.
+            From lg it appears on hover only; until then it gets pointer-events-none,
+            because an invisible box still catches clicks and was covering the wishlist heart.
+            Kept outside the Link on purpose, so clicking it will not open the product page. */}
+        <div className='lg:bg-white bg-white/75 shadow shadow-gray-200 text-center lg:group-hover:bottom-30 lg:group-hover:opacity-100 absolute bottom-30 lg:bottom-15 w-full lg:w-[min(310px,calc(100%-16px))] left-1/2 translate-x-[-50%] duration-200 lg:opacity-0 lg:pointer-events-none lg:group-hover:pointer-events-auto transition-all'>
+          <button type='button' onClick={handleAddToCart} className='block w-full pt-2 lg:pt-4 pb-1.5 lg:pb-2.5 font-jost text-sm font-medium leading-6 cursor-pointer'>
             {isAdded ? 'ADDED' : 'ADD TO CART'}
           </button>
         </div>
