@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router'
 import Image from './Image'
 import ProductImage from '../../assets/images/ProductImage.png'
-import { toggleWishlist, useWishlist } from '../../api/cartStore'
+import { addToCart, toggleWishlist, useWishlist } from '../../api/cartStore'
 
 
 const Product = ({item}) => {
   // Heart is filled when this product is in the wishlist
   const wishlist = useWishlist()
   const isLiked = wishlist.some((w) => w.id === item.id)
+
+  // ADD TO CART: adds 1 item and shows "ADDED" for a moment
+  const [isAdded, setIsAdded] = useState(false)
+  const handleAddToCart = () => {
+    addToCart(item, 1)
+    setIsAdded(true)
+    window.setTimeout(() => setIsAdded(false), 1500)
+  }
 
   return (
     <div className='w-full px-3.5 md:px-7.5 relative'>
@@ -21,9 +29,13 @@ const Product = ({item}) => {
         </Link>
 
         {/* Hover: ADD TO CART
-            Kept outside the Link on purpose, so clicking it will not open the product page. */}
-        <div className='md:bg-white bg-white/75 shadow shadow-gray-200 text-center md:group-hover:bottom-30 md:group-hover:opacity-100 absolute bottom-30 md:bottom-15 pt-2 md:pt-4 pb-1.5 md:pb-2.5 w-full md:w-77.5 left-1/2 translate-x-[-50%] duration-200 md:opacity-0 transition-all'>
-          <button className='font-jost text-sm font-medium leading-6' >ADD TO CART</button>
+            Kept outside the Link on purpose, so clicking it will not open the product page.
+            On desktop it is invisible until hover, so it also gets pointer-events-none until hover:
+            an invisible box still catches clicks and was covering the wishlist heart. */}
+        <div className='md:bg-white bg-white/75 shadow shadow-gray-200 text-center md:group-hover:bottom-30 md:group-hover:opacity-100 absolute bottom-30 md:bottom-15 w-full md:w-77.5 left-1/2 translate-x-[-50%] duration-200 md:opacity-0 md:pointer-events-none md:group-hover:pointer-events-auto transition-all'>
+          <button type='button' onClick={handleAddToCart} className='block w-full pt-2 md:pt-4 pb-1.5 md:pb-2.5 font-jost text-sm font-medium leading-6 cursor-pointer'>
+            {isAdded ? 'ADDED' : 'ADD TO CART'}
+          </button>
         </div>
       </div>
 
