@@ -9,7 +9,7 @@ import ProductTabs from '../Components/shopSingle/ProductTabs'
 import RelatedProducts from '../Components/shopSingle/RelatedProducts'
 
 // Single product page.
-// Built so far: Gallery + Info + Tabs. RelatedProducts will be added at the bottom later.
+// Gallery + Info + Tabs + RelatedProducts.
 const ShopSingle = () => {
   // Reads ":id" from the URL, e.g. /shop/5 -> id = "5"
   const { id } = useParams()
@@ -50,26 +50,30 @@ const ShopSingle = () => {
   }
 
   return (
-    <main className='mt-15 md:mt-20 md:pt-8.5 pb-12.5 md:pb-25'>
+    <main className='mt-15 md:mt-20 md:pt-8.5 pb-12.5 md:pb-25 overflow-x-hidden'>
       <Helmet>
         <meta charSet='utf-8' />
         <title>{`Uomo | ${product.title}`}</title>
       </Helmet>
 
       <Container>
-        {/* Desktop: gallery 810px + 60px gap + info 540px (same 3fr / 2fr ratio at 1410px).
-            Mobile: one column, gallery first, info below. */}
-        <div className='grid md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-15'>
-          <ProductGallery images={product.images} title={product.title} />
-          {/* key resets quantity when the product changes */}
-          <ProductInfo key={product.id} product={product} />
-        </div>
+        {/* Side space wrapper: keeps content away from the screen edges between 768px and 1470px
+            (Container itself has no padding from md). No extra padding on phones. */}
+        <div className='md:px-7.5 min-[1470px]:px-0'>
+          {/* From lg: gallery + info side by side (3fr / 2fr, 60px gap = 810px + 540px at 1410px).
+              Below lg: one column, gallery first, info below. */}
+          <div className='grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-10 lg:gap-15'>
+            <ProductGallery images={product.images} title={product.title} />
+            {/* key resets quantity when the product changes */}
+            <ProductInfo key={product.id} product={product} />
+          </div>
 
-        {/* Gap between the top part and the tabs: 54px mobile, 100px desktop */}
-        <div className='mt-13.5 md:mt-25'>
-          <ProductTabs key={product.id} product={product} />
+          {/* Gap between the top part and the tabs: 54px mobile, 100px desktop */}
+          <div className='mt-13.5 md:mt-25'>
+            <ProductTabs key={product.id} product={product} />
+          </div>
+          <RelatedProducts product={product} />
         </div>
-        <RelatedProducts product={product} />
       </Container>
     </main>
   )

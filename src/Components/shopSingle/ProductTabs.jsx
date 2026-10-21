@@ -45,7 +45,7 @@ const round1 = (n) => Math.round(Number(n) * 10) / 10
 
 // Read-only row of 5 stars
 const Stars = ({ value }) => (
-  <div className='flex gap-1.5' aria-label={`${value} out of 5`}>
+  <div className='flex shrink-0 gap-1.5' aria-label={`${value} out of 5`}>
     {[1, 2, 3, 4, 5].map((n) => (
       <FaStar key={n} size={11} color={n <= value ? GOLD : GRAY} />
     ))}
@@ -57,16 +57,16 @@ const DescriptionTab = ({ product }) => (
   <div>
     <h3 className='font-jost font-medium text-base leading-7.5 text-primary-black'>{INTRO_TITLE}</h3>
     {/* Real text comes from dummyjson */}
-    <p className='mt-5.75 font-jost font-normal text-sm leading-7.5 text-primary-black'>{product.description}</p>
+    <p className='mt-5.75 font-jost font-normal text-sm leading-7.5 text-primary-black wrap-break-word'>{product.description}</p>
 
-    {/* Two lists: side by side on desktop, stacked on mobile */}
+    {/* Two lists: side by side from md, stacked on phones */}
     <div className='mt-14 md:mt-9 grid grid-cols-1 md:grid-cols-2 gap-y-9 md:gap-x-8'>
       <div>
         <h3 className='font-jost font-medium text-base leading-7.5 text-primary-black'>Why choose product?</h3>
         <ul className='mt-6'>
           {WHY_LIST.map((text) => (
-            <li key={text} className='flex items-center font-jost font-normal text-sm leading-7.5 text-primary-black'>
-              <span className='size-1.25 shrink-0 rounded-full bg-[#BEBEBE] ml-0.5 mr-2.5'></span>
+            <li key={text} className='flex items-start font-jost font-normal text-sm leading-7.5 text-primary-black'>
+              <span className='size-1.25 shrink-0 rounded-full bg-[#BEBEBE] mt-3.5 ml-0.5 mr-2.5'></span>
               {text}
             </li>
           ))}
@@ -76,7 +76,7 @@ const DescriptionTab = ({ product }) => (
         <h3 className='font-jost font-medium text-base leading-7.5 text-primary-black'>Sample Number List</h3>
         <ol className='mt-6'>
           {NUMBER_LIST.map((text, i) => (
-            <li key={text} className='flex items-center font-jost font-normal text-sm leading-7.5 text-primary-black'>
+            <li key={text} className='flex items-start font-jost font-normal text-sm leading-7.5 text-primary-black'>
               <span className='w-4 shrink-0 text-base text-secondColor'>{i + 1}</span>
               {text}
             </li>
@@ -114,9 +114,9 @@ const AdditionalTab = ({ product }) => {
   return (
     <div>
       {rows.map(([label, value]) => (
-        <div key={label} className='flex mb-7.5 last:mb-0'>
-          <h4 className='w-35 shrink-0 font-jost font-medium text-base leading-6 text-primary-black'>{label}</h4>
-          <p className='font-jost font-normal text-sm leading-6 text-primary-black'>{value}</p>
+        <div key={label} className='flex gap-3 mb-6 md:mb-7.5 last:mb-0'>
+          <h4 className='w-28 sm:w-35 shrink-0 font-jost font-medium text-base leading-6 text-primary-black'>{label}</h4>
+          <p className='min-w-0 font-jost font-normal text-sm leading-6 text-primary-black wrap-break-word'>{value}</p>
         </div>
       ))}
     </div>
@@ -179,17 +179,17 @@ const ReviewsTab = ({ product, reviews, onAddReview }) => {
         {reviews.map((review, i) => (
           <div
             key={i}
-            className={`flex gap-5 md:gap-7.5 ${i > 0 ? 'pt-7.25' : ''} ${i < reviews.length - 1 ? 'pb-4.5 border-b border-[#F5F5F5]' : ''}`}
+            className={`flex gap-4 md:gap-7.5 ${i > 0 ? 'pt-7.25' : ''} ${i < reviews.length - 1 ? 'pb-4.5 border-b border-[#F5F5F5]' : ''}`}
           >
-            {/* Grey circle avatar like Figma */}
-            <div className='size-15 shrink-0 rounded-full bg-bg-footer'></div>
+            {/* Grey circle avatar like Figma (smaller on phones) */}
+            <div className='size-12 md:size-15 shrink-0 rounded-full bg-bg-footer'></div>
             <div className='flex-1 min-w-0'>
               <div className='flex justify-between items-center gap-3'>
-                <p className='font-jost font-normal text-sm leading-6 text-primary-black'>{review.reviewerName}</p>
+                <p className='min-w-0 font-jost font-normal text-sm leading-6 text-primary-black wrap-break-word'>{review.reviewerName}</p>
                 <Stars value={review.rating} />
               </div>
               <p className='font-jost font-normal text-sm leading-6 text-secondColor'>{formatDate(review.date)}</p>
-              <p className='mt-4.5 font-jost font-normal text-sm leading-7 text-secondColor'>{review.comment}</p>
+              <p className='mt-4.5 font-jost font-normal text-sm leading-7 text-secondColor wrap-break-word'>{review.comment}</p>
             </div>
           </div>
         ))}
@@ -197,7 +197,7 @@ const ReviewsTab = ({ product, reviews, onAddReview }) => {
 
       {/* Add review form */}
       <form onSubmit={handleSubmit} className='mt-12.5'>
-        <h3 className='font-jost font-medium text-lg leading-7 text-primary-black'>
+        <h3 className='font-jost font-medium text-lg leading-7 text-primary-black wrap-break-word'>
           Be the first to review “{product.title}”
         </h3>
         <p className='font-jost font-normal text-sm leading-6 text-primary-black'>
@@ -205,11 +205,11 @@ const ReviewsTab = ({ product, reviews, onAddReview }) => {
         </p>
 
         {/* Click a star to choose the rating */}
-        <div className='mt-7 flex items-center gap-4.5 font-jost font-normal text-sm leading-6 text-primary-black'>
+        <div className='mt-7 flex flex-wrap items-center gap-x-4.5 gap-y-2 font-jost font-normal text-sm leading-6 text-primary-black'>
           <span>Your rating *</span>
           <div className='flex gap-1.5'>
             {[1, 2, 3, 4, 5].map((n) => (
-              <button key={n} type='button' onClick={() => setRating(n)} aria-label={`Rate ${n} out of 5`} className='cursor-pointer'>
+              <button key={n} type='button' onClick={() => setRating(n)} aria-label={`Rate ${n} out of 5`} className='p-0.5 cursor-pointer'>
                 <FaStar size={11} color={n <= rating ? GOLD : GRAY} />
               </button>
             ))}
@@ -226,12 +226,12 @@ const ReviewsTab = ({ product, reviews, onAddReview }) => {
           <Field id='review-email' label='Email address *' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
 
-        <label className='mt-6.5 flex items-center gap-2.5 cursor-pointer font-jost font-normal text-sm leading-6 text-secondColor'>
-          <input type='checkbox' checked={remember} onChange={(e) => setRemember(e.target.checked)} className='size-4.25 accent-black' />
+        <label className='mt-6.5 flex items-start gap-2.5 cursor-pointer font-jost font-normal text-sm leading-6 text-secondColor'>
+          <input type='checkbox' checked={remember} onChange={(e) => setRemember(e.target.checked)} className='mt-1 size-4.25 shrink-0 accent-black' />
           Save my name, email, and website in this browser for the next time I comment.
         </label>
 
-        <button type='submit' className='mt-6.5 w-50 h-15 bg-primary-black text-primary-white font-jost font-medium text-sm uppercase cursor-pointer'>
+        <button type='submit' className='mt-6.5 w-full sm:w-50 h-15 bg-primary-black text-primary-white font-jost font-medium text-sm uppercase cursor-pointer'>
           SUBMIT
         </button>
       </form>
@@ -254,10 +254,10 @@ const ProductTabs = ({ product }) => {
   ]
 
   return (
-    <section>
-      {/* Tab buttons. They wrap to a second line on mobile (same as Figma).
+    <section className='min-w-0'>
+      {/* Tab buttons. They wrap to a second line on small screens (same as Figma mobile).
           The active one gets a 2px line under it (the ::after element). */}
-      <div role='tablist' className='flex flex-wrap justify-center gap-x-15.75 gap-y-2.75 md:gap-x-18 mb-5 md:mb-13'>
+      <div role='tablist' className='flex flex-wrap justify-center gap-x-8 sm:gap-x-15.75 gap-y-2.75 md:gap-x-12 lg:gap-x-18 mb-5 md:mb-13'>
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id
           return (
