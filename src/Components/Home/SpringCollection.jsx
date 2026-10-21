@@ -11,14 +11,15 @@ const SpringCollection = () => {
     <>
     <section className='mx-3.75 md:mx-15 bg-[#EBEBEB] '>
             <Container>
-                <div className='flex md:gap-50.5 md:items-end'>
-                    <div className='pb-6 md:pb-9 pt-18.5 ml-6 md:ml-0'>
+                {/* Gap and image size scale up step by step so nothing overflows between 768px and 1536px */}
+                <div className='flex md:gap-8 xl:gap-20 2xl:gap-50.5 md:items-end'>
+                    <div className='pb-6 md:pb-9 pt-18.5 ml-6 md:ml-0 md:min-w-0'>
 
                         {/* subHeading */}
                             <p className='font-jost font-medium text-sm leading-6 text-[#C32929] after:content-[] after:w-10 after:h-0.5 after:absolute after:-left-15 after:top-2 after:bg-[#c32929] relative ml-16.5'>DEAL OF THE WEEK</p>
 
                         {/* big heading */}
-                        <h2 className='uppercase font-jost font-bold text-[30px] md:text-[70px] text-primary-black w-1/2 md:w-full'>Spring <span className='font-normal'>Collection</span></h2>
+                        <h2 className='uppercase font-jost font-bold text-[30px] md:text-[40px] lg:text-[52px] xl:text-[60px] 2xl:text-[70px] text-primary-black w-1/2 md:w-full'>Spring <span className='font-normal'>Collection</span></h2>
 
                         <Link className='font-jost text-primary-black text-sm font-medium leading-6 relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300' to="/shop">SHOP NOW</Link>
 
@@ -55,8 +56,8 @@ const SpringCollection = () => {
                     </div>
 
                     {/* Image */}
-                    <div className='pt-7 pb-7.25'>
-                        <Image className="w-106.5 h-135.75 hidden md:block" src={springImage} alt="springCollectionImage"></Image>
+                    <div className='pt-7 pb-7.25 shrink-0'>
+                        <Image className="hidden md:block md:w-56 lg:w-72 xl:w-90 2xl:w-106.5 md:h-auto md:aspect-[426/543] object-cover" src={springImage} alt="springCollectionImage"></Image>
                     </div>  
                 </div>
             </Container>
