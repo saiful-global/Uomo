@@ -24,6 +24,7 @@ import LoginRegister from "./Pages/LoginRegister"
 import Contact from "./Pages/Contact"
 import StoreLocator from "./Pages/StoreLocator"
 import Blog from "./Pages/Blog"
+import BlogSingle from "./Pages/BlogSingle"
 
 // The router is created OUTSIDE the component on purpose.
 // If it lives inside App, a brand new router is built on every re-render,
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
       { path: "store-locator", Component: StoreLocator },
       { path: "blog", Component: Blog },
       { path: "*", Component: NotFound },
+      { path: "blog/:id", Component: BlogSingle },
     ],
   },
 ]);

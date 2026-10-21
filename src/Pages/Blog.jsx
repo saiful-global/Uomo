@@ -43,7 +43,7 @@ const BlogCard = ({ post, index }) => (
       <span>April 05, 2020</span>
     </p>
 
-    <h2 className="mt-2 font-jost text-xl md:text-2xl leading-8 text-primary-black capitalize">
+    <h2 className="mt-2 font-jost text-xl md:text-2xl leading-8 text-primary-black">
       <Link to={`/blog/${post.id}`}>{post.title}</Link>
     </h2>
 
