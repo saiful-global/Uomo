@@ -1,8 +1,9 @@
 import { Link } from "react-router";
 
-const PagesMegaMenu = () => {
+// isOpen = click-to-open state used below lg (from lg up the menu opens on hover)
+const PagesMegaMenu = ({ isOpen }) => {
   return (
-    <div className="absolute top-full left-1/2 -translate-x-1/2 w-65 bg-white shadow-[0_10px_40px_rgba(0,0,0,0.08)] opacity-0 invisible -translate-y-3 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-50">
+    <div data-mega className={`absolute top-full left-1/2 -translate-x-1/2 w-65 bg-white shadow-[0_10px_40px_rgba(0,0,0,0.08)] opacity-0 invisible -translate-y-3 lg:group-hover:opacity-100 lg:group-hover:visible lg:group-hover:translate-y-0 transition-all duration-300 z-50 ${isOpen ? 'max-lg:opacity-100 max-lg:visible max-lg:translate-y-0' : ''}`}>
       
       <div className="py-6 px-7.5">
         <ul className="list-item-2">

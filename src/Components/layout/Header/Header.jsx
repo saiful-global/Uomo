@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Image from '../../common/Image'
 import Container from '../../ui/Container'
 import { navitems } from '../../../api/navbarData'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 import MobileNab from './MobileNab'
 import ShopMegaMenu from './HoverEffect/ShopMegaMenu'
 import BlogMegaMenu from './HoverEffect/BlogMegaMenu'
@@ -20,6 +20,40 @@ const Header = () => {
     const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false)
     const [isNavPanelOpen, setIsNavPanelOpen] = useState(false)
     const searchRef = useRef(null)
+    const navListRef = useRef(null)
+    const { pathname } = useLocation()
+
+    // Below lg (768-1023px) mega menus open on click (no hover there).
+    // The open state stores the path too, so the menu closes by itself after navigation.
+    const [openMenu, setOpenMenu] = useState(null)
+    const activeMenu = openMenu && openMenu.path === pathname ? openMenu.id : null
+
+    const handleNavClick = (e, item) => {
+        const isMega = item.type === 'mega' || item.type === 'blog-mega' || item.type === 'pages-mega'
+        if (!isMega) return
+        // Click inside the opened menu itself: do nothing here
+        if (e.target.closest('[data-mega]')) return
+        // From lg up: hover menus + normal link navigation
+        if (window.matchMedia('(min-width: 1024px)').matches) return
+        e.preventDefault()
+        setOpenMenu(activeMenu === item.id ? null : { id: item.id, path: pathname })
+    }
+
+    // Outside click or Escape closes the click-opened menu
+    useEffect(() => {
+        const handleOutside = (e) => {
+            if (navListRef.current && !navListRef.current.contains(e.target)) setOpenMenu(null)
+        }
+        const handleKey = (e) => {
+            if (e.key === 'Escape') setOpenMenu(null)
+        }
+        document.addEventListener('mousedown', handleOutside)
+        document.addEventListener('keydown', handleKey)
+        return () => {
+            document.removeEventListener('mousedown', handleOutside)
+            document.removeEventListener('keydown', handleKey)
+        }
+    }, [])
 
     useEffect(() => {
     const handleClickOutside = (e) => {
@@ -52,29 +86,29 @@ const Header = () => {
                         <Image className="w-24 lg:w-28" src="/images/logo.png" alt="logo" ></Image>
                     </Link>
                     {/* Nav links stay on every md+ screen; below lg the text and gaps get smaller (md = 768px) */}
-                    <ul className='flex gap-3.5 ml-4 lg:gap-8 lg:ml-10 xl:gap-11 xl:ml-14'>
+                    <ul ref={navListRef} className='flex gap-3.5 ml-4 lg:gap-8 lg:ml-10 xl:gap-11 xl:ml-14'>
                         {navitems?.map((item) => (
-                        <li key={item.id} className='group py-2'>
+                        <li key={item.id} className='group py-2' onClickCapture={(e) => handleNavClick(e, item)}>
                             {item.type === "mega" ? (
                             <>
                                 <Link to={item.url || "#"} className="cursor-pointer list-item max-lg:text-xs!">
                                 {item.name}
                                 </Link>
-                                <ShopMegaMenu />
+                                <ShopMegaMenu isOpen={activeMenu === item.id} />
                             </>
                             ) : item.type === "blog-mega" ? (
                             <>
                                 <Link to={item.url || "#"} className="cursor-pointer list-item max-lg:text-xs!">
                                 {item.name}
                                 </Link>
-                                <BlogMegaMenu />
+                                <BlogMegaMenu isOpen={activeMenu === item.id} />
                             </>
                             ) : item.type === "pages-mega" ? (
                             <>
                                 <Link to={item.url || "#"} className="cursor-pointer list-item max-lg:text-xs!">
                                 {item.name}
                                 </Link>
-                                <PagesMegaMenu />
+                                <PagesMegaMenu isOpen={activeMenu === item.id} />
                             </>
                             ) : (
                             <Link to={item.url || "#"} className="list-item max-lg:text-xs!">
