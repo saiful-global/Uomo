@@ -121,7 +121,7 @@ const About = () => {
           </div>
 
           {/* Brand row */}
-          <div className="mt-16 md:mt-20 mb-16 md:mb-24 flex flex-wrap items-center justify-center md:justify-between gap-x-8 gap-y-6">
+          <div className="mt-16 md:mt-20 mb-16 md:mb-24 flex flex-wrap items-center justify-center xl:justify-between gap-x-8 gap-y-6">
             {BRANDS.map((brand) => (
               <brand.Logo key={brand.name} />
             ))}
