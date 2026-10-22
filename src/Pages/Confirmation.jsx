@@ -35,7 +35,7 @@ const Confirmation = () => {
   return (
     <main className="mt-15 md:mt-20 pb-12 md:pb-20 xl:pb-25 overflow-x-hidden">
       <Container>
-        <div className="md:px-8 min-[1450px]:px-0">
+        <div className="md:px-7.5 min-[1470px]:px-0">
           {/* Page title */}
           <h1 className="pt-6 md:pt-10 xl:pt-15 font-jost font-semibold text-2xl sm:text-3xl md:text-4xl xl:text-[40px] leading-tight uppercase text-primary-black">
             Order Received
@@ -99,8 +99,8 @@ const Confirmation = () => {
               </div>
 
               {/* Order info box (dashed) */}
-              <div className="mt-8 border border-dashed border-primary-black px-5 py-6 md:mt-12 md:px-10.5 md:py-8.5">
-                <div className="grid grid-cols-2 gap-x-6 gap-y-6 md:grid-cols-[180px_177px_151px_minmax(0,1fr)] md:gap-x-0">
+              <div className="mt-8 border border-dashed border-primary-black px-4 py-5 sm:px-5 sm:py-6 md:mt-12 md:px-6 md:py-8 lg:px-10.5">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-6 md:grid-cols-4 md:gap-x-4 lg:gap-x-6">
                   <div>
                     <p className="font-jost font-normal text-sm leading-6 text-secondColor">Order Number</p>
                     <p className="mt-2 font-jost font-medium text-base leading-6 text-primary-black">
@@ -129,7 +129,7 @@ const Confirmation = () => {
               </div>
 
               {/* Order details box */}
-              <div className="mt-8 border border-primary-black p-5 sm:p-8 md:mt-9 md:p-10">
+              <div className="mt-8 min-w-0 border border-primary-black p-4 sm:p-6 md:mt-9 md:p-8 lg:p-10">
                 <h3 className="font-jost font-medium text-base leading-6 uppercase text-primary-black">
                   Order Details
                 </h3>
@@ -154,7 +154,7 @@ const Confirmation = () => {
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between border-b border-bg-footer py-4 md:py-5">
+                <div className="flex items-center justify-between gap-3 border-b border-bg-footer py-4 md:py-5">
                   <span className={ROW_LABEL}>Subtotal</span>
                   <span className={ROW_VALUE}>{money(order.subtotal)}</span>
                 </div>
@@ -164,7 +164,7 @@ const Confirmation = () => {
                   <span className={ROW_VALUE}>{order.shippingLabel}</span>
                 </div>
 
-                <div className="flex items-center justify-between border-b border-bg-footer py-4 md:py-5">
+                <div className="flex items-center justify-between gap-3 border-b border-bg-footer py-4 md:py-5">
                   <span className={ROW_LABEL}>VAT</span>
                   <span className={ROW_VALUE}>{money(order.vat)}</span>
                 </div>
