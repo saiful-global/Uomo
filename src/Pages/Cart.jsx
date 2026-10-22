@@ -103,7 +103,7 @@ const Cart = () => {
     <main className="mt-15 md:mt-20 pb-12 md:pb-20 xl:pb-25 overflow-x-hidden">
       <Container>
         {/* Extra side space between md and the max container width (Container has no padding from md) */}
-        <div className="md:px-8 min-[1450px]:px-0">
+        <div className="md:px-7.5 min-[1470px]:px-0">
           {/* Page title */}
           <h1 className="pt-6 md:pt-10 xl:pt-15 font-jost font-semibold text-3xl md:text-4xl xl:text-[40px] leading-tight uppercase text-primary-black">
             Cart
