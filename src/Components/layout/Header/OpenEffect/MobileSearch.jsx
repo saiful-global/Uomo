@@ -43,10 +43,10 @@ export default function MobileSearch({ onNavigate = () => {}, children }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search products..."
-          className="w-full border border-bg-footer rounded-[3px] pt-4.25 pb-3.5 pl-4.25 pr-12 outline-none focus:border-black text-sm font-jost font-normal leading-6"
+          className="w-full border border-bg-footer rounded-[3px] pt-4.25 pb-3.5 pl-4.25 pr-12 outline-none focus:border-black text-base font-jost font-normal leading-6"
         />
         {term ? (
-          <button type="button" aria-label="Clear search" onClick={() => setQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer">
+          <button type="button" aria-label="Clear search" onClick={() => setQuery('')} className="absolute right-2 top-1/2 -translate-y-1/2 p-2 cursor-pointer">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0.414336 14.1421L14.5565 0L15.9707 1.41421L1.82855 15.5563L0.414336 14.1421Z" fill="#222222"/>
               <path d="M1.41421 0.142113L15.5563 14.2842L14.1421 15.6985L0 1.55633L1.41421 0.142113Z" fill="#222222"/>
