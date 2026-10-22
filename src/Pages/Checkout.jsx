@@ -46,7 +46,7 @@ const money = (value) => `$${Number(value).toFixed(2)}`
 
 // Shared classes
 const INPUT_CLASS =
-  'h-14 w-full border border-bg-footer bg-white px-5 font-jost font-normal text-sm leading-6 text-primary-black outline-none placeholder:text-secondColor focus:border-primary-black md:h-15'
+  'h-14 w-full border border-bg-footer bg-white px-5 font-jost font-normal text-base md:text-sm leading-6 text-primary-black outline-none placeholder:text-secondColor focus:border-primary-black md:h-15'
 const CHECKBOX_CLASS =
   "h-4 w-4 shrink-0 cursor-pointer appearance-none border border-bg-footer checked:border-primary-black checked:bg-primary-black checked:bg-[url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5'/%3E%3C/svg%3E\")]"
 const RADIO_CLASS =
@@ -104,7 +104,7 @@ const Checkout = () => {
   return (
     <main className="mt-15 md:mt-20 pb-12 md:pb-20 xl:pb-25 overflow-x-hidden">
       <Container>
-        <div className="md:px-8 min-[1450px]:px-0">
+        <div className="md:px-7.5 min-[1470px]:px-0">
           {/* Page title */}
           <h1 className="pt-6 md:pt-10 xl:pt-15 font-jost font-semibold text-2xl sm:text-3xl md:text-4xl xl:text-[40px] leading-tight uppercase text-primary-black">
             Shipping and Checkout
@@ -178,7 +178,7 @@ const Checkout = () => {
                       name="country"
                       defaultValue="Turkey"
                       required
-                      className="h-14 w-full cursor-pointer appearance-none border border-primary-black bg-white px-5 pr-12 pt-3 font-jost font-normal text-sm leading-6 text-primary-black outline-none md:h-15"
+                      className="h-14 w-full cursor-pointer appearance-none border border-primary-black bg-white px-5 pr-12 pt-3 font-jost font-normal text-base md:text-sm leading-6 text-primary-black outline-none md:h-15"
                     >
                       {COUNTRIES.map((country) => (
                         <option key={country} value={country}>
@@ -227,7 +227,7 @@ const Checkout = () => {
                 <textarea
                   name="notes"
                   placeholder="Order Notes (optional)"
-                  className="mt-6 block h-40 w-full resize-none border border-bg-footer bg-white p-5 font-jost font-normal text-sm leading-6 text-primary-black outline-none placeholder:text-secondColor focus:border-primary-black md:mt-7.5 md:h-50"
+                  className="mt-6 block h-40 w-full resize-none border border-bg-footer bg-white p-5 font-jost font-normal text-base md:text-sm leading-6 text-primary-black outline-none placeholder:text-secondColor focus:border-primary-black md:mt-7.5 md:h-50"
                 />
               </div>
 
