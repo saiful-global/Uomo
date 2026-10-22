@@ -34,12 +34,12 @@ const MobileNab = () => {
 
     // Tabs WOMEN / MEN / KIDS (shop screens)
     const renderTabs = () => (
-        <div className='flex items-center gap-1.5 mx-3.75 pt-5 pb-3'>
+        <div className='flex items-center gap-1.5 mx-3.75 pt-5 pb-3 overflow-x-auto'>
             {SHOP_TABS.map((tab, i) => (
                 <button
                     key={tab}
                     onClick={() => setActiveTab(i)}
-                    className={`font-jost font-medium text-sm leading-6 px-4.5 py-2.5 rounded-sm cursor-pointer ${activeTab === i ? 'bg-primary-black text-primary-white' : 'text-primary-black'}`}
+                    className={`font-jost font-medium text-sm leading-6 px-4.5 py-2.5 rounded-sm cursor-pointer whitespace-nowrap shrink-0 ${activeTab === i ? 'bg-primary-black text-primary-white' : 'text-primary-black'}`}
                 >
                     {tab}
                 </button>
@@ -133,14 +133,14 @@ const MobileNab = () => {
         <div className='mobile_nav flex justify-between mx-3.75 items-center md:hidden'>
             {/* Menu Bar icon with toogle */}
             {mobileMenu ?
-            (<button onClick={closeMenu} aria-label="Close menu">
+            (<button onClick={closeMenu} aria-label="Close menu" className="p-2 -m-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.414336 14.1421L14.5565 0L15.9707 1.41421L1.82855 15.5563L0.414336 14.1421Z" fill="#222222"/>
                 <path d="M1.41421 0.142113L15.5563 14.2842L14.1421 15.6985L0 1.55633L1.41421 0.142113Z" fill="#222222"/>
                 </svg>
             </button>)
             :
-            (<button onClick={()=>setMobileMenu(true)} aria-label="Open menu">
+            (<button onClick={()=>setMobileMenu(true)} aria-label="Open menu" className="p-2 -m-2">
                 <svg width="26" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="25.0435" height="2" fill="#222222"/>
                 <rect y="8" width="20.0348" height="2" fill="#222222"/>
@@ -154,7 +154,7 @@ const MobileNab = () => {
             </Link>
             {/* Cart */}
             <div className='relative'>
-                <button onClick={() => setIsShoppingBagOpen(true)} aria-label="Cart">
+                <button onClick={() => setIsShoppingBagOpen(true)} aria-label="Cart" className="p-2 -m-2">
                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.6869 4.6875H15.3021C14.9912 2.05164 12.74 0 10.0174 0C7.29479 0 5.04353 2.05164 4.73264 4.6875H2.3478C1.91556 4.6875 1.56519 5.03727 1.56519 5.46875V19.2188C1.56519 19.6502 1.91556 20 2.3478 20H17.6869C18.1192 20 18.4696 19.6502 18.4696 19.2188V5.46875C18.4696 5.03727 18.1192 4.6875 17.6869 4.6875ZM10.0174 1.5625C11.8754 1.5625 13.4225 2.91621 13.7214 4.6875H6.31332C6.61228 2.91621 8.1593 1.5625 10.0174 1.5625ZM16.9043 18.4375H3.13041V6.25H4.69563V8.59375C4.69563 9.02523 5.046 9.375 5.47824 9.375C5.91047 9.375 6.26084 9.02523 6.26084 8.59375V6.25H13.7739V8.59375C13.7739 9.02523 14.1243 9.375 14.5565 9.375C14.9887 9.375 15.3391 9.02523 15.3391 8.59375V6.25H16.9043V18.4375Z" fill="#222222"/>
                     </svg>
@@ -163,7 +163,7 @@ const MobileNab = () => {
             </div>
 
             {/* Menu panel: one scroller, so short screens / landscape never hide the content */}
-            <div className={`${mobileMenu? "w-full": "w-0"} bottom-0 bg-white fixed top-15 left-0 border-t border-bg-footer z-50 duration-400 transition-all overflow-x-hidden overflow-y-auto`}>
+            <div className={`${mobileMenu? "w-full": "w-0"} bottom-0 bg-white fixed top-15 left-0 border-t border-bg-footer z-50 duration-400 transition-all overflow-x-hidden overflow-y-auto overscroll-contain`}>
                 <div className='min-h-full flex flex-col'>
                     <div>
                         {view === 'main' && (
@@ -193,7 +193,7 @@ const MobileNab = () => {
                     {/* menu's bottom part  */}
                     {showBottom && (
                     <div className='mt-auto border-t border-bg-footer w-full'>
-                        <div className='mx-3.75 pb-5'>
+                        <div className='mx-3.75 pb-[calc(20px+env(safe-area-inset-bottom,0px))]'>
                             <Link to="/my-account" onClick={closeMenu} className='pt-7.25 font-jost font-medium text-sm leading-6 flex items-center gap-3.25 pb-4.25 text-primary-black'>
                                 <FiUser size={18} />
                                 <h3>MY ACCOUNT</h3>
