@@ -23,14 +23,15 @@ const Header = () => {
     const navListRef = useRef(null)
     const { pathname } = useLocation()
 
-    // Below lg (768-1023px) mega menus open on click (no hover there).
+    // Below lg (768-1023px) the Journal and Pages mega menus open on click (no hover there).
     // The open state stores the path too, so the menu closes by itself after navigation.
     const [openMenu, setOpenMenu] = useState(null)
     const activeMenu = openMenu && openMenu.path === pathname ? openMenu.id : null
 
     const handleNavClick = (e, item) => {
-        const isMega = item.type === 'mega' || item.type === 'blog-mega' || item.type === 'pages-mega'
-        if (!isMega) return
+        // SHOP ('mega') is excluded: below lg it navigates straight to the shop page
+        const isClickMenu = item.type === 'blog-mega' || item.type === 'pages-mega'
+        if (!isClickMenu) return
         // Click inside the opened menu itself: do nothing here
         if (e.target.closest('[data-mega]')) return
         // From lg up: hover menus + normal link navigation
