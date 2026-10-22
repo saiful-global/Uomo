@@ -81,13 +81,16 @@ const AccountDetails = () => {
         </div>
 
         {/* Password change */}
-        <h3 className='font-jost font-medium text-base leading-6 uppercase text-primary-black mt-7.5 mb-6'>
+        <h3 className='font-jost font-medium text-base leading-6 uppercase text-primary-black mt-7.5 mb-2'>
           PASSWORD CHANGE
         </h3>
+        <p className='font-jost font-normal text-sm leading-6 text-secondColor mb-6'>
+          Leave password fields blank to keep your current password.
+        </p>
 
         <div className='flex flex-col gap-7.5'>
-          <FloatingInput id='acc-current-password' label='Current password (leave blank to leave unchanged)' type='password' value={form.currentPassword} onChange={handleChange('currentPassword')} />
-          <FloatingInput id='acc-new-password' label='New password (leave blank to leave unchanged)' type='password' value={form.newPassword} onChange={handleChange('newPassword')} />
+          <FloatingInput id='acc-current-password' label='Current password' type='password' value={form.currentPassword} onChange={handleChange('currentPassword')} />
+          <FloatingInput id='acc-new-password' label='New password' type='password' value={form.newPassword} onChange={handleChange('newPassword')} />
           <FloatingInput id='acc-confirm-password' label='Confirm new password' type='password' value={form.confirmPassword} onChange={handleChange('confirmPassword')} />
         </div>
 
