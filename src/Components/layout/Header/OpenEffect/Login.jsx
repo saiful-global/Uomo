@@ -1,17 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import CreateAccount from "./CreateAccount";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Login = () => {
   const [loginModal, setLoginModal] = useState(false);
-  const [formView, setFormView] = useState("login");
   const navigate = useNavigate();
   const loginRef = useRef(null);
 
   const closeModal = () => {
     setLoginModal(false);
-    setFormView("login");
   };
 
   useEffect(() => {
@@ -75,7 +72,7 @@ const Login = () => {
       >
         <div className="sticky top-0 z-10 flex justify-between bg-[#FAF9F8] px-5 py-6 sm:px-7.5 sm:py-8.25 md:px-10">
           <h3 className="font-jost font-medium text-base text-primary-black">
-            {formView === "login" ? "LOGIN" : "CREATE AN ACCOUNT"}
+            LOGIN
           </h3>
 
           <button
@@ -87,8 +84,7 @@ const Login = () => {
           </button>
         </div>
 
-        {formView === "login" ? (
-          <form
+        <form
             onSubmit={(e) => {
               e.preventDefault();
               closeModal();
@@ -149,17 +145,15 @@ const Login = () => {
 
             <p className="text-center font-jost font-normal text-sm leading-6 text-secondColor pt-6">
               No account yet?{" "}
-              <span
-                onClick={() => setFormView("register")}
+              <Link
+                to="/login-register"
+                onClick={closeModal}
                 className="text-primary-black underline cursor-pointer"
               >
                 Create Account
-              </span>
+              </Link>
             </p>
-          </form>
-        ) : (
-          <CreateAccount />
-        )}
+        </form>
       </div>
     </li>
   );
