@@ -40,21 +40,21 @@ const RemoveIcon = () => (
   </svg>
 )
 
-// Quantity box with - and + buttons
-const QuantityBox = ({ item }) => (
+// Quantity edits stay local until the Update Cart button is pressed.
+const QuantityBox = ({ item, quantity, onQuantityChange }) => (
   <div className="flex h-10 w-25 items-center justify-between border border-bg-footer px-3.5 xl:h-12.5 2xl:w-27.5 2xl:px-4">
     <button
       type="button"
-      onClick={() => updateCartQuantity(item.id, -1)}
+      onClick={() => onQuantityChange(item.id, Math.max(0, quantity - 1))}
       aria-label="Decrease quantity"
       className="px-1 font-jost text-sm text-secondColor"
     >
       -
     </button>
-    <span className="font-jost font-normal text-sm text-secondColor">{item.quantity}</span>
+    <span className="font-jost font-normal text-sm text-secondColor">{quantity}</span>
     <button
       type="button"
-      onClick={() => updateCartQuantity(item.id, 1)}
+      onClick={() => onQuantityChange(item.id, quantity + 1)}
       aria-label="Increase quantity"
       className="px-1 font-jost text-sm text-secondColor"
     >
@@ -81,6 +81,7 @@ const ItemMeta = ({ item }) => (
 
 const Cart = () => {
   const [items, setItems] = useState(() => getCartItems())
+  const [draftQuantities, setDraftQuantities] = useState({})
   const [shipping, setShipping] = useState('free')
   const [coupon, setCoupon] = useState('')
 
@@ -90,14 +91,52 @@ const Cart = () => {
     return subscribeToCart(syncCart)
   }, [])
 
+  const displayItems = useMemo(
+    () => items.map((item) => ({
+      ...item,
+      quantity: draftQuantities[item.id] ?? item.quantity,
+    })),
+    [items, draftQuantities]
+  )
+
   const subtotal = useMemo(
-    () => items.reduce((total, item) => total + item.price * item.quantity, 0),
-    [items]
+    () => displayItems.reduce((total, item) => total + item.price * item.quantity, 0),
+    [displayItems]
   )
 
   const shippingCost = SHIPPING_OPTIONS.find((option) => option.key === shipping)?.cost ?? 0
   const vat = subtotal * VAT_RATE
   const total = subtotal + shippingCost + vat
+
+  const handleQuantityChange = (id, quantity) => {
+    setDraftQuantities((current) => ({ ...current, [id]: quantity }))
+  }
+
+  const handleRemove = (id) => {
+    removeFromCart(id)
+    setDraftQuantities((current) => {
+      const next = { ...current }
+      delete next[id]
+      return next
+    })
+  }
+
+  const handleUpdateCart = () => {
+    items.forEach((item) => {
+      const nextQuantity = draftQuantities[item.id]
+      if (nextQuantity === undefined || nextQuantity === item.quantity) return
+
+      if (nextQuantity <= 0) {
+        removeFromCart(item.id)
+        return
+      }
+
+      updateCartQuantity(item.id, nextQuantity - item.quantity)
+    })
+
+    setDraftQuantities({})
+    setItems(getCartItems())
+  }
 
   return (
     <main className="mt-15 md:mt-20 pb-12 md:pb-20 xl:pb-25 overflow-x-hidden">
@@ -156,7 +195,7 @@ const Cart = () => {
                   <span className="font-jost font-medium text-sm leading-6 uppercase text-primary-black">Subtotal</span>
                 </div>
 
-                {items.map((item) => (
+                {displayItems.map((item) => (
                   <div key={item.id} className="border-b border-bg-footer">
                     {/* Mobile card (below md) */}
                     <div className="relative flex gap-4 py-5 md:hidden">
@@ -180,7 +219,11 @@ const Cart = () => {
                         </p>
 
                         <div className="mt-2 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
-                          <QuantityBox item={item} />
+                          <QuantityBox
+                            item={item}
+                            quantity={item.quantity}
+                            onQuantityChange={handleQuantityChange}
+                          />
                           <span className="font-jost font-medium text-base leading-6 text-primary-black">
                             {money(item.price * item.quantity)}
                           </span>
@@ -189,7 +232,7 @@ const Cart = () => {
 
                       <button
                         type="button"
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => handleRemove(item.id)}
                         aria-label={`Remove ${item.name}`}
                         className="absolute right-0 top-5 p-1"
                       >
@@ -222,7 +265,11 @@ const Cart = () => {
                       </span>
 
                       <div>
-                        <QuantityBox item={item} />
+                        <QuantityBox
+                          item={item}
+                          quantity={item.quantity}
+                          onQuantityChange={handleQuantityChange}
+                        />
                       </div>
 
                       <div className="flex items-center justify-between gap-2">
@@ -231,7 +278,7 @@ const Cart = () => {
                         </span>
                         <button
                           type="button"
-                          onClick={() => removeFromCart(item.id)}
+                          onClick={() => handleRemove(item.id)}
                           aria-label={`Remove ${item.name}`}
                           className="shrink-0 p-1"
                         >
@@ -261,6 +308,7 @@ const Cart = () => {
                   </div>
                   <button
                     type="button"
+                    onClick={handleUpdateCart}
                     className="h-14 w-full bg-bg-footer font-jost font-medium text-sm uppercase text-primary-black sm:w-44 xl:h-15 2xl:w-50"
                   >
                     Update Cart
