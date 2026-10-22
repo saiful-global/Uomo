@@ -176,7 +176,7 @@ const Checkout = () => {
                     <select
                       id="country"
                       name="country"
-                      defaultValue="Turkey"
+                      defaultValue="Bangladesh"
                       required
                       className="h-14 w-full cursor-pointer appearance-none border border-primary-black bg-white px-5 pr-12 pt-3 font-jost font-normal text-base md:text-sm leading-6 text-primary-black outline-none md:h-15"
                     >
