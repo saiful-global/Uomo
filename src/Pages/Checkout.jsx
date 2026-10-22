@@ -47,11 +47,33 @@ const money = (value) => `$${Number(value).toFixed(2)}`
 // Shared classes
 const INPUT_CLASS =
   'h-14 w-full border border-bg-footer bg-white px-5 font-jost font-normal text-base md:text-sm leading-6 text-primary-black outline-none placeholder:text-secondColor focus:border-primary-black md:h-15'
-const CHECKBOX_CLASS =
-  "h-4 w-4 shrink-0 cursor-pointer appearance-none border border-bg-footer checked:border-primary-black checked:bg-primary-black checked:bg-[url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5'/%3E%3C/svg%3E\")]"
 const RADIO_CLASS =
   'h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-bg-footer checked:border-primary-black checked:bg-primary-black checked:shadow-[inset_0_0_0_3px_#fff]'
 const ROW_LABEL = 'font-jost font-medium text-sm uppercase text-primary-black'
+
+// Custom checkbox: the tick is an inline SVG shown with peer-checked
+// (a data-URI background inside a class string is not picked up by Tailwind, so it never showed)
+const CheckRow = ({ name, label }) => (
+  <label className="flex cursor-pointer items-center gap-3">
+    <span className="relative flex h-4 w-4 shrink-0">
+      <input
+        type="checkbox"
+        name={name}
+        className="peer h-4 w-4 cursor-pointer appearance-none border border-bg-footer checked:border-primary-black checked:bg-primary-black"
+      />
+      <svg
+        className="pointer-events-none absolute inset-0 hidden h-4 w-4 peer-checked:block"
+        viewBox="0 0 16 16"
+        fill="none"
+        stroke="white"
+        strokeWidth="2"
+      >
+        <path d="M3.5 8.5l3 3 6-6.5" />
+      </svg>
+    </span>
+    <span className={ROW_LABEL}>{label}</span>
+  </label>
+)
 
 const Checkout = () => {
   const location = useLocation()
@@ -213,14 +235,8 @@ const Checkout = () => {
 
                 {/* Checkboxes */}
                 <div className="mt-6 flex flex-col gap-3 md:mt-7.5">
-                  <label className="flex cursor-pointer items-center gap-3">
-                    <input type="checkbox" name="createAccount" className={CHECKBOX_CLASS} />
-                    <span className={ROW_LABEL}>Create an account?</span>
-                  </label>
-                  <label className="flex cursor-pointer items-center gap-3">
-                    <input type="checkbox" name="shipDifferent" className={CHECKBOX_CLASS} />
-                    <span className={ROW_LABEL}>Ship to a different address?</span>
-                  </label>
+                  <CheckRow name="createAccount" label="Create an account?" />
+                  <CheckRow name="shipDifferent" label="Ship to a different address?" />
                 </div>
 
                 {/* Order notes */}
