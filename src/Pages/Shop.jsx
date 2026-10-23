@@ -7,14 +7,18 @@ import SortAndView from '../Components/shop/SortAndView'
 import axios from 'axios'
 import {Helmet} from "react-helmet";
 
+// first batch size and the step added on every SHOW MORE click
+const INITIAL_COUNT = 16;
+const STEP = 8;
+
 const Shop = () => {
 
   const [products,setProducts] = useState([]);
   const [view,setView] = useState(4);
-  const [showAll, setShowAll] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
   // for slice 
-  let displayedProducts = showAll ? products : products.slice(0, 16);
+  let displayedProducts = products.slice(0, visibleCount);
   // for showProduct 
   let showingProducts = displayedProducts.length;
 
@@ -22,6 +26,10 @@ const Shop = () => {
   let totalProduct = products.length;
   let showProduct = showingProducts;
   let result = Math.round((showProduct / totalProduct)*100);
+
+  // SHOW MORE stays while hidden products remain; SHOW LESS appears only after more than 16 are shown
+  const hasMore = visibleCount < totalProduct;
+  const canShowLess = visibleCount > INITIAL_COUNT;
   
   // API with Axios & then,catch
   function getProducts(){
@@ -33,6 +41,7 @@ const Shop = () => {
       getProducts()
   },[])
 
+  const buttonClass = "font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[70%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300 cursor-pointer";
 
   return (
     <main>
@@ -61,11 +70,18 @@ const Shop = () => {
           <div style={{width:`${result}%`}} className='w-[20%] h-full bg-primary-black rounded-[10px] duration-700'></div>
         </div>
 
-        {/* show all button  */}
-        <div className="text-center pb-12.5 md:pb-25">
-            <button onClick={() => setShowAll(!showAll)} className="font-jost text-sm font-medium leading-6 text-primary-black relative after:content-[''] after:w-0 hover:after:w-[70%] after:h-0.5 after:bg-primary-black after:absolute after:bottom-0 after:left-0 after:duration-300 cursor-pointer" >
-                {showAll ? "SHOW LESS" : "SHOW MORE"}
-            </button>
+        {/* show more / show less buttons (separate buttons, SHOW LESS sits below SHOW MORE) */}
+        <div className="flex flex-col items-center gap-3 pb-12.5 md:pb-25">
+            {hasMore && (
+              <button onClick={() => setVisibleCount((count) => Math.min(count + STEP, totalProduct))} className={buttonClass}>
+                  SHOW MORE
+              </button>
+            )}
+            {canShowLess && (
+              <button onClick={() => setVisibleCount(INITIAL_COUNT)} className={buttonClass}>
+                  SHOW LESS
+              </button>
+            )}
         </div>
     </main>
   )
