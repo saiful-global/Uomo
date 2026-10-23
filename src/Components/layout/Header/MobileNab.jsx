@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router'
 import Image from '../../common/Image';
 import { navitems } from '../../../api/navbarData';
@@ -13,6 +13,95 @@ import { useCartCount } from '../../../api/cartStore'
 
 const ROW = 'font-jost font-medium text-base leading-11.25 w-full flex justify-between items-center text-primary-black cursor-pointer'
 const COLLECTION_LINKS = SUB_LINKS.map((name) => ({ name, url: '/shop' }))
+
+// Display-only options (copied from Footer.jsx). Clicking an option just closes the list, nothing changes.
+const LANGUAGES = [
+    { label: "English", sub: "English", active: true },
+    { label: "中文", sub: "Mandarin Chinese" },
+    { label: "हिन्दी", sub: "Hindi" },
+    { label: "Español", sub: "Spanish" },
+    { label: "Français", sub: "French" },
+    { label: "العربية", sub: "Arabic" },
+    { label: "বাংলা", sub: "Bengali" },
+    { label: "Português", sub: "Portuguese" },
+    { label: "Русский", sub: "Russian" },
+    { label: "اردو", sub: "Urdu" },
+]
+
+const CURRENCIES = [
+    { label: "$ USD", sub: "US Dollar", active: true },
+    { label: "€ EUR", sub: "Euro" },
+    { label: "¥ JPY", sub: "Japanese Yen" },
+    { label: "£ GBP", sub: "British Pound" },
+    { label: "$ AUD", sub: "Australian Dollar" },
+    { label: "$ CAD", sub: "Canadian Dollar" },
+    { label: "CHF", sub: "Swiss Franc" },
+    { label: "¥ CNY", sub: "Chinese Yuan" },
+    { label: "$ HKD", sub: "Hong Kong Dollar" },
+    { label: "$ NZD", sub: "New Zealand Dollar" },
+]
+
+// Language / Currency selector: list opens upward, closes on outside tap or Escape.
+// Height is capped by the screen height so it never gets cut off on short phones.
+const Selector = ({ label, value, options, className = '' }) => {
+    const [open, setOpen] = useState(false)
+    const wrapRef = useRef(null)
+
+    useEffect(() => {
+        if (!open) return
+        const onOutside = (e) => {
+            if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false)
+        }
+        const onKey = (e) => {
+            if (e.key === 'Escape') setOpen(false)
+        }
+        document.addEventListener('mousedown', onOutside)
+        document.addEventListener('touchstart', onOutside)
+        document.addEventListener('keydown', onKey)
+        return () => {
+            document.removeEventListener('mousedown', onOutside)
+            document.removeEventListener('touchstart', onOutside)
+            document.removeEventListener('keydown', onKey)
+        }
+    }, [open])
+
+    return (
+        <div ref={wrapRef} className={`relative flex items-center ${className}`}>
+            <span className='w-21.25 shrink-0 font-jost font-normal text-sm leading-6 text-secondColor'>{label}</span>
+            <button
+                type='button'
+                onClick={() => setOpen((o) => !o)}
+                aria-haspopup='listbox'
+                aria-expanded={open}
+                className='flex items-center gap-3 cursor-pointer font-jost font-normal text-sm leading-6 text-primary-black text-left'
+            >
+                <span>{value}</span>
+                <FiChevronDown size={18} className={`shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+            </button>
+
+            {open && (
+                <ul
+                    role='listbox'
+                    aria-label={label}
+                    className='absolute bottom-full left-0 mb-3 z-50 w-60 max-w-full max-h-[min(18rem,50vh)] overflow-y-auto overscroll-contain bg-white border border-[#CFCDCD] shadow-lg py-1'
+                >
+                    {options.map((o) => (
+                        <li key={o.label + o.sub} role='option' aria-selected={!!o.active}>
+                            <button
+                                type='button'
+                                onClick={() => setOpen(false)}
+                                className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-left font-jost text-sm leading-5 text-primary-black cursor-pointer transition-colors duration-150 hover:bg-gray-100 ${o.active ? 'bg-gray-50 font-medium' : 'font-normal'}`}
+                            >
+                                <span>{o.label}</span>
+                                <span className='text-xs text-secondColor'>{o.sub}</span>
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    )
+}
 
 const MobileNab = () => {
 
@@ -194,23 +283,15 @@ const MobileNab = () => {
                     {showBottom && (
                     <div className='mt-auto border-t border-bg-footer w-full'>
                         <div className='mx-3.75 pb-[calc(20px+env(safe-area-inset-bottom,0px))]'>
-                            <Link to="/my-account" onClick={closeMenu} className='pt-7.25 font-jost font-medium text-sm leading-6 flex items-center gap-3.25 pb-4.25 text-primary-black'>
+                            <Link to="/my-account" onClick={closeMenu} className='pt-7.25 font-jost font-medium text-sm leading-6 flex w-fit items-center gap-3.25 pb-4.25 text-primary-black'>
                                 <FiUser size={18} />
                                 <h3>MY ACCOUNT</h3>
                             </Link>
-                            <div className='flex items-center'>
-                                <h4 className='font-jost font-normal text-sm leading-6 text-secondColor pr-6.75'>Language</h4>
-                                <h4 className='cursor-pointer font-jost font-normal text-sm leading-6 text-primary-black pr-4'>United Kingdom  |  English</h4>
-                                <FiChevronDown size={18} />
-                            </div>
-                            <div className='flex items-center pt-4'>
-                                <h4 className='font-jost font-normal text-sm leading-6 text-secondColor pr-5.75'>Currency</h4>
-                                <h4 className='cursor-pointer font-jost font-normal text-sm leading-6 text-primary-black pr-2.5'>$ USD</h4>
-                                <FiChevronDown size={18} />
-                            </div>
+                            <Selector label="Language" value="United Kingdom  |  English" options={LANGUAGES} />
+                            <Selector label="Currency" value="$ USD" options={CURRENCIES} className="pt-4" />
                             {/* Social Icons  */}
                             <div className='pt-6 flex gap-9'>
-                                <a href="#" aria-label="Facebook">
+                                <a href="https://www.facebook.com/global.saiful" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                                     <FaFacebookF className='text-primary-black' />
                                 </a>
                                 <a href="#" aria-label="X">
