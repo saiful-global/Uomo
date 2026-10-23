@@ -9,7 +9,7 @@ import {Helmet} from "react-helmet";
 
 // first batch size and the step added on every SHOW MORE click
 const INITIAL_COUNT = 16;
-const STEP = 8;
+const STEP = 32;
 
 const Shop = () => {
 
