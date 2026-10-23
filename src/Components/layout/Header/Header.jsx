@@ -11,11 +11,13 @@ import SearchMenu from './OpenEffect/SearchMenu'
 import Login from './OpenEffect/Login'
 import ShoppingBag from './OpenEffect/ShoppingBag'
 import NavPanel from './OpenEffect/NavPanel'
-import { useCartCount } from '../../../api/cartStore'
+import { useCartCount, useWishlist } from '../../../api/cartStore'
 
 const Header = () => {
 
     const cartItems = useCartCount()
+    // Wishlist badge: only shown when there is at least one item
+    const wishlistCount = useWishlist().length
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false)
     const [isNavPanelOpen, setIsNavPanelOpen] = useState(false)
@@ -152,7 +154,7 @@ const Header = () => {
                                 <Login></Login>
 
                                 {/* Wishlist */}
-                                <li>
+                                <li className='relative'>
                                     <Link to="/my-account/wishlist" aria-label="Wishlist" className="inline-block">
                                         <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_6_54)">
@@ -165,6 +167,10 @@ const Header = () => {
                                             </defs>
                                         </svg>
                                     </Link>
+                                    {/* Count badge: rendered only when the wishlist has items (nothing at all when empty) */}
+                                    {wishlistCount > 0 && (
+                                        <span className='font-jost bg-thirdColor px-1.25 py-px text-primary-white rounded-full font-medium text-[10px] absolute bottom-0 left-3 pointer-events-none'>{wishlistCount}</span>
+                                    )}
                                 </li>
 
                                 {/* Cart Button */}
