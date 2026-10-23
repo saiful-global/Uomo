@@ -33,8 +33,11 @@ const StartingCategory = () => {
                     <div className='w-full h-full absolute top-0 left-0 bg-redColor -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out mix-blend-multiply'>
                     </div>
                     <div className='absolute bottom-7.5 md:bottom-8 lg:bottom-12.5 left-7.5 md:left-8 lg:left-12.5 right-3.75'>
-                        <h3 className='group-hover:text-primary-white transition-colors duration-300 font-jost font-medium text-lg text-primary-black'>STARTING AT $39</h3>
-                        <h2 className='group-hover:text-primary-white transition-colors duration-300 font-jost font-medium text-[22px]  md:text-[26px] text-primary-black'>Men's Sportswear</h2>
+                        {/* Mobile only: w-fit shrinks the box to the exact text width, so the blur covers only these two lines; from md up the blur and white tint are removed */}
+                        <div className='w-fit backdrop-blur-md bg-white/30 md:backdrop-blur-none md:bg-transparent'>
+                            <h3 className='group-hover:text-primary-white transition-colors duration-300 font-jost font-medium text-lg text-primary-black'>STARTING AT $39</h3>
+                            <h2 className='group-hover:text-primary-white transition-colors duration-300 font-jost font-medium text-[22px]  md:text-[26px] text-primary-black'>Men's Sportswear</h2>
+                        </div>
                         <Link className='group-hover:text-primary-white transition-colors duration-300 font-jost mt-2.75 md:mt-3.75 inline-block text-primary-black text-sm font-medium leading-6 relative after:content-[""] after:w-0 hover:after:w-[60%] after:h-0.5 after:bg-primary-white after:absolute after:bottom-0 after:left-0 after:duration-300' to="/shop">SHOP NOW</Link>
                     </div>
                 </div>
