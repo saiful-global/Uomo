@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import { SHOP_TABS, SHOP_MAIN, SUB_LINKS } from '../../../../api/menuData'
 import Image from '../../../common/Image'
-import panelImage from '../../../../assets/images/g11.jpg'
+import panelImage from '../../../../assets/images/nabPanel.jpg'
 
 // Hamburger panel (Figma: open_navs), responsive from 320px to 1920px+
 const NavPanel = ({ isOpen, onClose }) => {
