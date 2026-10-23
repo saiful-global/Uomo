@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Image from "./Image";
-import NewsLetterImage from "../../assets/images/NewsLatterImage.png";
+import NewsLetterImage from "../../assets/images/NewsLatterImage.jpg";
 
 function NewsLetter() {
   const [isOpen, setIsOpen] = useState(false);
