@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Filter from './Filter';
 
 const SortAndView = ({setView}) => {
 
   const [open, setOpen] = useState(false);
+  // wrapper of the button + dropdown, used to detect outside clicks
+  const dropdownRef = useRef(null);
+
+  // close the dropdown when the user clicks/taps outside of it
+  useEffect(() => {
+    if (!open) return;
+    const handleOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutside);
+    document.addEventListener('touchstart', handleOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('touchstart', handleOutside);
+    };
+  }, [open]);
   // button active state 
   const [active, setActive] = useState(4);
 
@@ -17,7 +35,7 @@ const SortAndView = ({setView}) => {
     {/* On phones: FILTER on the left, SORTING on the right (Figma) */}
     <div className='flex max-md:flex-row-reverse justify-between w-full md:w-auto gap-4 md:gap-7.5 whitespace-nowrap'>
       {/* Button & Dropdown  */}
-      <div className="relative inline-block">
+      <div ref={dropdownRef} className="relative inline-block">
         {/* DEFAULT SORTING Button */}
         <button onClick={() => setOpen(!open)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase whitespace-nowrap border-b-2 flex items-center gap-2.5 md:relative md:after:absolute md:after:top-0 md:after:-right-7.5 md:after:h-5.5 md:after:w-0.5 md:after:bg-bg-footer md:after:content-[''] ">
           DEFAULT SORTING
