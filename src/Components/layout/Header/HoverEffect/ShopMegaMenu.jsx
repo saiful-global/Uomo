@@ -1,5 +1,5 @@
 import Container from "../../../ui/Container";
-import ShopMenuImage from "../../../../assets/images/shopMenuImage.png"
+import ShopMenuImage from "../../../../assets/images/shopMenuImage.jpg";
 import Image from "../../../common/Image";
 
 // isOpen = click-to-open state used below lg (from lg up the menu opens on hover)
@@ -92,12 +92,14 @@ export default function ShopMegaMenu({ isOpen }) {
           {/* Background Image */}
           <Image className="absolute inset-0 w-full h-full object-cover" src={ShopMenuImage} alt="ShopMenuImage" />
           {/* Text Overlay */}
-          <div className="relative z-10">
-            <h3 className="font-jost font-medium text-[26px] text-primary-black">NEW</h3>
-            <h3 className="font-jost font-medium text-[26px] text-primary-black"> HORIZONS </h3>
-            <button className="list-item">
-              SHOP NOW
-            </button>
+          <div className="relative z-10 text-white">
+            <h3 className="font-jost font-medium text-[26px] text-white">NEW</h3>
+            <h3 className="font-jost font-medium text-[26px] text-white"> HORIZONS </h3>
+            <div className="bg-white/80 p-1">
+              <button className="list-item">
+                SHOP NOW
+              </button>
+            </div>
           </div>
         </div>
 
