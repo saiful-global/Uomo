@@ -335,13 +335,25 @@ const Cart = () => {
                     <div className="flex min-w-0 flex-col gap-3">
                       {SHIPPING_OPTIONS.map((option) => (
                         <label key={option.key} className="flex cursor-pointer items-center gap-3">
-                          <input
-                            type="radio"
-                            name="shipping"
-                            checked={shipping === option.key}
-                            onChange={() => setShipping(option.key)}
-                            className="h-4 w-4 shrink-0 cursor-pointer appearance-none border border-bg-footer checked:border-primary-black checked:bg-primary-black"
-                          />
+                          {/* Checkbox look: box + tick icon (still a radio, so only one option is selectable) */}
+                          <span className="relative flex h-4 w-4 shrink-0">
+                            <input
+                              type="radio"
+                              name="shipping"
+                              checked={shipping === option.key}
+                              onChange={() => setShipping(option.key)}
+                              className="peer h-4 w-4 cursor-pointer appearance-none border border-bg-footer bg-white checked:border-primary-black checked:bg-primary-black"
+                            />
+                            {/* Tick icon: hidden until the input is checked */}
+                            <svg
+                              viewBox="0 0 12 12"
+                              fill="none"
+                              aria-hidden="true"
+                              className="pointer-events-none absolute inset-0 m-auto hidden h-2.5 w-2.5 text-white peer-checked:block"
+                            >
+                              <path d="M2 6.5L5 9.5L10 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </span>
                           <span className="font-jost font-normal text-sm leading-6 text-primary-black">
                             {option.label}
                           </span>
