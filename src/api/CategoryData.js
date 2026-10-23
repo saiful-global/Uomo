@@ -1,4 +1,4 @@
-import CardsImage from "../assets/images/E-giftCards.png"
+import CardsImage from "../assets/images/E-giftCards.jpg"
 import womenImage from "../assets/images/women.png"
 import menImage from "../assets/images/men.png"
 import kidsImage from "../assets/images/kids.png"
