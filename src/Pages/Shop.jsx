@@ -16,9 +16,17 @@ const Shop = () => {
   const [products,setProducts] = useState([]);
   const [view,setView] = useState(4);
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+  // current sort key: default | rating | priceAsc | priceDesc
+  const [sortBy, setSortBy] = useState("default");
+
+  // sort a copy of the list first (default keeps the API order), then slice
+  let sortedProducts = [...products];
+  if (sortBy === "rating") sortedProducts.sort((a, b) => b.rating - a.rating);
+  if (sortBy === "priceAsc") sortedProducts.sort((a, b) => a.price - b.price);
+  if (sortBy === "priceDesc") sortedProducts.sort((a, b) => b.price - a.price);
 
   // for slice 
-  let displayedProducts = products.slice(0, visibleCount);
+  let displayedProducts = sortedProducts.slice(0, visibleCount);
   // for showProduct 
   let showingProducts = displayedProducts.length;
 
@@ -56,7 +64,7 @@ const Shop = () => {
             <div className='flex items-center justify-between gap-4 pb-7.5 md:pb-10'>
               {/* Breadcrumb is not in the mobile Figma */}
               <div className='hidden md:block'><Breadcrumb /></div>
-              <SortAndView setView={setView} />
+              <SortAndView setView={setView} setSort={setSortBy} />
             </div>
           </Container>
         </div>
