@@ -2,7 +2,7 @@ import React from 'react'
 import ShopImage from '../../assets/images/shop-banner.png'
 // Square image on the right side of the banner.
 // Placeholder: uses an existing file so nothing breaks. Replace this one import with your real image.
-import SideImage from '../../assets/images/bannerSideImage.png'
+import SideImage from '../../assets/images/bannerSideImage.jpg'
 
 // Tags shown under the title
 const TAGS = ['#STAYHOME', 'NEW IN', 'JACKETS', 'HOODIES', 'MEN', 'WOMEN', 'TROUSERS', 'ACCESSORIES', 'SHOES']
