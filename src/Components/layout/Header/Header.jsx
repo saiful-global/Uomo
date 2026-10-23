@@ -99,7 +99,7 @@ const Header = () => {
                                                 </>
                                             ) : item.type === "blog-mega" ? (
                                                 <>
-                                                    <Link to={item.url || "#"} className="cursor-pointer list-item max-lg:text-xs!">
+                                                    <Link to={item.url || "/blog"} className="cursor-pointer list-item max-lg:text-xs!">
                                                         {item.name}
                                                     </Link>
                                                     <BlogMegaMenu isOpen={activeMenu === item.id} />
