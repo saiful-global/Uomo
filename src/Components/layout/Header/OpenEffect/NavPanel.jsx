@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import { SHOP_TABS, SHOP_MAIN, SUB_LINKS } from '../../../../api/menuData'
+import Image from '../../../common/Image'
+import panelImage from '../../../../assets/images/g11.jpg'
 
 // Hamburger panel (Figma: open_navs), responsive from 320px to 1920px+
 const NavPanel = ({ isOpen, onClose }) => {
@@ -27,17 +29,12 @@ const NavPanel = ({ isOpen, onClose }) => {
       aria-hidden={!isOpen}
       className={`fixed inset-0 z-60 transition-[visibility] duration-500 ${isOpen ? 'visible' : 'invisible pointer-events-none'}`}
     >
-      {/* Overlay (grey art on large screens, dark overlay below lg). Click closes */}
+      {/* Overlay (left image on large screens, dark overlay below lg). Click closes */}
       <div
         onClick={onClose}
         className={`absolute inset-0 bg-black/40 lg:bg-transparent transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
       >
-        <svg className="hidden lg:block w-1/2 h-full" viewBox="0 0 960 950" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <rect width="960" height="950" fill="#E6E6E6" />
-          <circle cx="258" cy="805" r="460" fill="#B8B8B8" />
-          <polygon points="725,45 283,803 960,803 960,420" fill="#B8B8B8" />
-          <polygon points="510,418 283,803 725,803" fill="#E6E6E6" />
-        </svg>
+        <Image src={panelImage} alt="Menu" className="hidden lg:block w-1/2 h-full object-cover" />
       </div>
 
       {/* Panel (slides in from the right) */}
