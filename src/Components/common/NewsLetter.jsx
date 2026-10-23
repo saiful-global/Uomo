@@ -2,23 +2,49 @@ import { useState, useEffect } from "react";
 import Image from "./Image";
 import NewsLetterImage from "../../assets/images/NewsLatterImage.jpg";
 
+const STORAGE_KEY = "newsletter_popup_seen";
+
+// Safe wrappers: localStorage can throw (private mode, blocked storage)
+const hasSeenPopup = () => {
+  try {
+    return localStorage.getItem(STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+};
+
+const markPopupSeen = () => {
+  try {
+    localStorage.setItem(STORAGE_KEY, "true");
+  } catch {
+    // ignore storage errors
+  }
+};
+
 function NewsLetter() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    // Already seen before -> never show again
+    if (hasSeenPopup()) return;
+
     const timer = setTimeout(() => {
       setIsOpen(true);
+      // Mark as seen the moment it is shown
+      markPopupSeen();
     }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleClose = () => setIsOpen(false);
 
   if (!isOpen) return null;
 
   return (
     <div
       className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-3.75 sm:p-5 md:p-7.5"
-      onClick={() => setIsOpen(false)}
+      onClick={handleClose}
     >
       <div
         className="bg-white relative rounded-sm overflow-hidden shadow-[0_10px_25px_0_rgba(34,34,34,0.05)] w-full max-w-145 max-h-[calc(100vh-30px)] overflow-y-auto md:max-w-180 lg:max-w-200"
@@ -26,7 +52,7 @@ function NewsLetter() {
       >
         <button
           type="button"
-          onClick={() => setIsOpen(false)}
+          onClick={handleClose}
           aria-label="Close newsletter"
           className="absolute top-4 right-4 z-10 md:top-7.5 md:right-7.5"
         >
@@ -69,7 +95,10 @@ function NewsLetter() {
             </p>
 
             <form
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleClose();
+              }}
               className="bg-white border-2 border-bg-footer flex items-center justify-between gap-3 pr-4 pl-4 pt-3.5 pb-3 md:pr-5 md:pl-5.25 md:pt-4.25 md:pb-3.5"
             >
               <input
