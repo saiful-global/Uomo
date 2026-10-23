@@ -112,7 +112,7 @@ const Header = () => {
                                                     <PagesMegaMenu isOpen={activeMenu === item.id} />
                                                 </>
                                             ) : (
-                                                <Link to={item.url || "#"} className="list-item max-lg:text-xs!">
+                                                <Link to={item.url || "/shop"} className="list-item max-lg:text-xs!">
                                                     {item.name}
                                                 </Link>
                                             )}
