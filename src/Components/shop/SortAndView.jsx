@@ -45,21 +45,21 @@ const SortAndView = ({setView}) => {
         </button>
         {/* Dropdown */}
         {(
-            <div className={`absolute z-10 mt-2 w-40 right-0 md:right-auto md:left-0 bg-white border border-bg-footer rounded shadow-2xs cursor-pointer origin-top transition-all duration-300 ease-out ${open ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`}>
+            <div className={`absolute z-10 mt-2 w-40 right-0 md:right-auto md:left-0 bg-white border border-bg-footer rounded shadow-2xs cursor-pointer transition-[clip-path,visibility] duration-400 ease-out ${open ? "[clip-path:inset(-4px_-4px_-4px_-4px)] visible" : "[clip-path:inset(0_0_100%_0)] invisible pointer-events-none"}`}>
             <ul>
-              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="pl-4 pr-4 py-2 hover:pl-6 transition-all duration-300 ease-out hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Popularity
               </li>
-              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="pl-4 pr-4 py-2 hover:pl-6 transition-all duration-300 ease-out hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                   Average rating
               </li>
-              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="pl-4 pr-4 py-2 hover:pl-6 transition-all duration-300 ease-out hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Newness
               </li>
-              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="pl-4 pr-4 py-2 hover:pl-6 transition-all duration-300 ease-out hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Price: low to high
               </li>
-              <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
+              <li className="pl-4 pr-4 py-2 hover:pl-6 transition-all duration-300 ease-out hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Price: high to low
               </li>
             </ul>
