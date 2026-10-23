@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
-import { FaFacebookF, FaInstagram, FaPinterest } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaPinterest, FaGithub } from "react-icons/fa";
 import { FaXTwitter, FaYoutube } from "react-icons/fa6";
 import Container from "../ui/Container";
 import Image from "../common/Image";
@@ -34,7 +34,7 @@ const HELP_LINKS = [
 ];
 
 const SOCIALS = [
-  { label: "Facebook", href: "https://www.facebook.com", Icon: FaFacebookF, hover: "hover:text-blue-500" },
+  { label: "Facebook", href: "https://www.facebook.com/global.saiful", Icon: FaFacebookF, hover: "hover:text-blue-500" },
   { label: "X (Twitter)", href: "https://x.com", Icon: FaXTwitter, hover: "hover:text-black" },
   { label: "Instagram", href: "https://www.instagram.com", Icon: FaInstagram, hover: "hover:text-pink-600" },
   { label: "YouTube", href: "https://www.youtube.com", Icon: FaYoutube, hover: "hover:text-red-600" },
@@ -57,7 +57,34 @@ const FooterColumn = ({ title, links, className }) => (
   </div>
 );
 
-const Chevron = () => (
+// Display-only options. Clicking an option just closes the menu, nothing changes.
+const LANGUAGES = [
+  { label: "English", sub: "English", active: true },
+  { label: "中文", sub: "Mandarin Chinese" },
+  { label: "हिन्दी", sub: "Hindi" },
+  { label: "Español", sub: "Spanish" },
+  { label: "Français", sub: "French" },
+  { label: "العربية", sub: "Arabic" },
+  { label: "বাংলা", sub: "Bengali" },
+  { label: "Português", sub: "Portuguese" },
+  { label: "Русский", sub: "Russian" },
+  { label: "اردو", sub: "Urdu" },
+];
+
+const CURRENCIES = [
+  { label: "$ USD", sub: "US Dollar", active: true },
+  { label: "€ EUR", sub: "Euro" },
+  { label: "¥ JPY", sub: "Japanese Yen" },
+  { label: "£ GBP", sub: "British Pound" },
+  { label: "$ AUD", sub: "Australian Dollar" },
+  { label: "$ CAD", sub: "Canadian Dollar" },
+  { label: "CHF", sub: "Swiss Franc" },
+  { label: "¥ CNY", sub: "Chinese Yuan" },
+  { label: "$ HKD", sub: "Hong Kong Dollar" },
+  { label: "$ NZD", sub: "New Zealand Dollar" },
+];
+
+const Chevron = ({ open }) => (
   <svg
     width="14"
     height="14"
@@ -65,6 +92,7 @@ const Chevron = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
+    className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
   >
     <path
       d="M7.49932 3.36078C7.22726 3.08872 6.77274 3.08872 6.49999 3.36078L0.206656 9.638C-0.0688853 9.91355 -0.0688853 10.3604 0.206656 10.6352C0.482197 10.9108 0.929749 10.9108 1.20529 10.6352L6.99997 4.85667L12.794 10.6359C13.0702 10.9115 13.517 10.9115 13.7933 10.6359C14.0688 10.3604 14.0688 9.91355 13.7933 9.6387L7.49932 3.36078Z"
@@ -73,21 +101,71 @@ const Chevron = () => (
   </svg>
 );
 
-// Language / Currency row (label, value, chevron)
-const Selector = ({ label, value, title, className = "" }) => (
-  <div className={`flex items-center ${className}`}>
-    <h4 className="w-21.25 shrink-0 md:w-auto md:mr-6.75 font-jost font-normal text-sm leading-6 text-secondColor">
-      {label}
-    </h4>
-    <h4
-      title={title}
-      className="cursor-pointer mr-3 font-jost font-normal text-sm leading-6 text-primary-black md:text-secondColor md:hover:text-primary-black"
-    >
-      {value}
-    </h4>
-    <Chevron />
-  </div>
-);
+// Language / Currency selector: opens upward, closes on outside click or Escape
+const Selector = ({ label, value, options, className = "" }) => {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onOutside = (e) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false);
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onOutside);
+    document.addEventListener("touchstart", onOutside);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onOutside);
+      document.removeEventListener("touchstart", onOutside);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div ref={wrapRef} className={`relative flex items-center ${className}`}>
+      <span className="w-21.25 shrink-0 md:w-auto md:mr-6.75 font-jost font-normal text-sm leading-6 text-secondColor">
+        {label}
+      </span>
+
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className="flex items-center gap-3 cursor-pointer font-jost font-normal text-sm leading-6 text-primary-black md:text-secondColor md:hover:text-primary-black"
+      >
+        <span className="text-left">{value}</span>
+        <Chevron open={open} />
+      </button>
+
+      {open && (
+        <ul
+          role="listbox"
+          aria-label={label}
+          className="absolute bottom-full left-0 md:left-auto md:right-0 mb-3 z-50 w-60 max-w-[calc(100vw-2rem)] max-h-72 overflow-y-auto bg-white border border-[#CFCDCD] shadow-lg py-1"
+        >
+          {options.map((o) => (
+            <li key={o.label + o.sub} role="option" aria-selected={!!o.active}>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-left font-jost text-sm leading-5 text-primary-black cursor-pointer transition-colors duration-150 hover:bg-gray-100 ${
+                  o.active ? "bg-gray-50 font-medium" : "font-normal"
+                }`}
+              >
+                <span>{o.label}</span>
+                <span className="text-xs text-secondColor">{o.sub}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 const Footer = () => {
   const [joined, setJoined] = useState(false);
@@ -221,18 +299,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.304 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                    fill="black"
-                  />
-                </svg>
+                <FaGithub size={16} className="text-black" aria-hidden="true" />
               </a>
 
               <a
@@ -249,12 +316,12 @@ const Footer = () => {
               <Selector
                 label="Language"
                 value="United Kingdom  |  English"
-                title="Only English is available"
+                options={LANGUAGES}
               />
               <Selector
                 label="Currency"
                 value="$ USD"
-                title="Only $USD is available"
+                options={CURRENCIES}
                 className="md:ml-8"
               />
             </div>
