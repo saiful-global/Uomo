@@ -39,13 +39,13 @@ const SortAndView = ({setView}) => {
         {/* DEFAULT SORTING Button */}
         <button onClick={() => setOpen(!open)} className="font-jost font-medium text-sm leading-6 text-primary-black uppercase whitespace-nowrap border-b-2 flex items-center gap-2.5 md:relative md:after:absolute md:after:top-0 md:after:-right-7.5 md:after:h-5.5 md:after:w-0.5 md:after:bg-bg-footer md:after:content-[''] ">
           DEFAULT SORTING
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
           <path d="M4.64332 5.84071C4.83765 6.05309 5.16231 6.05309 5.35713 5.84071L9.85239 0.940372C10.0492 0.725269 10.0492 0.376431 9.85239 0.161873C9.65557 -0.0532297 9.33589 -0.0532297 9.13908 0.161873L5 4.67294L0.861423 0.161327C0.664109 -0.0537755 0.344926 -0.0537755 0.147611 0.161327C-0.0492049 0.376429 -0.0492049 0.725268 0.147611 0.939826L4.64332 5.84071Z" fill="#222222"/>
           </svg>
         </button>
         {/* Dropdown */}
-        {open && (
-            <div className="absolute z-10 mt-2 w-40 right-0 md:right-auto md:left-0 bg-white border border-bg-footer rounded shadow-2xs cursor-pointer">
+        {(
+            <div className={`absolute z-10 mt-2 w-40 right-0 md:right-auto md:left-0 bg-white border border-bg-footer rounded shadow-2xs cursor-pointer origin-top transition-all duration-300 ease-out ${open ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`}>
             <ul>
               <li className="px-4 py-2 hover:bg-primary-black font-jost font-medium text-sm leading-6 text-primary-black hover:text-white">
                 Popularity
