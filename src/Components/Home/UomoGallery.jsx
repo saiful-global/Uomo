@@ -48,7 +48,7 @@ const UomoGallery = () => {
                     {/* block removes the inline baseline gap under the image */}
                     <Image className="block w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-105" src={item.src} alt={`UOMO gallery ${item.id}`}></Image>
                     {/* very light black overlay, visible only on hover; does not block clicks */}
-                    <div className="pointer-events-none absolute inset-0 bg-black/15 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+                    <div className="pointer-events-none absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                   </div>
                 ))}
             </div>

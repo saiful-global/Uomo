@@ -25,8 +25,12 @@ const Product = ({item}) => {
 
       <div className='group'>
         {/* Link to the single product page (route: /shop/:id).
-            "block" removes the small gap an inline <a> leaves under an <img>. */}
-        <Link to={`/shop/${item.id}`} className='flex justify-center [&_img]:max-w-full [&_img]:min-w-0 [&_img]:h-auto'>
+            "block" removes the small gap an inline <a> leaves under an <img>.
+            HOVER ZOOM (inside only): "overflow-hidden" clips the image to the Link box,
+            and from lg the img scales up slowly on hover. So it grows inward (zoom),
+            and never spills outside the card. The ADD TO CART overlay is outside this Link,
+            so it is not clipped. */}
+        <Link to={`/shop/${item.id}`} className='flex justify-center overflow-hidden [&_img]:max-w-full [&_img]:min-w-0 [&_img]:h-auto [&_img]:transition-transform [&_img]:duration-500 [&_img]:ease-out lg:group-hover:[&_img]:scale-110'>
           <Image src={item.thumbnail || ProductImage} alt={item.title || "ProductImage"}></Image>
         </Link>
 
