@@ -12,8 +12,10 @@ const SPAN_CLASSES = {
 const Card = ({item}) => {
   return (
     <>
-    <div className={`w-full h-full relative overflow-hidden ${SPAN_CLASSES[item.id] || ""}`}>
-        <Image className="h-full w-full object-cover" src={item.Image} alt={item.name} />
+    {/* group + overflow-hidden: the zoomed image stays clipped inside the card */}
+    <div className={`group w-full h-full relative overflow-hidden ${SPAN_CLASSES[item.id] || ""}`}>
+        {/* hover zoom only on the image; the text block below is not scaled */}
+        <Image className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100" src={item.Image} alt={item.name} />
         <div className={` ${item.id == 4? "w-4/5": "w-1/2"} md:w-[calc(100%-3rem)] absolute bottom-7.5 left-7.5 md:bottom-6 md:left-6 lg:bottom-8 lg:left-8 xl:bottom-10 xl:left-10`}>
           {item.id !== 4 && <h4 className='font-jost text-primary-black text-sm font-normal leading-6 '>HOT LIST</h4>}
           <h2 className='text-[20px] lg:text-[20px] xl:text-[24px] font-jost font-medium'><span className='font-bold'>{item.name}</span> {item.id === 4 ? "CARDS" : "COLLECTION"}</h2>
