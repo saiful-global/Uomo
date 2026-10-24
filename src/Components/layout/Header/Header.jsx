@@ -86,7 +86,7 @@ const Header = () => {
                             <div className='flex items-center min-w-0'>
                                 {/* Logo */}
                                 <Link to="/" className='shrink-0'>
-                                    <Image className="w-24 lg:w-28" src="/images/logo.png" alt="logo"></Image>
+                                    <Image className="w-24 lg:w-28" src="/images/logo.svg" alt="logo"></Image>
                                 </Link>
                                 {/* Nav links stay on every md+ screen; below lg the text and gaps get smaller (md = 768px) */}
                                 <ul ref={navListRef} className='flex gap-3.5 ml-4 lg:gap-8 lg:ml-10 xl:gap-11 xl:ml-14'>

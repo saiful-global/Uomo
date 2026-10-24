@@ -186,7 +186,7 @@ const Footer = () => {
               <Link to="/">
                 <Image
                   className="pb-7.25 md:pb-11.25"
-                  src="/images/logo.png"
+                  src="/images/logo.svg"
                   alt="Uomo"
                 />
               </Link>

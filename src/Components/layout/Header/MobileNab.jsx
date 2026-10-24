@@ -239,7 +239,7 @@ const MobileNab = () => {
             }
             {/* Logo  */}
             <Link to="/" onClick={closeMenu}>
-                <Image className="w-28" src="/images/logo.png" alt="logo" ></Image>
+                <Image className="w-28" src="/images/logo.svg" alt="logo" ></Image>
             </Link>
             {/* Cart */}
             <div className='relative'>
