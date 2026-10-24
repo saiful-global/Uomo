@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaPinterest, FaGithub } from "react-icons/fa"
 import { FaXTwitter, FaYoutube } from "react-icons/fa6";
 import Container from "../ui/Container";
 import Image from "../common/Image";
-import SecurePaymentsImage from "../../assets/images/SecurePaymentsImage.png";
+import SecurePaymentsImage from "../../assets/images/SecurePaymentsImage.svg";
 
 // Link lists. Careers, Affiliates and Gift Card have no page yet,
 // so they point to /coming-soon. Change the "to" value when a page exists.
