@@ -13,7 +13,7 @@ const RootLayout = () => {
     <>
     <Helmet>
         <meta charSet="utf-8" />
-        <title>Uomo</title>
+        <title>UOMO</title>
     </Helmet>
     <Header></Header>
     <Outlet></Outlet>
