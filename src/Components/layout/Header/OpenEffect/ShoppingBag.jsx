@@ -43,20 +43,32 @@ const ShoppingBag = ({ isOpen, onClose }) => {
     [items]
   );
 
-  if (!isOpen) return null;
-
   return (
     <>
       <button
         type="button"
         aria-label="Close shopping bag"
         onClick={onClose}
-        className="fixed inset-0 z-[60] h-full w-full cursor-default bg-black/35"
+        tabIndex={isOpen ? 0 : -1}
+        className={`fixed inset-0 z-[60] h-full w-full cursor-default bg-black/35 ${
+          isOpen ? "" : "pointer-events-none"
+        }`}
+        style={{
+          opacity: isOpen ? 1 : 0,
+          transition: "opacity 400ms ease-out",
+        }}
       />
 
       <aside
         aria-label="Shopping bag"
+        aria-hidden={!isOpen}
         className="fixed right-0 top-0 z-[70] flex h-screen w-full max-w-[430px] flex-col bg-white font-jost"
+        style={{
+          transform: isOpen ? "translateX(0)" : "translateX(100%)",
+          visibility: isOpen ? "visible" : "hidden",
+          transition:
+            "transform 400ms cubic-bezier(0.22, 1, 0.36, 1), visibility 400ms",
+        }}
       >
         <div className="flex h-[68px] shrink-0 items-center justify-between border-b border-bg-footer px-4 sm:h-[76px] sm:px-6 md:px-9">
           <h2 className="text-sm font-medium uppercase leading-6 text-primary-black">
