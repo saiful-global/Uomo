@@ -6,7 +6,7 @@ export const SHOP_TABS = ["WOMEN", "MEN", "KIDS"]
 // arrow = shows a chevron on mobile, sub = opens the "COLLECTION" sub list on mobile
 export const SHOP_MAIN = [
   { id: 1, name: "WOMEN", arrow: true },
-  { id: 2, name: "MAN", arrow: true },
+  { id: 2, name: "MEN", arrow: true },
   { id: 3, name: "KIDS", arrow: true },
   { id: 4, name: "HOME", arrow: true },
   { id: 5, name: "COLLECTION", arrow: true, sub: true },
