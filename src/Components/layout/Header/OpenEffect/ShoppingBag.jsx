@@ -5,10 +5,11 @@ import {
   subscribeToCart,
   updateCartQuantity,
 } from "../../../../api/cartStore";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const ShoppingBag = ({ isOpen, onClose }) => {
   const [items, setItems] = useState(() => getCartItems());
+  const navigate = useNavigate();
 
   useEffect(() => {
     const syncCart = () => setItems(getCartItems());
@@ -31,6 +32,13 @@ const ShoppingBag = ({ isOpen, onClose }) => {
 
   const removeItem = (id) => {
     removeFromCart(id);
+  };
+
+  // Empty bag: do nothing (unchanged behavior). Otherwise close the drawer and go to checkout.
+  const goToCheckout = () => {
+    if (items.length === 0) return;
+    onClose();
+    navigate("/checkout");
   };
 
   const subtotal = useMemo(
@@ -218,6 +226,7 @@ const ShoppingBag = ({ isOpen, onClose }) => {
 
             <button
               type="button"
+              onClick={goToCheckout}
               className="h-[52px] bg-primary-black text-sm font-medium uppercase text-primary-white transition hover:opacity-90 sm:h-[55px]"
             >
               Checkout
