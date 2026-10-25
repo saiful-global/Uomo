@@ -3,31 +3,32 @@ import womenImage from "../assets/images/women.png"
 import menImage from "../assets/images/men.png"
 import kidsImage from "../assets/images/kids.png"
 
+// All category cards point to the main shop page (no separate category routes exist yet)
 export const CategoryData = [
     {
         id:1,
         name:"WOMEN",
-        link: "/women",
+        link: "/shop",
         Image: womenImage,
     },
     {
         id:2,
         name:"MEN",
-        link: "/men",
+        link: "/shop",
         Image: menImage,
     },
     {
         id:3,
         name:"KIDS",
-        link: "/kids",
+        link: "/shop",
         Image: kidsImage,
     },
     {
         id:4,
         name:"E-GIFT",
-        link: "/discover",
+        link: "/shop",
         Image: CardsImage,
-        description: "Surprise someone with the gift they really want.", // Add this
+        description: "Surprise someone with the gift they really want.",
         btn: "DISCOVER MORE"
     },
 ]
